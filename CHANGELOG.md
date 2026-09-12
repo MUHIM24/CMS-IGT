@@ -17,6 +17,9 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat `../specs/06
 - Statistik angka klien/proyek (belum ada data terverifikasi).
 - Form kontak fungsional (belum ada data kontak asli & backend).
 
+### Git
+- Repo di-push ke **https://github.com/MUHIM24/CMS-IGT** (branch `main`).
+
 ### Belum selesai / lanjut sesi berikutnya
 - **User feedback (2026-09-12, akhir sesi): tampilan masih belum sesuai ekspektasi** dibanding referensi Figma Make — belum dirinci bagian spesifik mana yang dianggap kurang pas. **Perlu diklarifikasi & di-iterasi lagi di sesi berikutnya** sebelum lanjut ke task lain.
 - Task 6 (contact form) — masih block, nunggu data kontak asli.
