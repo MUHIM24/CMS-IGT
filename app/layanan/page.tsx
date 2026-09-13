@@ -3,8 +3,9 @@ import { SectionLabel } from "@/components/shared/SectionLabel";
 import { CodeIcon, SystemIcon, FintechIcon, ChartIcon, AppIcon, MobileIcon, ConsultIcon } from "@/components/icons/figma-icons";
 
 export const metadata: Metadata = {
-  title: "Layanan | PT Inovasi Gatarawana Teknologi",
-  description: "Delapan produk terintegrasi: web apps, CMS, otomatisasi SLIK OJK, sistem core pembiayaan, hingga aplikasi mobile.",
+  title: "Jasa Pembuatan Website & Aplikasi Mobile Custom Jakarta | PT IGT",
+  description:
+    "Jasa pembuatan aplikasi mobile Android/iOS, website & web app custom, CMS, hingga sistem keuangan (aplikasi finance & multifinance) sesuai kebutuhan bisnis Anda.",
 };
 
 const SERVICES = [

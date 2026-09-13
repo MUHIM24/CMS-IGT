@@ -5,8 +5,9 @@ import { caseStudies } from "@/lib/content/case-studies";
 import { clients } from "@/lib/content/clients";
 
 export const metadata: Metadata = {
-  title: "Portfolio | PT Inovasi Gatarawana Teknologi",
-  description: "Contoh implementasi nyata proyek sistem pembiayaan, mobile, dan automation PT Inovasi Gatarawana Teknologi.",
+  title: "Portofolio Jasa IT Konsultan Jakarta | Proyek Sistem Finance & Mobile",
+  description:
+    "Portofolio proyek jasa pembuatan sistem core finance, aplikasi mobile, dan automation SLIK OJK yang pernah kami kerjakan untuk klien pembiayaan di Indonesia.",
 };
 
 export default function PortfolioPage() {

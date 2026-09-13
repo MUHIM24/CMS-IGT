@@ -11,9 +11,9 @@ import { CTABanner } from "@/components/sections/home/CTABanner";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 
 export const metadata: Metadata = {
-  title: "PT Inovasi Gatarawana Teknologi | Ekosistem Digital untuk Industri Pembiayaan",
+  title: "Jasa IT & Software House Jakarta | PT Inovasi Gatarawana Teknologi",
   description:
-    "Perangkat lunak enterprise, sistem core multifinance, dan aplikasi mobile untuk kebutuhan bisnis pembiayaan Indonesia.",
+    "Jasa pembuatan website, aplikasi mobile (Android/iOS), dan sistem core finance custom di Jakarta. Konsultan IT berpengalaman untuk bisnis pembiayaan & korporasi.",
 };
 
 export default function HomePage() {

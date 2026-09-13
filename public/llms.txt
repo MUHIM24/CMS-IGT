@@ -1,0 +1,35 @@
+# PT Inovasi Gatarawana Teknologi (IGT)
+
+> Jasa IT konsultan dan software house di Jakarta, Indonesia. Membangun website, aplikasi mobile, dan sistem IT custom untuk bisnis lintas industri, termasuk sistem keuangan dan multifinance.
+
+## Layanan
+
+- Web Apps: Pengembangan aplikasi web modern berbasis React, Vue, atau Laravel, custom sesuai proses bisnis.
+- CMS: Sistem manajemen konten untuk mengelola halaman, artikel, dan data situs secara mandiri.
+- CNV Robot SLIK: Automation pengecekan SLIK OJK untuk verifikasi riwayat kredit calon debitur.
+- Core Finance System: Sistem inti pembiayaan (multifinance core system) end-to-end.
+- Mobile Approval: Aplikasi persetujuan kredit dari level CMO hingga Board of Directors.
+- Mobile LOS: Aplikasi Credit Analyst untuk review dokumen dan scoring kredit.
+- Mobile CMO: Aplikasi pengumpulan data customer oleh tenaga pemasaran lapangan.
+- Mobile CNV: Adaptasi mobile dari sistem pengecekan SLIK OJK.
+
+## Portofolio (contoh proyek nyata, nama klien digeneralisasi sesuai perjanjian kerahasiaan)
+
+- Sistem Core Multifinance End-to-End
+- Aplikasi Mobile Loan Origination
+- Aplikasi Mobile Agen Lapangan (CMO)
+
+## Kontak
+
+- WhatsApp / Telepon: +62 812-9542-1735
+- Email: info@igt-tech.id
+- Lokasi: Jakarta, Indonesia
+- Website: https://igt-tech.id
+
+## Halaman
+
+- Beranda: https://igt-tech.id/
+- Tentang Kami: https://igt-tech.id/tentang
+- Layanan: https://igt-tech.id/layanan
+- Portfolio: https://igt-tech.id/portfolio
+- Kontak: https://igt-tech.id/kontak
