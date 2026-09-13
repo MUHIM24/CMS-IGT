@@ -22,6 +22,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat `../specs/06
 - **Bug stacking CSS di Hero**: elemen dekoratif (tekstur titik + lingkaran blur) gak punya `relative` di sibling konten, jadi ketumpuk di atas konten secara teknis dan menghalangi klik/hover tombol CTA di seluruh section. Fix: tambah `relative z-10` di wrapper konten.
 - Tag "[sampel testimoni]" yang ikut tampil literal di label testimoni sudah dihapus.
 - **Bug `siteSettings.siteUrl` belum diganti** ke domain final padahal udah live — dampaknya `sitemap.xml`, `robots.txt`, OG image, dan `metadataBase` masih nunjuk ke `placeholder-igt.vercel.app`. Sudah diganti ke `https://igt-tech.id`.
+- **Favicon masih default Next.js/Vercel** (`app/favicon.ico` bawaan scaffold, gak pernah diganti) — dihapus, diganti `app/icon.png` pakai logo asli PT IGT.
 - Upgrade dependency yang aman: React/React DOM ke 19.3.0, `@types/node` ke `^24` (nyocokin Node runtime v24). ESLint tetap di `^9` dan TypeScript tetap di `^5` — keduanya dites naik tapi ternyata belum didukung `eslint-config-next`/`typescript-eslint` versi sekarang (ESLint 10 bikin lint crash, TypeScript 7 di luar range `typescript-eslint`).
 
 ### Deploy
