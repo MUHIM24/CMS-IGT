@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { ContactInfo } from "@/components/sections/ContactInfo";
+import { ContactSection } from "@/components/sections/contact/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Kontak — PT Inovasi Gatarawana Teknologi",
-  description: "Hubungi PT Inovasi Gatarawana Teknologi untuk konsultasi kebutuhan IT Anda.",
+  title: "Kontak | PT Inovasi Gatarawana Teknologi",
+  description: "Diskusikan kebutuhan sistem, aplikasi, atau layanan IT Anda dengan tim PT Inovasi Gatarawana Teknologi.",
 };
 
 export default function KontakPage() {
-  return <ContactInfo />;
+  return <ContactSection firstSection />;
 }

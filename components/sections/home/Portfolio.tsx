@@ -1,17 +1,12 @@
-import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { SectionLabel } from "@/components/shared/SectionLabel";
+import { ArrowRight } from "@/components/icons/figma-icons";
 import { caseStudies } from "@/lib/content/case-studies";
-import { clients } from "@/lib/content/clients";
 
-export const metadata: Metadata = {
-  title: "Portfolio | PT Inovasi Gatarawana Teknologi",
-  description: "Contoh implementasi nyata proyek sistem pembiayaan, mobile, dan automation PT Inovasi Gatarawana Teknologi.",
-};
-
-export default function PortfolioPage() {
+export function Portfolio() {
   return (
-    <section className="bg-white pt-32 pb-24 lg:pt-40 lg:pb-32">
+    <section className="bg-surface py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mb-14 text-center">
           <SectionLabel>Portfolio</SectionLabel>
@@ -22,8 +17,7 @@ export default function PortfolioPage() {
             Contoh implementasi nyata, nama klien digeneralisasi sesuai perjanjian kerahasiaan.
           </p>
         </div>
-
-        <div className="mb-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {caseStudies.map((p) => (
             <div
               key={p.slug}
@@ -48,19 +42,13 @@ export default function PortfolioPage() {
             </div>
           ))}
         </div>
-
-        <div className="border-border border-t pt-12">
-          <div className="text-muted mb-8 text-center text-xs font-black tracking-widest uppercase">Klien Kami</div>
-          <div className="flex flex-wrap justify-center gap-3">
-            {clients.map((c) => (
-              <div
-                key={c}
-                className="bg-surface border-border text-muted hover:border-brand/50 hover:text-brand hover:bg-brand/[0.08] rounded-xl border px-5 py-2.5 text-sm font-semibold transition-all duration-150"
-              >
-                {c}
-              </div>
-            ))}
-          </div>
+        <div className="text-center">
+          <Link
+            href="/portfolio"
+            className="text-brand hover:text-brand-light inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-150"
+          >
+            Lihat semua portfolio <ArrowRight size={15} />
+          </Link>
         </div>
       </div>
     </section>

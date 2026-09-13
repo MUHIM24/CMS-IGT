@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { siteSettings } from "@/lib/content/site-settings";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="id"
-      className={`${outfit.variable} ${dmSans.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", outfit.variable, dmSans.variable, "font-sans")}
     >
       <body className="flex min-h-full flex-col">
         <Navbar />

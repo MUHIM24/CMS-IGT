@@ -1,26 +1,34 @@
 import type { Metadata } from "next";
-import { Hero } from "@/components/sections/Hero";
-import { About } from "@/components/sections/About";
-import { ServicesGrid } from "@/components/sections/ServicesGrid";
-import { WhyUs } from "@/components/sections/WhyUs";
-import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
-import { CTA } from "@/components/sections/CTA";
+import { Hero } from "@/components/sections/home/Hero";
+import { About } from "@/components/sections/home/About";
+import { Services } from "@/components/sections/home/Services";
+import { WhyUs } from "@/components/sections/home/WhyUs";
+import { Portfolio } from "@/components/sections/home/Portfolio";
+import { Testimonials } from "@/components/sections/home/Testimonials";
+import { ClientsMarquee } from "@/components/sections/home/ClientsMarquee";
+import { FAQ } from "@/components/sections/home/FAQ";
+import { CTABanner } from "@/components/sections/home/CTABanner";
+import { ContactSection } from "@/components/sections/contact/ContactSection";
 
 export const metadata: Metadata = {
-  title: "PT Inovasi Gatarawana Teknologi — Jasa Website, Aplikasi, Sistem & IT Consultant",
+  title: "PT Inovasi Gatarawana Teknologi | Ekosistem Digital untuk Industri Pembiayaan",
   description:
-    "Jasa pembuatan website, aplikasi, sistem, mobile app, dan IT consultant untuk bisnis lintas industri, dengan pengalaman nyata di sektor pembiayaan.",
+    "Perangkat lunak enterprise, sistem core multifinance, dan aplikasi mobile untuk kebutuhan bisnis pembiayaan Indonesia.",
 };
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <About variant="teaser" />
-      <ServicesGrid />
+      <About />
+      <Services />
       <WhyUs />
-      <PortfolioGrid limit={3} />
-      <CTA />
+      <Portfolio />
+      <Testimonials />
+      <ClientsMarquee />
+      <FAQ />
+      <CTABanner />
+      <ContactSection />
     </>
   );
 }

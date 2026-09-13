@@ -2,6 +2,30 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat `../specs/06-keputusan.md`).
 
+## 2026-09-14
+
+### Ditambahkan
+- Port total desain dari `../WEBSITE DESIGN FIGMA PT IGT/` (Figma Make, React+Vite) ke Next.js, mengikuti struktur & visual sedekat mungkin ("sama persis") tapi diimplementasi ulang pakai App Router + Tailwind v4.
+- **shadcn/ui** di-setup dari nol (CLI berbasis Base UI, bukan Radix) — Button, Input, Textarea, Select, Accordion, Avatar, Separator.
+- Halaman baru **`/tim`** (belum ditautkan ke navigasi — lihat "Ditunda").
+- Section **"Klien Kami"** (marquee 2 baris scroll otomatis di Beranda, di bawah Testimoni + list chip di halaman Portfolio) — data klien satu sumber di `lib/content/clients.ts`.
+- Redesign halaman Tentang: Highlights jadi kartu mengambang dengan icon custom, "Perjalanan Kami" jadi timeline vertikal, "Nilai-Nilai" pakai icon box (custom SVG, bukan emoji).
+- Testimoni: carousel horizontal scroll-snap, 5 testimoni, tombol panah bulat + dot navigasi (fungsional).
+- **Integrasi WhatsApp**: semua CTA "Hubungi Kami"/"Konsultasi"/"Hubungi Langsung" di seluruh situs (Navbar, Hero, CTA banner, CTA halaman Tentang) diarahkan ke `wa.me` dengan pesan template, bukan lagi ke form `/kontak`.
+- Data kontak asli terpasang: telepon `+62 812-9542-1735`, email `info@igt-tech.id`, alamat `Jakarta, Indonesia` — menggantikan placeholder `+62 21 XXXX XXXX` dkk.
+
+### Diperbaiki
+- **Bug stacking CSS di Hero**: elemen dekoratif (tekstur titik + lingkaran blur) gak punya `relative` di sibling konten, jadi ketumpuk di atas konten secara teknis dan menghalangi klik/hover tombol CTA di seluruh section. Fix: tambah `relative z-10` di wrapper konten.
+- Tag "[sampel testimoni]" yang ikut tampil literal di label testimoni sudah dihapus.
+- Upgrade dependency yang aman: React/React DOM ke 19.3.0, `@types/node` ke `^24` (nyocokin Node runtime v24). ESLint tetap di `^9` dan TypeScript tetap di `^5` — keduanya dites naik tapi ternyata belum didukung `eslint-config-next`/`typescript-eslint` versi sekarang (ESLint 10 bikin lint crash, TypeScript 7 di luar range `typescript-eslint`).
+
+### Ditunda
+- Menu & section "Tim" (foto tim asli belum ada) — di-unlink dari Navbar/Footer/sitemap, halaman `/tim` tetap ada di kode biar gampang diaktifkan lagi.
+- Logo resmi 5 klien (Shinhan Indomobil Finance, CTBC Indonesia, UOB Indonesia, Adira Finance, Bank Saku) — sementara masih chip nama teks, nunggu file logo resmi + izin pemakaian dari masing-masing klien.
+- Statistik (8+ tahun, 100+ proyek, dst), testimoni, dan cerita/timeline pendirian perusahaan masih konten ilustratif (belum data terverifikasi) — dipertahankan atas keputusan eksplisit user, bukan alasan teknis.
+- Form kontak di `/kontak` masih UI-only (submit gak benaran ngirim kemana-mana) — kanal kontak utama sekarang WhatsApp.
+- Deploy Vercel — sedang berjalan di sesi ini.
+
 ## 2026-09-12
 
 ### Ditambahkan
