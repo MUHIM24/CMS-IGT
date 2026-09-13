@@ -12,19 +12,28 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat `../specs/06
 - Redesign halaman Tentang: Highlights jadi kartu mengambang dengan icon custom, "Perjalanan Kami" jadi timeline vertikal, "Nilai-Nilai" pakai icon box (custom SVG, bukan emoji).
 - Testimoni: carousel horizontal scroll-snap, 5 testimoni, tombol panah bulat + dot navigasi (fungsional).
 - **Integrasi WhatsApp**: semua CTA "Hubungi Kami"/"Konsultasi"/"Hubungi Langsung" di seluruh situs (Navbar, Hero, CTA banner, CTA halaman Tentang) diarahkan ke `wa.me` dengan pesan template, bukan lagi ke form `/kontak`.
+- Form di `/kontak` dipertahankan (bukan dihapus), tapi tombol submit sekarang menyusun pesan dari isian form (nama, email, perusahaan, layanan, kebutuhan) dan membuka WhatsApp dengan pesan itu — bukan fake-submit lagi.
 - Data kontak asli terpasang: telepon `+62 812-9542-1735`, email `info@igt-tech.id`, alamat `Jakarta, Indonesia` — menggantikan placeholder `+62 21 XXXX XXXX` dkk.
+- Hero (Beranda): urutan mobile diubah jadi gambar/kartu dashboard dulu di atas, baru teks headline di bawahnya (pakai Tailwind `order-`, tampilan desktop gak berubah).
+- **SEO**: title & description tiap halaman disesuaikan riset kata kunci user ("jasa IT", "jasa pembuatan website/aplikasi mobile Jakarta", dll) tapi tetap sesuai layanan asli. Tambah JSON-LD `ProfessionalService` schema di root layout.
+- **SEO AI**: tambah `public/llms.txt` — ringkasan situs format markdown buat AI crawler (ChatGPT, Perplexity, dll), isinya cuma layanan/portfolio/kontak yang terverifikasi nyata (statistik & testimoni ilustratif sengaja gak dimasukkan ke file ini).
 
 ### Diperbaiki
 - **Bug stacking CSS di Hero**: elemen dekoratif (tekstur titik + lingkaran blur) gak punya `relative` di sibling konten, jadi ketumpuk di atas konten secara teknis dan menghalangi klik/hover tombol CTA di seluruh section. Fix: tambah `relative z-10` di wrapper konten.
 - Tag "[sampel testimoni]" yang ikut tampil literal di label testimoni sudah dihapus.
+- **Bug `siteSettings.siteUrl` belum diganti** ke domain final padahal udah live — dampaknya `sitemap.xml`, `robots.txt`, OG image, dan `metadataBase` masih nunjuk ke `placeholder-igt.vercel.app`. Sudah diganti ke `https://igt-tech.id`.
 - Upgrade dependency yang aman: React/React DOM ke 19.3.0, `@types/node` ke `^24` (nyocokin Node runtime v24). ESLint tetap di `^9` dan TypeScript tetap di `^5` — keduanya dites naik tapi ternyata belum didukung `eslint-config-next`/`typescript-eslint` versi sekarang (ESLint 10 bikin lint crash, TypeScript 7 di luar range `typescript-eslint`).
+
+### Deploy
+- Project di-link ke Vercel (`muhim24s-projects/igt-company-profile`), GitHub repo otomatis kesambung buat auto-deploy tiap push ke `main`.
+- Domain **`igt-tech.id`** (+ `www.igt-tech.id`) disambungkan lewat A record (`76.76.21.21`) di DNS Zone Hostinger, terverifikasi dan SSL otomatis aktif dari Vercel.
+- Situs live di **https://igt-tech.id** — semua halaman utama dicek 200 OK.
 
 ### Ditunda
 - Menu & section "Tim" (foto tim asli belum ada) — di-unlink dari Navbar/Footer/sitemap, halaman `/tim` tetap ada di kode biar gampang diaktifkan lagi.
 - Logo resmi 5 klien (Shinhan Indomobil Finance, CTBC Indonesia, UOB Indonesia, Adira Finance, Bank Saku) — sementara masih chip nama teks, nunggu file logo resmi + izin pemakaian dari masing-masing klien.
 - Statistik (8+ tahun, 100+ proyek, dst), testimoni, dan cerita/timeline pendirian perusahaan masih konten ilustratif (belum data terverifikasi) — dipertahankan atas keputusan eksplisit user, bukan alasan teknis.
-- Form kontak di `/kontak` masih UI-only (submit gak benaran ngirim kemana-mana) — kanal kontak utama sekarang WhatsApp.
-- Deploy Vercel — sedang berjalan di sesi ini.
+- 2 IP redundant tambahan yang disaranin Vercel buat A record `@` (`216.198.79.1`, `64.29.17.1`) — opsional, domain udah jalan normal tanpa itu.
 
 ## 2026-09-12
 
