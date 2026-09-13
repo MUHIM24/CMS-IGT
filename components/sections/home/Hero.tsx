@@ -27,7 +27,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 pb-20 lg:px-10">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
-          <div>
+          <div className="order-2 lg:order-1">
             <div className="bg-brand/10 mb-7 inline-flex items-center gap-2.5 rounded-full px-4 py-1.5">
               <span className="text-brand-light text-sm font-bold tracking-widest uppercase">
                 Web Apps &middot; Core Finance &middot; Mobile Apps &middot; CMS
@@ -70,7 +70,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative flex justify-center lg:justify-end">
+          <div className="relative order-1 flex justify-center lg:order-2 lg:justify-end">
             <div className="relative w-full max-w-[400px]">
               <div className="animate-float relative z-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl backdrop-blur-xl">
                 <Image

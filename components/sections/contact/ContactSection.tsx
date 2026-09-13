@@ -6,7 +6,7 @@ import { MapPinIcon, PhoneIcon, MailIcon, LinkedinIcon, InstagramIcon, CheckIcon
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { siteSettings } from "@/lib/content/site-settings";
+import { siteSettings, buildWhatsAppLink } from "@/lib/content/site-settings";
 
 const CONTACT_ROWS = [
   { Icon: MapPinIcon, label: "Alamat", val: siteSettings.address },
@@ -40,6 +40,12 @@ export function ContactSection({
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const lines = [`Halo PT Inovasi Gatarawana Teknologi, saya ${form.name}.`, `Email: ${form.email}`];
+    if (form.company) lines.push(`Perusahaan: ${form.company}`);
+    if (form.service) lines.push(`Layanan yang diminati: ${form.service}`);
+    lines.push(`Kebutuhan: ${form.message}`);
+
+    window.open(buildWhatsAppLink(lines.join("\n")), "_blank", "noopener,noreferrer");
     setSent(true);
   }
 
@@ -94,8 +100,17 @@ export function ContactSection({
                 <div className="bg-brand mb-4 flex h-16 w-16 items-center justify-center rounded-full text-white">
                   <CheckIcon />
                 </div>
-                <h3 className="font-display text-text mb-2 text-xl font-bold">Pesan Terkirim!</h3>
-                <p className="text-muted text-sm">Tim kami akan menghubungi Anda dalam satu hari kerja.</p>
+                <h3 className="font-display text-text mb-2 text-xl font-bold">WhatsApp Terbuka di Tab Baru</h3>
+                <p className="text-muted mb-6 text-sm">
+                  Pesan Anda sudah kami siapkan, tinggal ditekan kirim di WhatsApp untuk mengirimkannya ke tim kami.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSent(false)}
+                  className="text-brand hover:text-brand-light text-sm font-semibold transition-colors duration-150"
+                >
+                  Isi pesan lain
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -165,9 +180,11 @@ export function ContactSection({
                   type="submit"
                   className="hover:bg-accent-light w-full rounded-xl bg-[var(--color-accent)] py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-150 hover:shadow-lg active:scale-[0.98]"
                 >
-                  Kirim Pesan
+                  Kirim via WhatsApp
                 </button>
-                <p className="text-muted text-center text-sm">Data Anda aman dan tidak akan dibagikan ke pihak ketiga.</p>
+                <p className="text-muted text-center text-sm">
+                  Tombol ini membuka WhatsApp dengan pesan yang sudah terisi otomatis dari form di atas.
+                </p>
               </form>
             )}
           </div>
