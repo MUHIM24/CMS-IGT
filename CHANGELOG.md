@@ -18,12 +18,22 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat `../specs/06
 - **SEO**: title & description tiap halaman disesuaikan riset kata kunci user ("jasa IT", "jasa pembuatan website/aplikasi mobile Jakarta", dll) tapi tetap sesuai layanan asli. Tambah JSON-LD `ProfessionalService` schema di root layout.
 - **SEO AI**: tambah `public/llms.txt` — ringkasan situs format markdown buat AI crawler (ChatGPT, Perplexity, dll), isinya cuma layanan/portfolio/kontak yang terverifikasi nyata (statistik & testimoni ilustratif sengaja gak dimasukkan ke file ini).
 
+### Ditambahkan (revisi pasca-launch)
+- **Logo klien asli**: 2 logo resmi (Woori Finance Indonesia, Shinhan Indo Finance) dipasang di `lib/content/clients.ts`, menggantikan chip nama teks di Beranda (`ClientsMarquee`) & halaman Portfolio. Marquee auto-scroll dinonaktifkan sementara (baru 2 logo, kurang natural buat di-scroll) — tinggal aktifkan lagi kalau logo klien nambah jadi ~5+.
+- FAQ: item pertama dibuat kebuka default (sebelumnya semua tertutup dari awal).
+- **Technical SEO**: tambah `alternates.canonical` di semua halaman (sebelumnya gak ada sama sekali), redirect 301 `www.igt-tech.id` → `igt-tech.id` di `next.config.ts` (dua host tadinya sama-sama live tanpa redirect = duplicate content di mata Google — kemungkinan besar penyebab hasil pencarian belum muncul normal), `/tim` di-noindex karena belum ditautkan ke navigasi, dan disiapkan slot env var `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` buat verifikasi Google Search Console begitu kodenya didapat dari klien.
+
 ### Diperbaiki
 - **Bug stacking CSS di Hero**: elemen dekoratif (tekstur titik + lingkaran blur) gak punya `relative` di sibling konten, jadi ketumpuk di atas konten secara teknis dan menghalangi klik/hover tombol CTA di seluruh section. Fix: tambah `relative z-10` di wrapper konten.
 - Tag "[sampel testimoni]" yang ikut tampil literal di label testimoni sudah dihapus.
 - **Bug `siteSettings.siteUrl` belum diganti** ke domain final padahal udah live — dampaknya `sitemap.xml`, `robots.txt`, OG image, dan `metadataBase` masih nunjuk ke `placeholder-igt.vercel.app`. Sudah diganti ke `https://igt-tech.id`.
 - **Favicon masih default Next.js/Vercel** (`app/favicon.ico` bawaan scaffold, gak pernah diganti) — dihapus, diganti `app/icon.png` pakai logo asli PT IGT.
 - Upgrade dependency yang aman: React/React DOM ke 19.3.0, `@types/node` ke `^24` (nyocokin Node runtime v24). ESLint tetap di `^9` dan TypeScript tetap di `^5` — keduanya dites naik tapi ternyata belum didukung `eslint-config-next`/`typescript-eslint` versi sekarang (ESLint 10 bikin lint crash, TypeScript 7 di luar range `typescript-eslint`).
+
+### Diperbaiki (revisi pasca-launch)
+- **Kontak**: email diganti ke `hendri.m@igt-tech.id`, telepon & WhatsApp diganti ke `+62 851-5908-0096` — data kontak awal ternyata bukan yang final dipakai klien (satu sumber di `lib/content/site-settings.ts`, otomatis kepakai di semua halaman + JSON-LD).
+- **Urutan warna background Beranda**: Testimoni jadi putih, Klien Kami jadi surface (abu muda) — sebelumnya dua section itu sama-sama surface jadi gak selang-seling sama section lain.
+- **Ukuran logo klien** diperbesar di Beranda & Portfolio — ukuran awal kurang keliatan.
 
 ### Deploy
 - Project di-link ke Vercel (`muhim24s-projects/igt-company-profile`), GitHub repo otomatis kesambung buat auto-deploy tiap push ke `main`.
