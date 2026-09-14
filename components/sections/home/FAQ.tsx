@@ -37,7 +37,7 @@ export function FAQ() {
           <h2 className="font-display text-text mb-4 text-3xl font-bold sm:text-4xl">Pertanyaan yang Sering Diajukan</h2>
           <p className="text-muted text-base leading-relaxed">Belum menemukan jawaban yang Anda cari? Hubungi tim kami langsung.</p>
         </div>
-        <Accordion className="gap-3 space-y-3">
+        <Accordion className="gap-3 space-y-3" defaultValue={["faq-0"]}>
           {FAQS.map((faq, i) => (
             <AccordionItem
               key={i}
