@@ -13,17 +13,17 @@ export function ClientsMarquee() {
           <SectionLabel>Klien Kami</SectionLabel>
           <h2 className="font-display text-text text-3xl font-bold sm:text-4xl">Dipercaya oleh</h2>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
           {clients.map((client) => (
             <div
               key={client.name}
-              className="border-border flex h-24 w-48 items-center justify-center rounded-xl border bg-white p-4"
+              className="border-border flex h-28 w-64 items-center justify-center rounded-xl border bg-white p-6 sm:h-36 sm:w-80 sm:p-8"
             >
               <Image
                 src={client.logo}
                 alt={client.name}
-                width={160}
-                height={80}
+                width={240}
+                height={120}
                 className="h-full w-full object-contain"
               />
             </div>

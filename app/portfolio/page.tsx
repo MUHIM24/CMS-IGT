@@ -53,13 +53,13 @@ export default function PortfolioPage() {
 
         <div className="border-border border-t pt-12">
           <div className="text-muted mb-8 text-center text-xs font-black tracking-widest uppercase">Klien Kami</div>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-5">
             {clients.map((c) => (
               <div
                 key={c.name}
-                className="border-border flex h-16 w-32 items-center justify-center rounded-xl border bg-white p-3"
+                className="border-border flex h-24 w-52 items-center justify-center rounded-xl border bg-white p-5"
               >
-                <Image src={c.logo} alt={c.name} width={120} height={48} className="h-full w-full object-contain" />
+                <Image src={c.logo} alt={c.name} width={200} height={96} className="h-full w-full object-contain" />
               </div>
             ))}
           </div>
