@@ -7,7 +7,7 @@ import { clients } from "@/lib/content/clients";
 // begitu jumlah logo klien nambah jadi ~5+.
 export function ClientsMarquee() {
   return (
-    <section className="bg-white py-16 lg:py-20">
+    <section className="bg-surface py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mb-14 text-center">
           <SectionLabel>Klien Kami</SectionLabel>

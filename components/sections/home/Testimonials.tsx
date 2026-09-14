@@ -61,7 +61,7 @@ export function Testimonials() {
   const next = () => scrollToIndex(Math.min(active + 1, TESTIMONIALS.length - 1));
 
   return (
-    <section className="bg-surface py-24 lg:py-32">
+    <section className="bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mb-14 text-center">
           <SectionLabel>Testimoni</SectionLabel>
