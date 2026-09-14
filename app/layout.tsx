@@ -26,6 +26,11 @@ export const metadata: Metadata = {
   },
   description:
     "Jasa pembuatan website, aplikasi mobile, dan sistem IT custom (termasuk sistem keuangan & multifinance) untuk bisnis di Jakarta dan seluruh Indonesia.",
+  // Isi kode verifikasi dari Google Search Console (Settings > Ownership verification > HTML tag,
+  // ambil cuma isi atribut content="") di env var ini biar meta tag verifikasinya kepasang otomatis.
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 // Organization schema (JSON-LD): membantu Google & mesin pencari AI (ChatGPT, Perplexity, dll)

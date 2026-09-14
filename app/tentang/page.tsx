@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: "Tentang Kami | Konsultan IT & Software House Jakarta - PT IGT",
   description:
     "PT Inovasi Gatarawana Teknologi, konsultan IT dan software house di Jakarta, mitra teknologi terpercaya untuk industri keuangan dan multifinance Indonesia.",
+  alternates: { canonical: "/tentang" },
 };
 
 const HIGHLIGHTS = [

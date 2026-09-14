@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Portofolio Jasa IT Konsultan Jakarta | Proyek Sistem Finance & Mobile",
   description:
     "Portofolio proyek jasa pembuatan sistem core finance, aplikasi mobile, dan automation SLIK OJK yang pernah kami kerjakan untuk klien pembiayaan di Indonesia.",
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioPage() {

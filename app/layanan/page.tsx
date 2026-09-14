@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Jasa Pembuatan Website & Aplikasi Mobile Custom Jakarta | PT IGT",
   description:
     "Jasa pembuatan aplikasi mobile Android/iOS, website & web app custom, CMS, hingga sistem keuangan (aplikasi finance & multifinance) sesuai kebutuhan bisnis Anda.",
+  alternates: { canonical: "/layanan" },
 };
 
 const SERVICES = [

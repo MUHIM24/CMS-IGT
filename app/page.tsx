@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Jasa IT & Software House Jakarta | PT Inovasi Gatarawana Teknologi",
   description:
     "Jasa pembuatan website, aplikasi mobile (Android/iOS), dan sistem core finance custom di Jakarta. Konsultan IT berpengalaman untuk bisnis pembiayaan & korporasi.",
+  alternates: { canonical: "/" },
 };
 
 export default function HomePage() {
