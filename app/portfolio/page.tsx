@@ -52,13 +52,13 @@ export default function PortfolioPage() {
 
         <div className="border-border border-t pt-12">
           <div className="text-muted mb-8 text-center text-xs font-black tracking-widest uppercase">Klien Kami</div>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             {clients.map((c) => (
               <div
-                key={c}
-                className="bg-surface border-border text-muted hover:border-brand/50 hover:text-brand hover:bg-brand/[0.08] rounded-xl border px-5 py-2.5 text-sm font-semibold transition-all duration-150"
+                key={c.name}
+                className="border-border flex h-16 w-32 items-center justify-center rounded-xl border bg-white p-3"
               >
-                {c}
+                <Image src={c.logo} alt={c.name} width={120} height={48} className="h-full w-full object-contain" />
               </div>
             ))}
           </div>

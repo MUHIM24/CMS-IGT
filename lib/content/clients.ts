@@ -1,3 +1,9 @@
-// Logo resmi klien belum tersedia/diizinkan buat dipasang — sementara pakai nama teks dulu.
-// Dipakai di ClientsMarquee (Beranda) dan halaman /portfolio.
-export const clients = ["Shinhan Indomobil Finance", "CTBC Indonesia", "UOB Indonesia", "Adira Finance", "Bank Saku"];
+// Logo resmi 2 klien pertama sudah diizinkan dipasang. Marquee auto-scroll di ClientsMarquee
+// sengaja dinonaktifkan sementara (baru 2 logo, scroll kurang natural) - aktifkan lagi begitu
+// jumlah logo klien nambah jadi ~5+ (lihat komentar di ClientsMarquee.tsx).
+export type Client = { name: string; logo: string };
+
+export const clients: Client[] = [
+  { name: "Woori Finance Indonesia", logo: "/clients/woori-finance-indonesia.jpg" },
+  { name: "Shinhan Indo Finance", logo: "/clients/shinhan-indo-finance.jpg" },
+];
