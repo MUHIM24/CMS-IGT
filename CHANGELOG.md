@@ -2,6 +2,13 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat `../specs/06-keputusan.md`).
 
+## 2026-10-01
+
+### Keamanan
+- **Upgrade `next` 16.3.5 → 16.3.8** (+ `eslint-config-next` ikut 16.3.8, tetap di-pin). Nutup CVE kritis RCE di `next/og` `ImageResponse` ([GHSA-vcvr-r3jv-pc5j](https://github.com/advisories/GHSA-vcvr-r3jv-pc5j), kena 16.2.0–16.3.5) — situs ini kena langsung karena `app/opengraph-image.tsx` pakai `ImageResponse`.
+- `npm audit fix` buat dependensi transitif dev (brace-expansion, fast-uri, ip-address). `npm audit`: 4 (1 kritis) → 0.
+- Verifikasi lokal: build + lint OK, `next start` semua route 200, `/opengraph-image` tetap render PNG.
+
 ## 2026-09-14
 
 ### Ditambahkan
