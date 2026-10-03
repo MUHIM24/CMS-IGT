@@ -1,6 +1,13 @@
 # Changelog
 
-Log progres pengerjaan situs (bukan decision log — buat itu lihat `../specs/06-keputusan.md`).
+Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
+
+## 2026-10-04
+
+### Dokumentasi
+- Tambah `docs/PRD.md`, `docs/DESIGN_SYSTEM.md`, `docs/ARCHITECTURE.md` di dalam repo, disusun dari `../specs/` + `../DESIGN.md` dan disesuaikan dengan kode yang live sekarang. `../specs/` tetap ada sebagai arsip histori.
+- `AGENTS.md` ditambah aturan khusus project (konvensi, perintah, aturan konten/UI, cara verifikasi). Blok bawaan Next.js tetap.
+- Temuan saat menyusun dokumen (dicatat di backlog `docs/PRD.md`, belum diubah di kode): data konten masih inline di beberapa komponen, tagline di `site-settings.ts` beda dengan slogan final D-6, dan teks putih di tombol accent gagal WCAG AA.
 
 ## 2026-10-01
 
