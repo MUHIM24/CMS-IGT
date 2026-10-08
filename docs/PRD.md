@@ -4,7 +4,7 @@ Status per 2026-10-04. Dokumen ini menggantikan `../specs/00-constitution.md`, `
 
 ## 1. Ringkasan produk
 
-Website company profile **PT Inovasi Gatarawana Teknologi (PT IGT)**, live di **https://igt-tech.id**.
+Website company profile **PT Inovasi Gantarawana Teknologi (PT IGT)**, live di **https://igt-tech.id**.
 
 - **Fase 1 (sekarang, masih tahap development):** marketing site statis, konten dari file lokal, fokus SEO + lead generation lewat WhatsApp.
 - **Fase 2 (belum mulai):** headless CMS supaya konten bisa diedit tanpa developer.

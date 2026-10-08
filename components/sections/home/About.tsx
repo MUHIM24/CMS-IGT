@@ -60,7 +60,7 @@ export function About() {
               <span className="gradient-text">Dipercaya untuk Kompleksitas</span>
             </h2>
             <p className="text-muted mb-5 text-base leading-relaxed">
-              PT Inovasi Gatarawana Teknologi adalah perusahaan solusi IT yang berfokus pada
+              PT Inovasi Gantarawana Teknologi adalah perusahaan solusi IT yang berfokus pada
               pengembangan sistem enterprise untuk industri keuangan, multifinance, dan korporasi
               di Indonesia.
             </p>

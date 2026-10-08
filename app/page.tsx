@@ -11,7 +11,7 @@ import { CTABanner } from "@/components/sections/home/CTABanner";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Jasa IT & Software House Jakarta | PT Inovasi Gatarawana Teknologi",
+  title: "Jasa IT & Software House Jakarta | PT Inovasi Gantarawana Teknologi",
   description:
     "Jasa pembuatan website, aplikasi mobile (Android/iOS), dan sistem core finance custom di Jakarta. Konsultan IT berpengalaman untuk bisnis pembiayaan & korporasi.",
   alternates: { canonical: "/" },

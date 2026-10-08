@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog — PT Inovasi Gatarawana Teknologi",
+  title: "Blog — PT Inovasi Gantarawana Teknologi",
   description: "Artikel dan insight seputar teknologi, segera hadir.",
   alternates: { canonical: "/blog" },
 };

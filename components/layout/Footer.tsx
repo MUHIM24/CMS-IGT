@@ -23,10 +23,10 @@ export function Footer() {
         <div className="mb-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <div className="mb-5 flex items-center gap-3">
-              <Image src="/logo-icon.png" alt="PT Inovasi Gatarawana Teknologi logo" width={36} height={36} className="h-9 w-9 object-contain" />
+              <Image src="/logo-icon.png" alt="PT Inovasi Gantarawana Teknologi logo" width={36} height={36} className="h-9 w-9 object-contain" />
               <div>
                 <div className="font-display text-base leading-tight font-bold text-white">
-                  PT Inovasi Gatarawana Teknologi
+                  PT Inovasi Gantarawana Teknologi
                 </div>
                 <div className="text-brand-light text-xs font-semibold tracking-widest uppercase">IT Solutions</div>
               </div>
@@ -65,7 +65,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
           <div className="text-sm text-white/25">
-            &copy; {new Date().getFullYear()} PT Inovasi Gatarawana Teknologi. Hak cipta dilindungi.
+            &copy; {new Date().getFullYear()} PT Inovasi Gantarawana Teknologi. Hak cipta dilindungi.
           </div>
           <div className="text-sm text-white/20">Jakarta, Indonesia</div>
         </div>

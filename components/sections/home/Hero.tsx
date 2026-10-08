@@ -37,7 +37,7 @@ export function Hero() {
               Mengubah Ide Menjadi <span className="gradient-text">Inovasi</span> Digital
             </h1>
             <p className="mb-10 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg">
-              PT Inovasi Gatarawana Teknologi menghadirkan perangkat lunak enterprise, sistem core
+              PT Inovasi Gantarawana Teknologi menghadirkan perangkat lunak enterprise, sistem core
               multifinance, dan aplikasi mobile yang dirancang untuk kebutuhan bisnis pembiayaan
               Indonesia, presisi, patuh regulasi, dan siap skala.
             </p>

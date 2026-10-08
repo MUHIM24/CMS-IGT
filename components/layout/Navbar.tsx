@@ -45,10 +45,10 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex h-[72px] items-center justify-between">
           <Link href="/" onClick={() => setOpen(false)} className="group flex items-center gap-3">
-            <Image src="/logo-icon.png" alt="PT Inovasi Gatarawana Teknologi logo" width={36} height={36} className="h-9 w-9 object-contain" priority />
+            <Image src="/logo-icon.png" alt="PT Inovasi Gantarawana Teknologi logo" width={36} height={36} className="h-9 w-9 object-contain" priority />
             <div className="text-left">
               <div className="font-display text-base leading-tight font-bold tracking-tight text-white">
-                PT Inovasi Gatarawana
+                PT Inovasi Gantarawana
               </div>
               <div className="text-brand-light text-xs font-semibold tracking-[0.15em] uppercase">Teknologi</div>
             </div>

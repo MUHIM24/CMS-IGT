@@ -1,5 +1,5 @@
 export const siteSettings = {
-  companyName: "PT Inovasi Gatarawana Teknologi",
+  companyName: "PT Inovasi Gantarawana Teknologi",
   tagline: "Mitra Teknologi Terpercaya untuk Industri Keuangan & Multifinance Indonesia",
   siteUrl: "https://igt-tech.id",
   phone: "+62 851-5908-0096",
@@ -10,7 +10,7 @@ export const siteSettings = {
 };
 
 const DEFAULT_WHATSAPP_MESSAGE =
-  "Halo PT Inovasi Gatarawana Teknologi, saya ingin konsultasi mengenai kebutuhan sistem/aplikasi untuk bisnis saya.";
+  "Halo PT Inovasi Gantarawana Teknologi, saya ingin konsultasi mengenai kebutuhan sistem/aplikasi untuk bisnis saya.";
 
 export function buildWhatsAppLink(message: string = DEFAULT_WHATSAPP_MESSAGE) {
   return `https://wa.me/${siteSettings.whatsappNumber}?text=${encodeURIComponent(message)}`;

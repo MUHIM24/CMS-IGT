@@ -21,7 +21,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteSettings.siteUrl),
   title: {
-    default: "Jasa IT & Software House Jakarta | PT Inovasi Gatarawana Teknologi",
+    default: "Jasa IT & Software House Jakarta | PT Inovasi Gantarawana Teknologi",
     template: "%s",
   },
   description:

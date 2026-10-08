@@ -10,7 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # Website PT IGT: aturan untuk agent
 
-Company profile PT Inovasi Gatarawana Teknologi, live di https://igt-tech.id. Masih tahap development (Fase 1, tanpa CMS).
+Company profile PT Inovasi Gantarawana Teknologi, live di https://igt-tech.id. Masih tahap development (Fase 1, tanpa CMS).
 
 ## Baca dulu
 - `docs/PRD.md`: scope, aturan bisnis, backlog, decision log.

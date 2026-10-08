@@ -2,6 +2,12 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-08
+
+### Diubah
+- **Revisi nama perusahaan: "PT Inovasi Gatarawana Teknologi" → "PT Inovasi Gantarawana Teknologi"** di seluruh situs: `siteSettings.companyName` (otomatis ikut ke JSON-LD Organization, OG image, alt), title & description SEO semua halaman (Beranda, Tentang, Kontak, Blog, Tim), Navbar, Footer, Hero, About, pesan template WhatsApp form kontak, `public/llms.txt`, plus `AGENTS.md` dan `docs/PRD.md`.
+- Belum tersentuh: file logo PNG (kalau di gambarnya ada tulisan nama lama, perlu diganti dari file desain).
+
 ## 2026-10-04
 
 ### Dokumentasi

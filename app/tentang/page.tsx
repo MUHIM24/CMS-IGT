@@ -21,7 +21,7 @@ import {
 export const metadata: Metadata = {
   title: "Tentang Kami | Konsultan IT & Software House Jakarta - PT IGT",
   description:
-    "PT Inovasi Gatarawana Teknologi, konsultan IT dan software house di Jakarta, mitra teknologi terpercaya untuk industri keuangan dan multifinance Indonesia.",
+    "PT Inovasi Gantarawana Teknologi, konsultan IT dan software house di Jakarta, mitra teknologi terpercaya untuk industri keuangan dan multifinance Indonesia.",
   alternates: { canonical: "/tentang" },
 };
 
@@ -78,7 +78,7 @@ export default function TentangPage() {
           <div className="grid items-end gap-10 lg:grid-cols-2">
             <div className="pb-16">
               <h1 className="font-display mb-5 text-4xl leading-tight font-bold text-white sm:text-5xl">
-                Tentang <span className="gradient-text">PT Inovasi Gatarawana Teknologi</span>
+                Tentang <span className="gradient-text">PT Inovasi Gantarawana Teknologi</span>
               </h1>
               <p className="font-display mb-4 text-lg font-semibold text-white/80">
                 Mitra Teknologi Terpercaya untuk Industri Keuangan &amp; Multifinance Indonesia
@@ -93,7 +93,7 @@ export default function TentangPage() {
               <div className="relative w-full max-w-md overflow-hidden rounded-t-2xl" style={{ height: "320px" }}>
                 <Image
                   src="https://images.unsplash.com/photo-1758691736975-9f7f643d178e?w=720&h=480&fit=crop&auto=format"
-                  alt="Tim PT Inovasi Gatarawana Teknologi"
+                  alt="Tim PT Inovasi Gantarawana Teknologi"
                   fill
                   sizes="448px"
                   className="object-cover object-top"
@@ -127,7 +127,7 @@ export default function TentangPage() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100">
                 <Image
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=680&h=510&fit=crop&auto=format"
-                  alt="Tim PT Inovasi Gatarawana Teknologi berkolaborasi"
+                  alt="Tim PT Inovasi Gantarawana Teknologi berkolaborasi"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
@@ -146,7 +146,7 @@ export default function TentangPage() {
                 PT IGT, Partner Tepat untuk <span className="gradient-text">Transformasi Digital Bisnis Anda</span>
               </h2>
               <p className="text-muted mb-4 text-base leading-relaxed">
-                PT Inovasi Gatarawana Teknologi adalah perusahaan solusi IT yang berfokus pada
+                PT Inovasi Gantarawana Teknologi adalah perusahaan solusi IT yang berfokus pada
                 pengembangan sistem enterprise untuk industri keuangan, multifinance, dan korporasi
                 di Indonesia. Sejak berdiri, kami telah membangun reputasi atas deliverability,
                 keandalan teknis, dan kepatuhan terhadap regulasi OJK.

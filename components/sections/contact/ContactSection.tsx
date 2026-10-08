@@ -40,7 +40,7 @@ export function ContactSection({
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const lines = [`Halo PT Inovasi Gatarawana Teknologi, saya ${form.name}.`, `Email: ${form.email}`];
+    const lines = [`Halo PT Inovasi Gantarawana Teknologi, saya ${form.name}.`, `Email: ${form.email}`];
     if (form.company) lines.push(`Perusahaan: ${form.company}`);
     if (form.service) lines.push(`Layanan yang diminati: ${form.service}`);
     lines.push(`Kebutuhan: ${form.message}`);

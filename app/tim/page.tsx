@@ -4,8 +4,8 @@ import { SectionLabel } from "@/components/shared/SectionLabel";
 // Halaman ini belum ditautkan ke navigasi/sitemap (foto tim asli belum ada, lihat CHANGELOG) -
 // noindex biar gak nyangkut di hasil pencarian sebagai halaman yatim.
 export const metadata: Metadata = {
-  title: "Tim | PT Inovasi Gatarawana Teknologi",
-  description: "Tim engineer, arsitek sistem, dan konsultan PT Inovasi Gatarawana Teknologi.",
+  title: "Tim | PT Inovasi Gantarawana Teknologi",
+  description: "Tim engineer, arsitek sistem, dan konsultan PT Inovasi Gantarawana Teknologi.",
   robots: { index: false, follow: false },
 };
 
