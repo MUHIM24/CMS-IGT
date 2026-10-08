@@ -5,6 +5,8 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 ## 2026-10-08
 
 ### Diubah
+- **Alamat perusahaan: "Jakarta, Indonesia" → "Jalan Pangkalan 2, Kel. Kedung Halang, Kec. Bogor Utara, Kota Bogor, Jawa Barat 16158"**: `siteSettings.address` (tampil di kartu kontak `/kontak` & Beranda), JSON-LD `PostalAddress` di root layout (sekarang lengkap: street, locality, region, postal code), footer jadi "Bogor, Jawa Barat", `public/llms.txt` (sekalian benerin telepon & email lama yang masih tertinggal di file itu), dan `docs/PRD.md`.
+- Belum diubah (perlu keputusan): kata kunci SEO "Jakarta" di title/description semua halaman, dan teks sejarah "Didirikan di Jakarta" (2016) di Tentang & About Beranda.
 - **Revisi nama perusahaan: "PT Inovasi Gatarawana Teknologi" → "PT Inovasi Gantarawana Teknologi"** di seluruh situs: `siteSettings.companyName` (otomatis ikut ke JSON-LD Organization, OG image, alt), title & description SEO semua halaman (Beranda, Tentang, Kontak, Blog, Tim), Navbar, Footer, Hero, About, pesan template WhatsApp form kontak, `public/llms.txt`, plus `AGENTS.md` dan `docs/PRD.md`.
 - **Hero Beranda versi mobile**: urutan diubah jadi badge layanan → judul "Mengubah Ide Menjadi Inovasi Digital" → deskripsi → tombol (Konsultasi Gratis, Lihat Layanan) → kartu visual (gambar + Core Finance System) → statistik. Sebelumnya kartu visual muncul paling atas. Layout desktop tetap (teks + statistik di kiri, visual di kanan) lewat penempatan grid eksplisit. Dicek dengan Playwright di 375px dan 1440px: tidak ada scroll horizontal, 0 console error.
 - Belum tersentuh: file logo PNG (kalau di gambarnya ada tulisan nama lama, perlu diganti dari file desain).

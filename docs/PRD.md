@@ -49,7 +49,7 @@ Satu sumber: `lib/content/site-settings.ts`.
 
 - Email: `hendri.m@igt-tech.id`
 - Telepon & WhatsApp: `+62 851-5908-0096`
-- Alamat: Jakarta, Indonesia
+- Alamat: Jalan Pangkalan 2, Kel. Kedung Halang, Kec. Bogor Utara, Kota Bogor, Jawa Barat 16158
 
 ## 7. Definition of Done (per halaman/komponen)
 

@@ -48,7 +48,10 @@ const organizationJsonLd = {
   email: siteSettings.email,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Jakarta",
+    streetAddress: "Jalan Pangkalan 2, Kedung Halang, Bogor Utara",
+    addressLocality: "Kota Bogor",
+    addressRegion: "Jawa Barat",
+    postalCode: "16158",
     addressCountry: "ID",
   },
   areaServed: "ID",

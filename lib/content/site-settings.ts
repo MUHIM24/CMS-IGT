@@ -6,7 +6,7 @@ export const siteSettings = {
   // Format wa.me: kode negara + nomor, tanpa "+", spasi, atau angka 0 di depan.
   whatsappNumber: "6285159080096",
   email: "hendri.m@igt-tech.id",
-  address: "Jakarta, Indonesia",
+  address: "Jalan Pangkalan 2, Kel. Kedung Halang, Kec. Bogor Utara, Kota Bogor, Jawa Barat 16158",
 };
 
 const DEFAULT_WHATSAPP_MESSAGE =

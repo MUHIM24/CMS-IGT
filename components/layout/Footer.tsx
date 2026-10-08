@@ -67,7 +67,7 @@ export function Footer() {
           <div className="text-sm text-white/25">
             &copy; {new Date().getFullYear()} PT Inovasi Gantarawana Teknologi. Hak cipta dilindungi.
           </div>
-          <div className="text-sm text-white/20">Jakarta, Indonesia</div>
+          <div className="text-sm text-white/20">Bogor, Jawa Barat</div>
         </div>
       </div>
     </footer>
