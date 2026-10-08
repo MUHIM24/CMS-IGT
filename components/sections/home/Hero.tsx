@@ -26,8 +26,9 @@ export function Hero() {
       <div className="bg-brand-light absolute bottom-0 left-1/4 h-64 w-64 rounded-full opacity-[0.08] blur-3xl" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 pb-20 lg:px-10">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
-          <div className="order-2 lg:order-1">
+        {/* Mobile: teks → visual → statistik. Desktop: teks + statistik di kiri, visual di kanan */}
+        <div className="grid gap-14 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-0">
+          <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
             <div className="bg-brand/10 mb-7 inline-flex items-center gap-2.5 rounded-full px-4 py-1.5">
               <span className="text-brand-light text-sm font-bold tracking-widest uppercase">
                 Web Apps &middot; Core Finance &middot; Mobile Apps &middot; CMS
@@ -60,17 +61,9 @@ export function Hero() {
                 Lihat Layanan
               </Link>
             </div>
-            <div className="mt-14 grid grid-cols-3 gap-6 border-t border-white/[0.08] pt-10">
-              {STATS.map((s) => (
-                <div key={s.sub}>
-                  <div className="font-display mb-1 text-2xl leading-none font-black text-white sm:text-3xl">{s.val}</div>
-                  <div className="text-brand-light/60 text-sm font-medium sm:text-xs">{s.sub}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          <div className="relative order-1 flex justify-center lg:order-2 lg:justify-end">
+          <div className="relative flex justify-center lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:justify-end lg:self-center">
             <div className="relative w-full max-w-[400px]">
               <div className="animate-float relative z-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl backdrop-blur-xl">
                 <Image
@@ -106,6 +99,15 @@ export function Hero() {
                 <div className="font-display text-xl leading-none font-black text-white">99.9%</div>
               </div>
             </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-6 border-t border-white/[0.08] pt-10 lg:col-start-1 lg:row-start-2 lg:mt-14 lg:self-start">
+            {STATS.map((s) => (
+              <div key={s.sub}>
+                <div className="font-display mb-1 text-2xl leading-none font-black text-white sm:text-3xl">{s.val}</div>
+                <div className="text-brand-light/60 text-sm font-medium sm:text-xs">{s.sub}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

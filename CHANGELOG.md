@@ -6,6 +6,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 
 ### Diubah
 - **Revisi nama perusahaan: "PT Inovasi Gatarawana Teknologi" → "PT Inovasi Gantarawana Teknologi"** di seluruh situs: `siteSettings.companyName` (otomatis ikut ke JSON-LD Organization, OG image, alt), title & description SEO semua halaman (Beranda, Tentang, Kontak, Blog, Tim), Navbar, Footer, Hero, About, pesan template WhatsApp form kontak, `public/llms.txt`, plus `AGENTS.md` dan `docs/PRD.md`.
+- **Hero Beranda versi mobile**: urutan diubah jadi badge layanan → judul "Mengubah Ide Menjadi Inovasi Digital" → deskripsi → tombol (Konsultasi Gratis, Lihat Layanan) → kartu visual (gambar + Core Finance System) → statistik. Sebelumnya kartu visual muncul paling atas. Layout desktop tetap (teks + statistik di kiri, visual di kanan) lewat penempatan grid eksplisit. Dicek dengan Playwright di 375px dan 1440px: tidak ada scroll horizontal, 0 console error.
 - Belum tersentuh: file logo PNG (kalau di gambarnya ada tulisan nama lama, perlu diganti dari file desain).
 
 ## 2026-10-04
