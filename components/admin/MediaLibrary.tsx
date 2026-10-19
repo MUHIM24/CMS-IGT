@@ -54,7 +54,7 @@ export function MediaLibrary({ items }: { items: MediaItem[] }) {
   }
 
   return (
-    <>
+    <div className="min-w-0">
       <ConfirmDelete
         item={pendingDelete}
         noun="gambar"
@@ -152,6 +152,6 @@ export function MediaLibrary({ items }: { items: MediaItem[] }) {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

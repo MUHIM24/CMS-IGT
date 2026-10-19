@@ -63,8 +63,9 @@ export function ContentList({ items, noun, withToggle = true, withDuplicate = tr
     window.setTimeout(() => setNotice(undefined), 5000);
   }
 
+  // Satu pembungkus: kalau dikembalikan sebagai fragment, tiap elemen jadi sel grid sendiri saat dipakai di layout grid (bug halaman Klien)
   return (
-    <>
+    <div className="min-w-0">
       <ConfirmDelete
         item={pendingDelete}
         noun={noun}
@@ -122,6 +123,6 @@ export function ContentList({ items, noun, withToggle = true, withDuplicate = tr
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

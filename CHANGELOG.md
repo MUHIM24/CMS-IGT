@@ -9,6 +9,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 
 ### Diperbaiki
 - Label bulan grafik Kunjungan Bulanan di HP terpotong ("N… D… J…"): di <640px tampil selang-seling tapi utuh (Nov Jan Mar Mei Jul Sep), tidak bertumpuk.
+- **Halaman Klien berantakan di layar lebar** (laporan user): `ContentList` dikembalikan sebagai fragment, jadi di dalam grid 2 kolom tiap elemennya (notifikasi, daftar) jadi sel grid sendiri; daftar logo terlempar ke kanan dan form turun ke bawah. Sekarang dibungkus satu `div` (juga `MediaLibrary` & `ArticleTable` supaya bug serupa tidak muncul). Dicek: ≥1536px daftar kiri + form kanan, <1536px bertumpuk.
 - Scroll samping 5px di layar 360px: label grafik ujung yang disembunyikan tetap memakan tempat; baris label diberi `overflow-hidden`.
 
 ### Catatan

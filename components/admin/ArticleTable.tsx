@@ -62,7 +62,7 @@ export function ArticleTable({ articles }: { articles: Article[] }) {
   );
 
   return (
-    <>
+    <div className="min-w-0">
       <ConfirmDelete item={pendingDelete} noun="artikel" onCancel={() => setPendingDelete(undefined)} onConfirm={() => pendingDelete && demoDelete(pendingDelete)} />
       <label className="relative mb-6 block max-w-md">
         <span className="sr-only">Cari artikel</span>
@@ -157,6 +157,6 @@ export function ArticleTable({ articles }: { articles: Article[] }) {
 
         {rows.length === 0 && <p className="text-admin-placeholder p-8 text-center">Tidak ada artikel yang cocok.</p>}
       </div>
-    </>
+    </div>
   );
 }
