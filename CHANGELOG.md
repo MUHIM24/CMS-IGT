@@ -5,6 +5,8 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 ## 2026-10-19
 
 ### Diubah
+- **Detail artikel: kolom komentar + "Artikel Lainnya"** (referensi user). Komentar (`components/sections/blog/CommentSection.tsx`) tampil lengkap (Nama*, Email opsional, Komentar*, tombol pill "Kirim Komentar") tapi **form dinonaktifkan** dengan keterangan "Fitur komentar segera aktif" karena belum ada database; aktifkan di Fase 2. Di bawahnya grid 3 artikel terbaru lainnya pakai `ArticleCard`. Ikon baru `ChatIcon`, `SendIcon`.
+- **Logo di panel menu mobile** disamakan dengan logo header: ikon + "PT Inovasi Gantarawana" + "TEKNOLOGI" (teks gelap & `brand-mid` karena latar panel putih).
 - **Section "Artikel Terbaru" di Beranda** (referensi user), tepat setelah FAQ: judul + subjudul di kiri, tombol pill "Lihat Semua Artikel" di kanan, 4 artikel terbaru (1 kolom mobile, 2 tablet, 4 desktop). Latar `surface` supaya selang-seling dengan FAQ (putih) dan CTA Banner (gelap). Jumlah views dari referensi tidak ditampilkan (belum ada data). Kartu artikel dijadikan komponen bersama `components/sections/blog/ArticleCard.tsx` (dipakai `/blog` juga; varian `compact` memotong judul 2 baris & ringkasan 3 baris).
 - **SEO & GEO dirapikan mengikuti pola IzinPro:**
   - `robots.txt`: daftar eksplisit crawler AI (GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, ClaudeBot, Claude-SearchBot, anthropic-ai, PerplexityBot, Applebot-Extended, CCBot) + `Host` + sitemap.
@@ -83,7 +85,7 @@ Desain:
 
 SEO & infrastruktur:
 - **Google Search Console + Google Business Profile** (ditunda sampai development selesai): verifikasi (`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` belum diisi), submit sitemap, request indexing. Setelah ada akun sosial/Business Profile, isi `sameAs` di `buildOrganizationSchema()`.
-- **Blog**: kolom komentar dan newsletter belum dibuat (butuh backend). Artikel pindah ke CMS di Fase 2.
+- **Blog**: kolom komentar sudah tampil tapi nonaktif, newsletter belum dibuat; keduanya butuh backend. Artikel pindah ke CMS di Fase 2.
 - **CMS Fase 2** belum mulai.
 - 2 IP redundant A record Vercel (`216.198.79.1`, `64.29.17.1`): opsional.
 

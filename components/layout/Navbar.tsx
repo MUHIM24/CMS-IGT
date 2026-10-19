@@ -133,9 +133,13 @@ export function Navbar() {
           }`}
         >
           <div className="border-border flex h-[72px] shrink-0 items-center justify-between border-b px-6">
-            <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5">
-              <Image src="/logo-icon.png" alt="" width={32} height={32} className="h-8 w-8 object-contain" />
-              <span className="font-display text-text text-base leading-tight font-bold">PT IGT</span>
+            {/* Sama dengan logo header; warna disesuaikan latar putih (TEKNOLOGI pakai brand-mid, brand-light terlalu pucat di putih) */}
+            <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
+              <Image src="/logo-icon.png" alt="" width={36} height={36} className="h-9 w-9 object-contain" />
+              <span className="text-left">
+                <span className="font-display text-text block text-base leading-tight font-bold tracking-tight">PT Inovasi Gantarawana</span>
+                <span className="text-brand-mid block text-xs font-semibold tracking-[0.15em] uppercase">Teknologi</span>
+              </span>
             </Link>
             <button
               type="button"

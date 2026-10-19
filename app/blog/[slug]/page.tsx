@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleBody } from "@/components/sections/blog/ArticleBody";
+import { ArticleCard } from "@/components/sections/blog/ArticleCard";
+import { CommentSection } from "@/components/sections/blog/CommentSection";
 import { CtaCard } from "@/components/shared/CtaCard";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CalendarIcon, ClockIcon, ListIcon, TagIcon, WhatsAppIcon } from "@/components/icons/figma-icons";
@@ -39,6 +41,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     ...articles.filter((a) => a.slug !== slug && a.category === article.category),
     ...articles.filter((a) => a.slug !== slug && a.category !== article.category),
   ].slice(0, 3);
+
+  // Artikel Lainnya di bawah komentar: artikel terbaru selain yang sedang dibaca
+  const others = articles
+    .filter((a) => a.slug !== slug)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3);
 
   return (
     <>
@@ -125,6 +133,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 </span>
               ))}
             </div>
+
+            <CommentSection />
+
+            {others.length > 0 && (
+              <section className="mt-14">
+                <h2 className="font-display text-text mb-6 text-2xl font-bold">Artikel Lainnya</h2>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                  {others.map((a) => (
+                    <ArticleCard key={a.slug} article={a} compact />
+                  ))}
+                </div>
+              </section>
+            )}
           </article>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
