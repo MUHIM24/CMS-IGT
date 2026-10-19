@@ -2,6 +2,19 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-20 (SEO preview media sosial)
+
+### Diperbaiki
+- **Preview link di WhatsApp/Facebook/LinkedIn/X tidak ada gambarnya** (laporan user): HTML live tidak punya `og:image` sama sekali, karena `openGraph` di `pageMetadata()` menimpa seluruh `openGraph` layout termasuk gambar dari `app/opengraph-image.tsx`. Sekarang `lib/seo.ts` memasang gambar default secara eksplisit (`og:image` absolut + width/height 1200x630, type, alt; juga `twitter:image`). Detail artikel tetap memakai gambar artikelnya. Dicek di HTML hasil build untuk Beranda, Tentang, Layanan, Portfolio, Kontak, Blog, dan detail artikel.
+
+### Diubah
+- **Gambar OG baru** (`app/opengraph-image.tsx`): logo + PT IGT, judul "Software House dan Jasa Pembuatan Aplikasi", tagline, chip layanan (Aplikasi Web, Aplikasi Mobile, Sistem Bisnis, Otomasi Proses), domain. Font Outfit dimuat dari `assets/fonts/` (font default Satori tidak punya bold). PNG ~150 KB.
+- **Deskripsi SEO/OG semua halaman publik ditulis ulang**: lebih menjual dan untuk umum (tidak lagi penuh istilah teknis multifinance), panjang <= ~160 karakter. Title & deskripsi Beranda dipusatkan di `SITE_TITLE`/`SITE_DESCRIPTION` (`lib/seo.ts`), dipakai layout root, Beranda, dan halaman Pengaturan dashboard.
+- Kalimat "Contoh implementasi nyata, nama klien digeneralisasi sesuai perjanjian kerahasiaan." dihapus dari section Portfolio Beranda, hero `/portfolio` (diganti kalimat proyek sudah berjalan di produksi), dan `llms.txt` (permintaan user: proyek sudah live production).
+
+### Catatan
+- WhatsApp & Facebook menyimpan cache preview lama. Setelah deploy: cek di Facebook Sharing Debugger ("Scrape Again"), LinkedIn Post Inspector, dan kirim link baru di WA (atau tambahkan `?v=2`).
+
 ## 2026-10-20 (Dashboard: header sticky)
 
 ### Diubah
@@ -77,6 +90,14 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 ### Pending
 - Sama dengan daftar Pending 2026-10-19, **kecuali** yang sudah selesai: ukuran font tombol (opsi B), animasi hover tombol oranye, verifikasi visual menyeluruh.
 - Baru: halaman **Kebijakan Privasi** & **Syarat Layanan** belum ada (dulu cuma link mati di footer); disarankan dibuat, terutama karena form Kontak mengumpulkan data pengunjung. Akun **LinkedIn/Instagram** resmi: begitu ada, tampilkan lagi ikonnya + isi `sameAs` di JSON-LD.
+- ~~Baru: **Preview link di media sosial (WhatsApp, Facebook, LinkedIn, X/Twitter, Telegram) harus tampil lengkap: gambar, title, dan description.**~~ Selesai di kode 2026-10-20 (lihat entri "SEO preview media sosial"); tinggal tes langsung di tiap aplikasi setelah deploy. Cek 200 OG image (2026-10-20) baru memastikan file-nya bisa dibuka, belum memastikan kartu preview benar-benar muncul di tiap aplikasi. Yang perlu dipastikan:
+  - Setiap halaman publik (Beranda, Tentang Kami, Layanan, Portfolio, Blog, detail artikel, Kontak) punya `og:title`, `og:description`, `og:url`, `og:type`, `og:site_name`, `og:locale`, dan `og:image` dengan **URL absolut https** (lewat `metadataBase`), plus `og:image:width`/`og:image:height` (1200×630), `og:image:type`, `og:image:alt`.
+  - `openGraph` di `pageMetadata()` (`lib/seo.ts`) tidak menimpa gambar dari `app/opengraph-image.tsx` sampai hilang (di Next, objek `openGraph` halaman menggantikan milik layout, bukan digabung). Cek di HTML hasil render, bukan hanya di kode.
+  - Ukuran OG image kecil (disarankan < 300 KB) supaya WhatsApp mau menampilkan gambarnya; format PNG/JPG, bukan WebP.
+  - Twitter card `summary_large_image` dengan `twitter:title`, `twitter:description`, `twitter:image`.
+  - Detail artikel memakai gambar artikel masing-masing sebagai `og:image` (absolut, bisa diakses tanpa login/redirect).
+  - Crawler preview (facebookexternalhit, WhatsApp, LinkedInBot, Twitterbot, TelegramBot) tidak terblokir `robots.txt`, `proxy.ts`, maupun redirect www → non-www.
+  - Tes langsung: kirim link tiap halaman di WhatsApp, cek di Facebook Sharing Debugger (sekaligus "Scrape Again" untuk membersihkan cache preview lama), LinkedIn Post Inspector, dan opengraph.xyz. Catatan: WhatsApp menyimpan cache preview, jadi tes pakai link yang belum pernah dikirim atau tambahkan `?v=2`.
 
 ## 2026-10-19
 

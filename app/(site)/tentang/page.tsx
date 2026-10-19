@@ -24,7 +24,7 @@ import {
 export const metadata = pageMetadata({
   title: "Tentang Kami | PT IGT",
   description:
-    "Kenali PT Inovasi Gantarawana Teknologi, software house di Bogor yang membangun sistem pembiayaan, aplikasi web, dan aplikasi mobile dengan proses kerja bertahap dan transparan.",
+    "Kenali PT Inovasi Gantarawana Teknologi, software house di Bogor yang menghadirkan solusi digital untuk bisnis dengan proses transparan dan dukungan jangka panjang.",
   path: "/tentang",
 });
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
 import { DemoForm } from "@/components/admin/DemoForm";
 import { Card, Field, inputClass, PageHeader, textareaClass } from "@/components/admin/ui";
 import { siteSettings } from "@/lib/content/site-settings";
@@ -34,13 +35,13 @@ export default function AdminSettingsPage() {
           <h2 className="mb-6 text-2xl font-bold">SEO Beranda</h2>
           <DemoForm submitLabel="Simpan SEO">
             <Field label="Judul Halaman" hint="ideal 50-60 karakter">
-              <input defaultValue="PT Inovasi Gantarawana Teknologi | Software House dan Jasa Pembuatan Aplikasi" className={inputClass} />
+              <input defaultValue={SITE_TITLE} className={inputClass} />
             </Field>
             <Field label="Meta Description" hint="ideal 140-160 karakter">
               <textarea
                 rows={3}
                 className={textareaClass}
-                defaultValue="Software house di Bogor yang membangun aplikasi web, aplikasi mobile, dan sistem pembiayaan (loan origination, otomasi SLIK OJK) untuk bisnis di seluruh Indonesia."
+                defaultValue={SITE_DESCRIPTION}
               />
             </Field>
           </DemoForm>

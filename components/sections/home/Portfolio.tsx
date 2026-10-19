@@ -12,9 +12,6 @@ export function Portfolio() {
           <h2 className="font-display text-text mb-4 text-3xl font-bold sm:text-4xl">
             Proyek yang Mendefinisikan Keahlian Kami
           </h2>
-          <p className="text-muted mx-auto max-w-lg text-base leading-relaxed">
-            Contoh implementasi nyata, nama klien digeneralisasi sesuai perjanjian kerahasiaan.
-          </p>
           <div className="mt-8">
             <PillLink href="/portfolio">Lihat semua portfolio</PillLink>
           </div>

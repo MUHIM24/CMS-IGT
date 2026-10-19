@@ -21,7 +21,6 @@ export function GET() {
     ...services.map((s) => `- [${s.title}](${SITE}/layanan) (${s.category}): ${oneLine(s.desc)}`),
     "",
     "## Portfolio",
-    "Nama klien digeneralisasi sesuai perjanjian kerahasiaan.",
     ...caseStudies.map((p) => `- [${p.title}](${SITE}/portfolio): ${oneLine(p.desc)}`),
     "",
     "## Artikel",

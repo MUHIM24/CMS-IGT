@@ -8,7 +8,7 @@ import { clients } from "@/lib/content/clients";
 export const metadata = pageMetadata({
   title: "Portfolio | PT IGT",
   description:
-    "Contoh proyek PT IGT untuk perusahaan pembiayaan: sistem core multifinance, aplikasi mobile loan origination, dan aplikasi lapangan untuk CMO.",
+    "Proyek PT IGT yang sudah berjalan di produksi: sistem pembiayaan end-to-end, aplikasi mobile untuk tim lapangan, dan otomasi proses yang mempercepat kerja klien.",
   path: "/portfolio",
 });
 
@@ -20,7 +20,7 @@ export default function PortfolioPage() {
         crumb="Portfolio"
         titleLead="Portfolio"
         titleAccent="Kami"
-        subtitle="Contoh implementasi nyata, nama klien digeneralisasi sesuai perjanjian kerahasiaan."
+        subtitle="Solusi yang kami bangun dan kini berjalan di produksi bersama klien kami."
         image={{
           src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=960&h=600&fit=crop&auto=format",
           alt: "Presentasi hasil proyek kepada tim klien",

@@ -1,4 +1,4 @@
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { faqs } from "@/lib/content/faqs";
 import { buildFaqPageSchema } from "@/lib/structured-data";
@@ -15,9 +15,8 @@ import { CTABanner } from "@/components/sections/home/CTABanner";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 
 export const metadata = pageMetadata({
-  title: "PT Inovasi Gantarawana Teknologi | Software House dan Jasa Pembuatan Aplikasi",
-  description:
-    "Software house di Bogor yang membangun aplikasi web, aplikasi mobile, dan sistem pembiayaan (loan origination, otomasi SLIK OJK) untuk bisnis di seluruh Indonesia.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   path: "/",
 });
 

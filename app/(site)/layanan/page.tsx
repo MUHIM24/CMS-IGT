@@ -10,7 +10,7 @@ import { BadgeCheckIcon, ClockIcon, HeadsetIcon, ShieldCheckIcon, UserCheckIcon 
 export const metadata = pageMetadata({
   title: "Layanan Kami | PT IGT",
   description:
-    "Produk dan layanan PT IGT: web apps, CMS, robot pengecekan SLIK OJK, core finance system, serta aplikasi mobile untuk approval, LOS, CMO, dan CNV.",
+    "Pembuatan aplikasi web, CMS, aplikasi mobile, hingga sistem inti dan otomasi proses bisnis. Dirancang sesuai kebutuhan Anda dan dikerjakan end-to-end oleh tim PT IGT.",
   path: "/layanan",
 });
 

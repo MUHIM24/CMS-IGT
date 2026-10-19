@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, DM_Sans } from "next/font/google";
 import { siteSettings } from "@/lib/content/site-settings";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -19,13 +20,12 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteSettings.siteUrl),
   title: {
-    default: "PT Inovasi Gantarawana Teknologi | Software House dan Jasa Pembuatan Aplikasi",
+    default: SITE_TITLE,
     template: "%s",
   },
-  description:
-    "Software house di Bogor yang membangun aplikasi web, aplikasi mobile, dan sistem pembiayaan (loan origination, otomasi SLIK OJK) untuk bisnis di seluruh Indonesia.",
+  description: SITE_DESCRIPTION,
   applicationName: siteSettings.companyName,
-  keywords: ["software house", "jasa pembuatan aplikasi", "jasa pembuatan website", "aplikasi mobile", "loan origination system", "otomasi SLIK OJK", "sistem multifinance", "PT IGT"],
+  keywords: ["software house", "jasa pembuatan aplikasi", "jasa pembuatan website", "aplikasi mobile", "loan origination system", "otomasi SLIK OJK", "sistem multifinance", "software house Bogor", "PT IGT"],
   authors: [{ name: siteSettings.companyName, url: siteSettings.siteUrl }],
   openGraph: {
     type: "website",

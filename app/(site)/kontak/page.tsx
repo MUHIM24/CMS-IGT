@@ -5,7 +5,7 @@ import { PageHero } from "@/components/shared/PageHero";
 export const metadata = pageMetadata({
   title: "Hubungi Kami | PT IGT",
   description:
-    "Konsultasi gratis kebutuhan sistem dan aplikasi bisnis Anda bersama PT IGT. Hubungi kami lewat WhatsApp, telepon, atau email.",
+    "Ceritakan kebutuhan aplikasi atau sistem bisnis Anda. Konsultasi gratis bersama tim PT IGT lewat WhatsApp, telepon, atau email, kami bantu dari ide hingga rilis.",
   path: "/kontak",
 });
 

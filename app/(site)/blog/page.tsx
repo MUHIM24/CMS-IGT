@@ -6,7 +6,7 @@ import { PageHero } from "@/components/shared/PageHero";
 export const metadata = pageMetadata({
   title: "Blog dan Artikel | PT IGT",
   description:
-    "Artikel seputar SLIK OJK, loan origination system, digitalisasi proses kredit, dan tips membangun sistem untuk bisnis pembiayaan.",
+    "Wawasan praktis seputar pengembangan aplikasi, digitalisasi proses bisnis, dan sistem pembiayaan, ditulis tim PT IGT dari pengalaman proyek nyata.",
   path: "/blog",
 });
 
