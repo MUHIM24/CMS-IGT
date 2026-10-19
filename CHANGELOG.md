@@ -2,6 +2,18 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-20 (Dashboard: header sticky)
+
+### Diubah
+- **Header dashboard menempel saat scroll di semua ukuran layar** (permintaan user, awalnya HP/tablet lalu desktop juga): latar `admin-bg` 90% + blur. Sidebar desktop menempel di bawahnya (`top-28`), tinggi maksimal `calc(100vh-12rem)` supaya tidak tertutup header bahkan di ujung bawah halaman. Dicek 360-1920px: header menempel, sidebar 9/9 posisi scroll (tengah & ujung halaman) tetap di bawah header, menu akun tetap bisa dibuka.
+
+### Diperbaiki
+- Label bulan grafik Kunjungan Bulanan di HP terpotong ("N… D… J…"): di <640px tampil selang-seling tapi utuh (Nov Jan Mar Mei Jul Sep), tidak bertumpuk.
+- Scroll samping 5px di layar 360px: label grafik ujung yang disembunyikan tetap memakan tempat; baris label diberi `overflow-hidden`.
+
+### Catatan
+- Login production masih menampilkan "Login belum dikonfigurasi" sampai env `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` diisi di Vercel (Production) lalu di-redeploy.
+
 ## 2026-10-20 (Dashboard lengkap)
 
 ### Ditambahkan

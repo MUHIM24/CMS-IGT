@@ -148,7 +148,8 @@ export function AdminShell({ username, children }: { username: string; children:
 
   return (
     <div className="mx-auto max-w-[1440px] px-4 pb-16 sm:px-6 lg:px-10">
-      <header className="flex h-20 items-center justify-between gap-4 lg:h-24">
+      {/* Header menempel saat scroll di semua ukuran layar (permintaan user); sidebar desktop menempel di bawahnya */}
+      <header className="bg-admin-bg/90 sticky top-0 z-40 -mx-4 flex h-20 items-center justify-between gap-4 px-4 backdrop-blur-md sm:-mx-6 sm:px-6 lg:-mx-10 lg:h-24 lg:px-10">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -184,7 +185,7 @@ export function AdminShell({ username, children }: { username: string; children:
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[300px_1fr] xl:grid-cols-[320px_1fr]">
         <aside className="hidden lg:block">
-          <div className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto rounded-3xl bg-white p-6 xl:p-7">
+          <div className="sticky top-28 max-h-[calc(100vh-12rem)] overflow-y-auto rounded-3xl bg-white p-6 xl:p-7">
             <SidebarContent username={username} onNavigate={() => {}} />
           </div>
         </aside>

@@ -117,9 +117,10 @@ export function BarChart({ labels, series, height = 240 }: { labels: string[]; s
           ))}
         </div>
       </div>
-      <div className="mt-2 ml-11 flex gap-1 sm:gap-2" aria-hidden="true">
+      {/* overflow-hidden: label ujung yang disembunyikan di HP tetap memakan tempat dan bisa membuat scroll samping */}
+      <div className="mt-2 ml-11 flex gap-1 overflow-hidden sm:gap-2" aria-hidden="true">
         {labels.map((l, i) => (
-          <span key={l} className={`text-admin-placeholder flex-1 truncate text-center text-[11px] ${labels.length > 12 && i % 2 ? "invisible sm:visible" : ""}`}>
+          <span key={l} className={`text-admin-placeholder flex-1 text-center text-[11px] whitespace-nowrap ${labels.length > 7 && i % 2 ? "invisible sm:visible" : ""}`}>
             {l}
           </span>
         ))}
