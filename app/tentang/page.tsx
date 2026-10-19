@@ -22,7 +22,7 @@ import {
 } from "@/components/icons/figma-icons";
 
 export const metadata = pageMetadata({
-  title: "Tentang Kami | Konsultan IT & Software House Jakarta - PT IGT",
+  title: "Tentang Kami | Konsultan IT dan Software House Jakarta - PT IGT",
   description:
     "PT Inovasi Gantarawana Teknologi, konsultan IT dan software house di Jakarta, mitra teknologi terpercaya untuk industri keuangan dan multifinance Indonesia.",
   path: "/tentang",

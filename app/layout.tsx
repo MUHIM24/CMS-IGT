@@ -24,11 +24,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteSettings.siteUrl),
   title: {
-    default: "Jasa IT & Software House Jakarta | PT Inovasi Gantarawana Teknologi",
+    default: "Jasa IT dan Software House Jakarta | PT Inovasi Gantarawana Teknologi",
     template: "%s",
   },
   description:
-    "Jasa pembuatan website, aplikasi mobile, dan sistem IT custom (termasuk sistem keuangan & multifinance) untuk bisnis di Jakarta dan seluruh Indonesia.",
+    "Jasa pembuatan website, aplikasi mobile, dan sistem IT custom (termasuk sistem keuangan dan multifinance) untuk bisnis di Jakarta dan seluruh Indonesia.",
   applicationName: siteSettings.companyName,
   keywords: ["software house", "jasa pembuatan aplikasi", "jasa pembuatan website", "aplikasi mobile", "loan origination system", "otomasi SLIK OJK", "sistem multifinance", "PT IGT"],
   authors: [{ name: siteSettings.companyName, url: siteSettings.siteUrl }],

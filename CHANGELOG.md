@@ -2,6 +2,26 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-20
+
+### Diubah
+- **Tombol CTA diseragamkan (keputusan user, opsi B dari 2026-10-11)**: 16px, font DM Sans (`font-display`) tebal, tanpa `tracking-wide`. Gaya bersama di `components/shared/button-styles.ts` (`ctaPrimaryClass`, `ctaOutlineOnDarkClass`, `ctaArrowClass`).
+- **Animasi hover disamakan** di semua tombol oranye (Hero, CTA Banner, kirim form Kontak, "Hubungi Kami" di menu desktop & panel mobile): naik 2px + bayangan oranye lembut + panah bergeser 4px, `motion-safe:`. Tombol putih "Konsultasikan Gratis Sekarang" di `CtaCard` ikut naik + bayangan.
+- **Halaman 404 baru** `app/not-found.tsx` (referensi user): ilustrasi SVG buatan sendiri warna brand (colokan kabel terlepas dari stopkontak + percikan oranye), angka 404 gradasi, "Halaman Tidak Ditemukan", tombol "Kembali ke Beranda" + "Hubungi Kami". Status 404 + `noindex` otomatis dari Next.
+- **Footer: semua 16 link mati (`href="#"`) diperbaiki.** Perusahaan → Tentang Kami, Layanan, Portfolio, Blog, Kontak ("Karir" & "Blog Teknis" dihapus, belum ada halamannya); Produk → `/layanan` (dari `lib/content/services.ts`); kolom "Hukum" (Kebijakan Privasi, Syarat Layanan, Keamanan Data: belum ada halamannya) diganti "Hubungi Kami" (telepon → WhatsApp, email → mailto); ikon LinkedIn/Instagram di footer & section Kontak disembunyikan sampai akun resmi ada.
+- **Kolom pertama footer mengikuti referensi user**: logo, paragraf profil dengan nama perusahaan tebal, paragraf cara kerja, alamat warna redup. Tanpa angka tahun/sertifikasi (belum ada data).
+- **Kartu visual Hero**: badge "PLATFORM Web + Android" sempat menimpa baris terakhir daftar alur kredit; kartu diberi `pb-14`.
+- **SEO: tanda "&" di title & meta description diganti "dan"** (Beranda, Tentang, Layanan, Portfolio, default layout). HTML sudah benar (`&amp;` tunggal), tapi kartu Google sempat menampilkan "&amp;amp;"; tanpa ampersand risiko itu hilang di Google/WhatsApp/LinkedIn.
+
+### Verifikasi
+- Audit Playwright + axe-core (`color-contrast`) di 8 route (`/`, `/tentang`, `/layanan`, `/portfolio`, `/blog`, detail artikel, `/kontak`, 404) × 375/768/1280px: 0 scroll horizontal, tepat 1 H1 per halaman, 0 console error (selain respons 404 di halaman 404 itu sendiri, memang seharusnya), 0 pelanggaran kontras.
+- 16 tes interaksi lolos: menu mobile buka/tutup/Escape/navigasi, tombol ke atas, indikator Scroll down, testimoni, FAQ, filter Layanan & Portfolio, cari/kategori/paginasi/urutan Blog, dropdown Kontak, daftar isi artikel, form komentar nonaktif.
+- SEO production dicek langsung: title, description, robots (index, max-image-preview large), canonical, Open Graph + gambar OG 200, Twitter card, sitemap 12 URL, `/robots.txt` + crawler AI, `/llms.txt`, redirect www → non-www 308. Google sudah mengindeks dan Ringkasan AI Google mengambil data dari situs dengan benar (alamat Bogor, layanan, kontak).
+
+### Pending
+- Sama dengan daftar Pending 2026-10-19, **kecuali** yang sudah selesai: ukuran font tombol (opsi B), animasi hover tombol oranye, verifikasi visual menyeluruh.
+- Baru: halaman **Kebijakan Privasi** & **Syarat Layanan** belum ada (dulu cuma link mati di footer); disarankan dibuat, terutama karena form Kontak mengumpulkan data pengunjung. Akun **LinkedIn/Instagram** resmi: begitu ada, tampilkan lagi ikonnya + isi `sameAs` di JSON-LD.
+
 ## 2026-10-19
 
 ### Diubah
@@ -79,9 +99,9 @@ Konten (butuh data/keputusan user):
 - **Logo 5 klien lain** (dari 2026-09-14): menunggu file resmi + izin.
 
 Desain:
-- **Ukuran font tombol** opsi A (18px) / B (16px DM Sans 700) dari 2026-10-11 belum diputuskan.
-- **Animasi hover** baru dipasang di tombol "Konsultasi Gratis" Hero; tombol oranye lain (CTA Banner, kirim form Kontak, "Hubungi Kami" menu) belum disamakan.
-- **Verifikasi visual menyeluruh** (Playwright 375/768/1280px, klik semua elemen interaktif, 0 console error) belum dijalankan untuk perubahan hari ini; atas permintaan user, pengecekan tampilan dilakukan user sendiri.
+- ~~**Ukuran font tombol** opsi A/B~~ Selesai 2026-10-20 (opsi B).
+- ~~**Animasi hover** tombol oranye lain~~ Selesai 2026-10-20.
+- ~~**Verifikasi visual menyeluruh**~~ Selesai 2026-10-20 (lihat Verifikasi).
 
 SEO & infrastruktur:
 - **Google Search Console + Google Business Profile** (ditunda sampai development selesai): verifikasi (`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` belum diisi), submit sitemap, request indexing. Setelah ada akun sosial/Business Profile, isi `sameAs` di `buildOrganizationSchema()`.
@@ -96,7 +116,7 @@ SEO & infrastruktur:
 - Diverifikasi dengan Playwright di 375px & 1280px: font terbaca 16px, tidak ada scroll horizontal, teks tombol tidak patah baris. Cek kontras axe-core di semua route tetap 0 kegagalan, 0 console error.
 
 ### Belum diputuskan
-- Tombol masih terasa lebih kecil dibanding referensi (BuildWithAngga) walau sama-sama 16px, karena font Outfit punya x-height pendek dan ketebalan tombol cuma 600-700. Opsi: (A) naik ke 18px (`text-lg`), atau (B) tetap 16px tapi pakai `font-display` (DM Sans) 700 tanpa `tracking-wide`. Menunggu pilihan user (masih pending per 2026-10-19).
+- Tombol masih terasa lebih kecil dibanding referensi (BuildWithAngga) walau sama-sama 16px, karena font Outfit punya x-height pendek dan ketebalan tombol cuma 600-700. Opsi: (A) naik ke 18px (`text-lg`), atau (B) tetap 16px tapi pakai `font-display` (DM Sans) 700 tanpa `tracking-wide`. Diputuskan 2026-10-20: opsi B.
 
 ## 2026-10-09
 

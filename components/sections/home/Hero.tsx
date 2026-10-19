@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowDownIcon, ArrowRight, CheckIcon } from "@/components/icons/figma-icons";
 import { companyFacts } from "@/lib/content/company-facts";
 import { buildWhatsAppLink } from "@/lib/content/site-settings";
+import { ctaArrowClass, ctaOutlineOnDarkClass, ctaPrimaryClass } from "@/components/shared/button-styles";
 
 // Tahapan alur kredit yang memang dicakup sistem LOS yang sudah berjalan
 const LOAN_FLOW = ["Registrasi & input CMO", "Cek SLIK OJK & scoring", "Analisa CA & survei", "Komite approval & pencairan"];
@@ -48,16 +49,16 @@ export function Hero() {
                 href={buildWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group hover:bg-accent-light flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-[var(--color-accent)] px-8 py-4 text-base font-bold tracking-wide text-brand-dark transition-all duration-200 hover:shadow-accent/30 hover:shadow-lg motion-safe:hover:-translate-y-0.5 active:scale-[0.98]"
+                className={`${ctaPrimaryClass} flex min-h-11 px-8 py-4`}
               >
                 Konsultasi Gratis
-                <span className="transition-transform duration-200 ease-out motion-safe:group-hover:translate-x-1">
+                <span className={ctaArrowClass}>
                   <ArrowRight />
                 </span>
               </a>
               <Link
                 href="/layanan"
-                className="border-brand/30 text-brand-light hover:bg-brand/10 hover:border-brand flex min-h-11 items-center justify-center gap-2 rounded-full border px-8 py-4 text-base font-semibold transition-all duration-200"
+                className={`${ctaOutlineOnDarkClass} flex min-h-11 px-8 py-4`}
               >
                 Lihat Layanan
               </Link>
@@ -66,7 +67,7 @@ export function Hero() {
 
           <div className="relative flex justify-center lg:justify-end lg:self-center">
             <div className="relative w-full max-w-[400px]">
-              <div className="animate-float relative z-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-2xl backdrop-blur-xl">
+              <div className="animate-float relative z-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 pb-14 shadow-2xl backdrop-blur-xl">
                 <Image
                   src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=520&h=280&fit=crop&auto=format"
                   alt="Software development team at work"

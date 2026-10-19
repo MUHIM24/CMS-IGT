@@ -1,5 +1,6 @@
 import { ArrowRight, PhoneIcon } from "@/components/icons/figma-icons";
 import { buildWhatsAppLink } from "@/lib/content/site-settings";
+import { ctaArrowClass, ctaOutlineOnDarkClass, ctaPrimaryClass } from "@/components/shared/button-styles";
 
 export function CTABanner() {
   return (
@@ -26,10 +27,10 @@ export function CTABanner() {
             href={buildWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="group hover:bg-accent-light flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-[var(--color-accent)] px-9 py-4 text-base font-bold text-brand-dark transition-all duration-200 hover:shadow-xl"
+            className={`${ctaPrimaryClass} flex min-h-11 px-9 py-4`}
           >
             Jadwalkan Konsultasi
-            <span className="transition-transform duration-150 group-hover:translate-x-0.5">
+            <span className={ctaArrowClass}>
               <ArrowRight />
             </span>
           </a>
@@ -37,7 +38,7 @@ export function CTABanner() {
             href={buildWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-brand/30 text-brand-light hover:bg-brand/10 hover:border-brand flex min-h-11 items-center justify-center gap-2.5 rounded-full border px-9 py-4 text-base font-semibold transition-all duration-200"
+            className={`${ctaOutlineOnDarkClass} flex min-h-11 px-9 py-4`}
           >
             <PhoneIcon /> Hubungi Langsung
           </a>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MenuIcon, XIcon } from "@/components/icons/figma-icons";
 import { buildWhatsAppLink } from "@/lib/content/site-settings";
+import { ctaPrimaryClass } from "@/components/shared/button-styles";
 
 // "Tim" disembunyikan sementara — belum ada foto tim asli (lihat app/tim/page.tsx, biar gampang
 // diaktifkan lagi: tambah balik { label: "Tim", href: "/tim" } begitu foto sudah tersedia).
@@ -96,7 +97,7 @@ export function Navbar() {
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:bg-accent-light active:scale-95 hidden items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-base font-semibold text-brand-dark transition-all duration-150 hover:shadow-lg lg:flex"
+              className={`${ctaPrimaryClass} hidden px-5 py-2.5 lg:flex`}
             >
               Hubungi Kami
             </a>
@@ -178,7 +179,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="text-brand-dark hover:bg-accent-light mt-8 flex min-h-12 items-center justify-center rounded-full bg-[var(--color-accent)] text-base font-bold"
+              className={`${ctaPrimaryClass} mt-8 flex min-h-12`}
             >
               Hubungi Kami
             </a>

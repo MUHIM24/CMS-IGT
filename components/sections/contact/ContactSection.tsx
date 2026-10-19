@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { SectionLabel } from "@/components/shared/SectionLabel";
-import { MapPinIcon, PhoneIcon, MailIcon, LinkedinIcon, InstagramIcon, CheckIcon } from "@/components/icons/figma-icons";
+import { MapPinIcon, PhoneIcon, MailIcon, CheckIcon } from "@/components/icons/figma-icons";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { siteSettings, buildWhatsAppLink } from "@/lib/content/site-settings";
+import { ctaPrimaryClass } from "@/components/shared/button-styles";
 
 const CONTACT_ROWS = [
   { Icon: MapPinIcon, label: "Alamat", val: siteSettings.address },
@@ -75,17 +76,7 @@ export function ContactSection({ showHeading = true }: { showHeading?: boolean }
               ))}
             </div>
 
-            <div className="flex gap-2.5">
-              {[LinkedinIcon, InstagramIcon].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="border-border text-muted hover:bg-brand hover:border-brand flex h-9 w-9 items-center justify-center rounded-lg border transition-all duration-150 hover:text-white"
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
+            {/* Ikon LinkedIn/Instagram disembunyikan sampai akun sosial resmi ada (sebelumnya href="#") */}
           </div>
 
           <div className="border-border rounded-2xl border bg-white p-8 shadow-sm">
@@ -172,7 +163,7 @@ export function ContactSection({ showHeading = true }: { showHeading?: boolean }
 
                 <button
                   type="submit"
-                  className="hover:bg-accent-light w-full rounded-full bg-[var(--color-accent)] py-3.5 text-base font-bold tracking-wide text-brand-dark transition-all duration-150 hover:shadow-lg active:scale-[0.98]"
+                  className={`${ctaPrimaryClass} flex min-h-11 w-full py-3.5`}
                 >
                   Kirim via WhatsApp
                 </button>

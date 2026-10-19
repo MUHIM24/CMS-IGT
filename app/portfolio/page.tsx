@@ -6,7 +6,7 @@ import { PortfolioGrid } from "@/components/sections/portfolio/PortfolioGrid";
 import { clients } from "@/lib/content/clients";
 
 export const metadata = pageMetadata({
-  title: "Portofolio Jasa IT Konsultan Jakarta | Proyek Sistem Finance & Mobile",
+  title: "Portofolio Jasa IT Konsultan Jakarta | Proyek Sistem Finance dan Mobile",
   description:
     "Portofolio proyek jasa pembuatan sistem core finance, aplikasi mobile, dan automation SLIK OJK yang pernah kami kerjakan untuk klien pembiayaan di Indonesia.",
   path: "/portfolio",

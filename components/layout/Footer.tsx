@@ -1,26 +1,26 @@
 import Image from "next/image";
-import { LinkedinIcon, InstagramIcon } from "@/components/icons/figma-icons";
+import Link from "next/link";
+import { MailIcon, PhoneIcon } from "@/components/icons/figma-icons";
+import { services } from "@/lib/content/services";
+import { buildWhatsAppLink, siteSettings } from "@/lib/content/site-settings";
 
-const footerLinks: Record<string, string[]> = {
-  Perusahaan: ["Tentang Kami", "Karir", "Blog Teknis"],
-  Produk: [
-    "Web Apps",
-    "CMS",
-    "CNV Robot SLIK",
-    "Core Finance System",
-    "Mobile Approval",
-    "Mobile LOS",
-    "Mobile CMO",
-    "Mobile CNV",
-  ],
-  Hukum: ["Kebijakan Privasi", "Syarat Layanan", "Keamanan Data"],
-};
+// Semua link footer wajib punya tujuan nyata (bukan href="#"). Halaman yang belum ada (Karir, Kebijakan Privasi,
+// Syarat Layanan) dan akun sosial yang belum ada sengaja tidak ditampilkan; tambahkan begitu tersedia.
+const COMPANY_LINKS = [
+  { label: "Tentang Kami", href: "/tentang" },
+  { label: "Layanan", href: "/layanan" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Blog", href: "/blog" },
+  { label: "Kontak", href: "/kontak" },
+];
+
+const linkClass = "hover:text-brand-light text-sm text-white/60 transition-colors duration-150";
 
 export function Footer() {
   return (
     <footer className="bg-brand-deeper border-t border-white/[0.06]">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-        <div className="mb-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mb-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <div className="mb-5 flex items-center gap-3">
               <Image src="/logo-icon.png" alt="PT Inovasi Gantarawana Teknologi logo" width={36} height={36} className="h-9 w-9 object-contain" />
@@ -31,36 +31,67 @@ export function Footer() {
                 <div className="text-brand-light text-xs font-semibold tracking-widest uppercase">IT Solutions</div>
               </div>
             </div>
-            <p className="mb-6 max-w-xs text-sm leading-relaxed text-white/60">
-              Mitra teknologi terpercaya untuk sistem enterprise, fintech, dan mobile di Indonesia.
-            </p>
-            <div className="flex gap-2.5">
-              {[LinkedinIcon, InstagramIcon].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.06] text-white/40 transition-all duration-150 hover:bg-[var(--color-brand)] hover:text-white"
-                >
-                  <Icon />
-                </a>
-              ))}
+            {/* Kolom profil (referensi user): hanya klaim faktual, tanpa angka tahun/sertifikasi yang belum ada datanya */}
+            <div className="max-w-md space-y-4 text-sm leading-relaxed text-white/70">
+              <p>
+                <strong className="font-semibold text-white">{siteSettings.companyName}</strong> adalah software house
+                yang membangun aplikasi web, aplikasi mobile, dan sistem pembiayaan untuk bisnis di Indonesia.
+              </p>
+              <p>
+                Setiap proyek kami kerjakan bertahap dan transparan, dengan sistem yang patuh regulasi OJK, terhubung
+                ke sistem yang sudah berjalan, dan source code yang sepenuhnya milik klien.
+              </p>
+              <address className="text-white/55 not-italic">{siteSettings.address}</address>
             </div>
           </div>
 
-          {Object.entries(footerLinks).map(([cat, items]) => (
-            <div key={cat}>
-              <div className="mb-5 text-xs font-black tracking-widest text-white uppercase">{cat}</div>
-              <ul className="space-y-3">
-                {items.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="hover:text-brand-light text-sm text-white/60 transition-colors duration-150">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <nav aria-label="Perusahaan">
+            <div className="mb-5 text-xs font-black tracking-widest text-white uppercase">Perusahaan</div>
+            <ul className="space-y-3">
+              {COMPANY_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={linkClass}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Produk">
+            <div className="mb-5 text-xs font-black tracking-widest text-white uppercase">Produk</div>
+            <ul className="space-y-3">
+              {services.map((s) => (
+                <li key={s.title}>
+                  <Link href="/layanan" className={linkClass}>
+                    {s.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <div className="mb-5 text-xs font-black tracking-widest text-white uppercase">Hubungi Kami</div>
+            <ul className="space-y-4">
+              <li className="flex gap-3">
+                <span className="text-brand-light mt-0.5 shrink-0">
+                  <PhoneIcon />
+                </span>
+                <a href={buildWhatsAppLink()} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  {siteSettings.phone}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-brand-light mt-0.5 shrink-0">
+                  <MailIcon />
+                </span>
+                <a href={`mailto:${siteSettings.email}`} className={`${linkClass} break-all`}>
+                  {siteSettings.email}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">

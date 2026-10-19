@@ -8,9 +8,9 @@ import { PageHero } from "@/components/shared/PageHero";
 import { BadgeCheckIcon, ClockIcon, HeadsetIcon, ShieldCheckIcon, UserCheckIcon } from "@/components/icons/figma-icons";
 
 export const metadata = pageMetadata({
-  title: "Jasa Pembuatan Website & Aplikasi Mobile Custom Jakarta | PT IGT",
+  title: "Jasa Pembuatan Website dan Aplikasi Mobile Custom Jakarta | PT IGT",
   description:
-    "Jasa pembuatan aplikasi mobile Android/iOS, website & web app custom, CMS, hingga sistem keuangan (aplikasi finance & multifinance) sesuai kebutuhan bisnis Anda.",
+    "Jasa pembuatan aplikasi mobile Android/iOS, website dan web app custom, CMS, hingga sistem keuangan (aplikasi finance dan multifinance) sesuai kebutuhan bisnis Anda.",
   path: "/layanan",
 });
 

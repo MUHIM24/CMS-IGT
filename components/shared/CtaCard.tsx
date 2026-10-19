@@ -20,7 +20,7 @@ export function CtaCard({ title, subtitle }: { title: string; subtitle: string }
             href={buildWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-brand-mid hover:bg-surface-2 inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-bold transition-colors duration-200"
+            className="font-display text-brand-mid hover:bg-surface-2 inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-full bg-white px-6 py-3 text-base font-bold transition-all duration-200 motion-safe:hover:-translate-y-0.5 hover:shadow-lg"
           >
             Konsultasikan Gratis Sekarang
             <WhatsAppIcon />
