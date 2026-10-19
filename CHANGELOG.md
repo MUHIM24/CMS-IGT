@@ -11,7 +11,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
   - JSON-LD lewat `lib/structured-data.ts` + `components/shared/JsonLd.tsx` (escape `<`): Organization (`ProfessionalService`, alamat Bogor, `knowsAbout`, `contactPoint`) + `WebSite` di layout; `FAQPage` di Beranda (data FAQ dipindah ke `lib/content/faqs.ts`); `ItemList` 8 `Service` di `/layanan`; `BreadcrumbList` di semua halaman dalam; `BlogPosting` + `FAQPage` + `BreadcrumbList` di detail artikel. Testimoni ilustrasi sengaja tidak dijadikan `Review`.
   - Metadata per halaman lewat `pageMetadata()` (`lib/seo.ts`): canonical + Open Graph (title, description, url, locale `id_ID`, siteName) + Twitter card; detail artikel bertipe `article` dengan gambar artikel. Default layout: keywords, authors, `robots` max-image-preview large.
   - Slogan `siteSettings.tagline` diganti ke slogan final "Mitra Teknologi Terpercaya untuk Transformasi Bisnis Anda" (ikut tampil di OG image).
-- **Indikator scroll di Hero** (referensi user): kapsul outline + panah memantul + "Gulir ke bawah" di bawah tengah Hero (desktop saja), klik turun halus ke section Tentang Kami (`#tentang-kami`). Gulir halus pakai CSS `scroll-behavior: smooth` (mati untuk "kurangi animasi") + `data-scroll-behavior="smooth"` di `<html>` sesuai Next 16 supaya perpindahan halaman tetap instan.
+- **Indikator scroll di Hero** (referensi user): kapsul outline + panah memantul + teks "Scroll down" di bawah tengah Hero (desktop saja; padding bawah konten Hero `lg:pb-36` supaya indikator tidak terlalu dekat dengan tombol CTA), klik turun halus ke section Tentang Kami (`#tentang-kami`). Gulir halus pakai CSS `scroll-behavior: smooth` (mati untuk "kurangi animasi") + `data-scroll-behavior="smooth"` di `<html>` sesuai Next 16 supaya perpindahan halaman tetap instan.
 - **Hero Beranda**: badge kapsul "WEB APPS · CORE FINANCE · MOBILE APPS · CMS" di atas judul dihapus (terkesan template AI dan mengulang isi paragraf).
 - **Sapu bersih angka ilustratif di seluruh situs** (keputusan user: perusahaan baru, baru 5 proyek, harus realistis tapi tetap profesional). Fakta yang dipakai: 5 proyek berjalan di produksi, sistem dibangun sesuai POJK, integrasi SLIK OJK & Dukcapil, web + Android (dikonfirmasi user, referensi proyek SIFOne).
   - Hero: baris statistik (8+ tahun, 100+ proyek, 40+ klien) dan baris poin keunggulan digabung jadi satu baris 3 fakta berikon, sengaja tanpa angka (permintaan user: tonjolkan pengalaman, bukan nominal): Profesional / Paham bisnis pembiayaan, Patuh OJK / Dirancang sesuai POJK, SLIK & Dukcapil / Verifikasi otomatis. Baris ini ditaruh di antara paragraf dan tombol CTA; kartu visual sekarang sejajar tengah di kanan (desktop) dan di bawah tombol (mobile). Mobile: 1 kolom, ikon di samping teks. `sm:` ke atas: 3 kolom, ikon di atas teks (biar teks gak patah baris).
@@ -30,7 +30,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 - **Blog statis mengikuti referensi user (IzinPro)** (belum ada database, data di `lib/content/articles.ts`, pindah ke CMS di Fase 2):
   - `/blog`: `PageHero` "Blog dan Artikel", kotak pencarian mengambang (cari judul/ringkasan/tag), sidebar Kategori (dengan jumlah) + Topik Populer + kotak "Butuh Bantuan?" WhatsApp (pengganti newsletter karena belum ada backend email), daftar artikel 2 kolom (foto, badge kategori, tanggal, menit baca, ringkasan, "Baca Selengkapnya"), urutan Terbaru/Terlama, paginasi 4 per halaman. Di mobile daftar artikel tampil duluan, sidebar di bawah. Komponen `components/sections/blog/BlogExplorer.tsx`.
   - `/blog/[slug]` (statis via `generateStaticParams`, metadata + canonical + OG per artikel): hero dengan breadcrumb 3 tingkat, kategori, judul, ringkasan, "Ditulis oleh Tim PT IGT", tanggal, menit baca; isi dari blok terstruktur (paragraf, daftar, kartu, langkah bernomor, sorotan) di `components/sections/blog/ArticleBody.tsx`; FAQ accordion; tag; sidebar sticky Daftar Isi + Butuh Bantuan + Artikel Terkait; `CtaCard` di akhir. Kolom komentar dari referensi tidak dibuat (butuh database).
-  - 6 artikel awal bersifat edukatif umum (SLIK OJK, LOS, digitalisasi kredit, verifikasi Dukcapil, memilih software house, web vs mobile), tanpa klaim angka/hasil proyek. **Perlu dibaca & disetujui user sebelum push.**
+  - 6 artikel awal bersifat edukatif umum (SLIK OJK, LOS, digitalisasi kredit, verifikasi Dukcapil, memilih software house, web vs mobile), tanpa klaim angka/hasil proyek. Sudah ter-deploy atas permintaan user; **review isi oleh user masih pending** (lihat bagian Pending).
   - URL artikel otomatis masuk `sitemap.xml`. Ikon baru: `SearchIcon`, `CalendarIcon`, `ListIcon`, `TagIcon`.
 - **Menu mobile jadi panel geser dari kiri** (referensi user): panel putih 85% lebar layar (maks 384px) + latar gelap transparan, header panel berisi logo dan tombol tutup, link utama besar (`text-xl`, aktif ditandai garis oranye), pemisah, tombol oranye "Hubungi Kami", copyright di bawah. Panel bisa di-scroll dengan scrollbar brand, scroll halaman di belakang dikunci, Escape/klik latar menutup. Panel dirender di luar `<header>` karena `backdrop-filter` di header membuat elemen `fixed` di dalamnya terkurung setinggi header.
 - **`/tentang`: jarak Tim ke kartu CTA dirapatkan** (padding bawah section tim 112px → 24px di desktop).
@@ -62,6 +62,30 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 - `docs/DESIGN_SYSTEM.md` & `AGENTS.md`: aturan mobile-first dipertegas (mobile/tablet/desktop + prefix Tailwind masing-masing, elemen berjajar menumpuk di mobile, tap target). Catatan lama "Hero mobile visual dulu" diperbaiki sesuai urutan sekarang (teks dulu).
 - Verifikasi: lint + type-check bersih. Cek tampilan dilakukan user sendiri.
 
+### Deploy
+- Commit `8cb4d57` (54 file, termasuk perubahan 9 & 11 Okt yang belum pernah di-commit) di-push ke `main`, Vercel auto-deploy, **live di https://igt-tech.id** (robots.txt baru, `/llms.txt`, dan halaman artikel dicek 200 OK). `npm run lint` + `npm run build` lolos sebelum push (20 halaman statis).
+
+### Pending
+Konten (butuh data/keputusan user):
+- **Review 6 artikel blog** di `lib/content/articles.ts`, terutama bagian regulasi (SLIK OJK, Dukcapil). Sudah tayang.
+- **Testimoni** masih contoh ilustrasi (`lib/content/testimonials.ts`): ganti dengan kutipan asli seizin klien, lalu hapus catatan "Contoh ilustrasi" di `components/sections/home/Testimonials.tsx`.
+- **Kartu tim** masih placeholder (`lib/content/team.ts`): isi nama, foto, LinkedIn, dan konfirmasi jabatan mana yang benar-benar ada. Halaman lama `/tim` (noindex, tidak ditautkan) sekarang tumpang tindih dengan section tim di `/tentang`: putuskan dihapus atau disatukan.
+- **Portfolio**: 3 case study (desain Figma) belum dicocokkan dengan 5 proyek asli. Contoh: "Sistem Core Multifinance" menyebut collection & pelaporan OJK, padahal SIFOne adalah LOS.
+- **FAQ Beranda** menyebut aplikasi mobile "tersedia untuk Android dan iOS", sedangkan SIFOne baru Android. FAQ ini ikut ke JSON-LD `FAQPage`, jadi perlu dicek kebenarannya.
+- **SEO title/description masih "Jakarta"** (Beranda, Tentang, Layanan, Portfolio, Kontak), padahal alamat kantor Bogor. JSON-LD & `llms.txt` sudah pakai Bogor. Putuskan: ganti ke Bogor/Indonesia atau tetap Jakarta untuk jangkauan pencarian.
+- **Logo 5 klien lain** (dari 2026-09-14): menunggu file resmi + izin.
+
+Desain:
+- **Ukuran font tombol** opsi A (18px) / B (16px DM Sans 700) dari 2026-10-11 belum diputuskan.
+- **Animasi hover** baru dipasang di tombol "Konsultasi Gratis" Hero; tombol oranye lain (CTA Banner, kirim form Kontak, "Hubungi Kami" menu) belum disamakan.
+- **Verifikasi visual menyeluruh** (Playwright 375/768/1280px, klik semua elemen interaktif, 0 console error) belum dijalankan untuk perubahan hari ini; atas permintaan user, pengecekan tampilan dilakukan user sendiri.
+
+SEO & infrastruktur:
+- **Google Search Console + Google Business Profile** (ditunda sampai development selesai): verifikasi (`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` belum diisi), submit sitemap, request indexing. Setelah ada akun sosial/Business Profile, isi `sameAs` di `buildOrganizationSchema()`.
+- **Blog**: kolom komentar dan newsletter belum dibuat (butuh backend). Artikel pindah ke CMS di Fase 2.
+- **CMS Fase 2** belum mulai.
+- 2 IP redundant A record Vercel (`216.198.79.1`, `64.29.17.1`): opsional.
+
 ## 2026-10-11
 
 ### Diubah
@@ -69,7 +93,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 - Diverifikasi dengan Playwright di 375px & 1280px: font terbaca 16px, tidak ada scroll horizontal, teks tombol tidak patah baris. Cek kontras axe-core di semua route tetap 0 kegagalan, 0 console error.
 
 ### Belum diputuskan
-- Tombol masih terasa lebih kecil dibanding referensi (BuildWithAngga) walau sama-sama 16px, karena font Outfit punya x-height pendek dan ketebalan tombol cuma 600-700. Opsi: (A) naik ke 18px (`text-lg`), atau (B) tetap 16px tapi pakai `font-display` (DM Sans) 700 tanpa `tracking-wide`. Menunggu pilihan user.
+- Tombol masih terasa lebih kecil dibanding referensi (BuildWithAngga) walau sama-sama 16px, karena font Outfit punya x-height pendek dan ketebalan tombol cuma 600-700. Opsi: (A) naik ke 18px (`text-lg`), atau (B) tetap 16px tapi pakai `font-display` (DM Sans) 700 tanpa `tracking-wide`. Menunggu pilihan user (masih pending per 2026-10-19).
 
 ## 2026-10-09
 
@@ -154,7 +178,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 ### Ditunda
 - Menu & section "Tim" (foto tim asli belum ada) — di-unlink dari Navbar/Footer/sitemap, halaman `/tim` tetap ada di kode biar gampang diaktifkan lagi.
 - Logo resmi 5 klien (Shinhan Indomobil Finance, CTBC Indonesia, UOB Indonesia, Adira Finance, Bank Saku) — sementara masih chip nama teks, nunggu file logo resmi + izin pemakaian dari masing-masing klien.
-- Statistik (8+ tahun, 100+ proyek, dst), testimoni, dan cerita/timeline pendirian perusahaan masih konten ilustratif (belum data terverifikasi) — dipertahankan atas keputusan eksplisit user, bukan alasan teknis.
+- ~~Statistik (8+ tahun, 100+ proyek, dst), testimoni, dan cerita/timeline pendirian perusahaan masih konten ilustratif~~ Statistik & timeline sudah dihapus 2026-10-19; testimoni kini berlabel contoh ilustrasi (lihat Pending 2026-10-19).
 - 2 IP redundant tambahan yang disaranin Vercel buat A record `@` (`216.198.79.1`, `64.29.17.1`) — opsional, domain udah jalan normal tanpa itu.
 
 ## 2026-09-12

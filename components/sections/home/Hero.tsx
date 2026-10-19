@@ -17,7 +17,7 @@ export function Hero() {
       <div className="bg-brand absolute top-1/3 right-0 h-[480px] w-[480px] rounded-full opacity-10 blur-3xl" />
       <div className="bg-brand-light absolute bottom-0 left-1/4 h-64 w-64 rounded-full opacity-[0.08] blur-3xl" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 pb-20 lg:px-10">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 pb-20 lg:px-10 lg:pb-36">
         {/* Mobile: teks → poin keunggulan → tombol → visual. Desktop: semua teks di kiri, visual di kanan */}
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-x-10">
           <div className="lg:self-center">
@@ -106,14 +106,14 @@ export function Hero() {
           Hanya di desktop; di mobile konten hero lebih tinggi dari layar jadi indikator bisa menimpa kartu visual. */}
       <a
         href="#tentang-kami"
-        className="group absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
+        className="group absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
       >
         <span className="group-hover:border-brand-light flex h-12 w-7 items-start justify-center rounded-full border-2 border-white/40 pt-2 transition-colors duration-200">
           <span className="text-white/70 group-hover:text-brand-light motion-safe:animate-bounce [&_svg]:h-3.5 [&_svg]:w-3.5">
             <ArrowDownIcon />
           </span>
         </span>
-        <span className="text-sm text-white/70 transition-colors duration-200 group-hover:text-white">Gulir ke bawah</span>
+        <span className="text-sm text-white/70 transition-colors duration-200 group-hover:text-white">Scroll down</span>
       </a>
     </section>
   );
