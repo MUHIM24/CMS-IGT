@@ -78,7 +78,7 @@ Ganti nomor/email hanya di `lib/content/site-settings.ts`; otomatis terpakai di 
 - `app/opengraph-image.tsx`: OG image dinamis via `next/og`.
 - JSON-LD (GEO): builder di `lib/structured-data.ts`, render lewat `components/shared/JsonLd.tsx`. Organisasi `ProfessionalService` + `WebSite` di layout; `FAQPage` di Beranda; `ItemList` of `Service` di `/layanan`; `BreadcrumbList` di semua halaman dalam (otomatis dari `PageHero` + manual di `/tentang`); `BlogPosting` + `FAQPage` + `BreadcrumbList` di detail artikel. **Jangan** buat `Review`/`AggregateRating` dari testimoni contoh ilustrasi. `sameAs` belum diisi (tunggu akun sosial/Business Profile).
 - `/llms.txt` (GEO): route `app/llms.txt/route.ts`, dibangun otomatis dari `lib/content` (layanan, portfolio, artikel, kontak) jadi selalu sinkron; **hanya** data faktual (tanpa testimoni ilustrasi/tim placeholder). File lama `public/llms.txt` dihapus.
-- Verifikasi GSC: env var `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (meta tag) sudah disiapkan, belum diisi. Alternatif: file HTML verifikasi di `public/`.
+- Verifikasi Google Search Console: file `public/google58b6fa4063452ad3.html` (properti Awalan URL `https://igt-tech.id/`). **Jangan dihapus.** Env var `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (meta tag) tetap tersedia sebagai cadangan, tidak diisi.
 
 ## 6. Deploy & infrastruktur
 
