@@ -45,6 +45,16 @@ export function Navbar() {
   }, [open]);
 
   const isHome = pathname === "/";
+
+  // Klik logo selalu ke Hero Beranda. Kalau sudah di Beranda, Next tidak berpindah halaman
+  // (rute sama) jadi posisi scroll tidak berubah: scroll ke atas manual.
+  function goHome(e: React.MouseEvent<HTMLAnchorElement>) {
+    setOpen(false);
+    if (pathname !== "/") return;
+    e.preventDefault();
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  }
   const transparent = isHome && !scrolled;
 
   return (
@@ -59,7 +69,7 @@ export function Navbar() {
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="flex h-[72px] items-center justify-between">
-            <Link href="/" onClick={() => setOpen(false)} className="group flex items-center gap-3">
+            <Link href="/" onClick={goHome} className="group flex items-center gap-3">
               <Image src="/logo-icon.png" alt="PT Inovasi Gantarawana Teknologi logo" width={36} height={36} className="h-9 w-9 object-contain" priority />
               <div className="text-left">
                 <div className="font-display text-base leading-tight font-bold tracking-tight text-white">
@@ -135,7 +145,7 @@ export function Navbar() {
         >
           <div className="border-border flex h-[72px] shrink-0 items-center justify-between border-b bg-white px-6">
             {/* Panel putih seluruhnya (keputusan user): logo teks gelap, TEKNOLOGI brand-mid (brand-light terlalu pucat di putih) */}
-            <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
+            <Link href="/" onClick={goHome} className="flex items-center gap-3">
               <Image src="/logo-icon.png" alt="" width={36} height={36} className="h-9 w-9 object-contain" />
               <span className="text-left">
                 <span className="font-display text-text block text-base leading-tight font-bold tracking-tight">PT Inovasi Gantarawana</span>

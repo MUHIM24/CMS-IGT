@@ -5,6 +5,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 ## 2026-10-20
 
 ### Diubah
+- **Klik logo selalu kembali ke Hero Beranda** (header & panel menu mobile). Sebelumnya, kalau sudah di Beranda dan scroll ke bawah, klik logo tidak melakukan apa-apa karena Next menganggap rute sama; sekarang di-scroll ke atas (halus, kecuali "kurangi animasi"). Dari halaman lain tetap pindah ke Beranda posisi paling atas. Dites Playwright: desktop di Beranda, desktop dari `/blog`, dan mobile lewat panel menu, semuanya berakhir di scrollY 0.
 - **Tombol CTA diseragamkan (keputusan user, opsi B dari 2026-10-11)**: 16px, font DM Sans (`font-display`) tebal, tanpa `tracking-wide`. Gaya bersama di `components/shared/button-styles.ts` (`ctaPrimaryClass`, `ctaOutlineOnDarkClass`, `ctaArrowClass`).
 - **Animasi hover disamakan** di semua tombol oranye (Hero, CTA Banner, kirim form Kontak, "Hubungi Kami" di menu desktop & panel mobile): naik 2px + bayangan oranye lembut + panah bergeser 4px, `motion-safe:`. Tombol putih "Konsultasikan Gratis Sekarang" di `CtaCard` ikut naik + bayangan.
 - **Halaman 404 baru** `app/not-found.tsx` (referensi user): ilustrasi SVG buatan sendiri warna brand (colokan kabel terlepas dari stopkontak + percikan oranye), angka 404 gradasi, "Halaman Tidak Ditemukan", tombol "Kembali ke Beranda" + "Hubungi Kami". Status 404 + `noindex` otomatis dari Next.
