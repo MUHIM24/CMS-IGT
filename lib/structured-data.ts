@@ -56,7 +56,9 @@ export function buildWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: siteSettings.companyName,
+    // Google memakai name/alternateName WebSite sebagai "site name" di hasil pencarian
+    name: siteSettings.shortName,
+    alternateName: [siteSettings.companyName, "IGT"],
     url: SITE,
     inLanguage: "id-ID",
     publisher: { "@id": ORG_ID },

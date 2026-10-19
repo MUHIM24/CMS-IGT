@@ -15,9 +15,9 @@ import { CTABanner } from "@/components/sections/home/CTABanner";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 
 export const metadata = pageMetadata({
-  title: "Jasa IT dan Software House Jakarta | PT Inovasi Gantarawana Teknologi",
+  title: "PT Inovasi Gantarawana Teknologi | Software House dan Jasa Pembuatan Aplikasi",
   description:
-    "Jasa pembuatan website, aplikasi mobile (Android/iOS), dan sistem core finance custom di Jakarta. Konsultan IT berpengalaman untuk bisnis pembiayaan dan korporasi.",
+    "Software house di Bogor yang membangun aplikasi web, aplikasi mobile, dan sistem pembiayaan (loan origination, otomasi SLIK OJK) untuk bisnis di seluruh Indonesia.",
   path: "/",
 });
 

@@ -24,7 +24,7 @@ export function pageMetadata({
     openGraph: {
       type,
       locale: "id_ID",
-      siteName: siteSettings.companyName,
+      siteName: siteSettings.shortName,
       url: path,
       title,
       description,

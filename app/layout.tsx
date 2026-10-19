@@ -24,18 +24,18 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteSettings.siteUrl),
   title: {
-    default: "Jasa IT dan Software House Jakarta | PT Inovasi Gantarawana Teknologi",
+    default: "PT Inovasi Gantarawana Teknologi | Software House dan Jasa Pembuatan Aplikasi",
     template: "%s",
   },
   description:
-    "Jasa pembuatan website, aplikasi mobile, dan sistem IT custom (termasuk sistem keuangan dan multifinance) untuk bisnis di Jakarta dan seluruh Indonesia.",
+    "Software house di Bogor yang membangun aplikasi web, aplikasi mobile, dan sistem pembiayaan (loan origination, otomasi SLIK OJK) untuk bisnis di seluruh Indonesia.",
   applicationName: siteSettings.companyName,
   keywords: ["software house", "jasa pembuatan aplikasi", "jasa pembuatan website", "aplikasi mobile", "loan origination system", "otomasi SLIK OJK", "sistem multifinance", "PT IGT"],
   authors: [{ name: siteSettings.companyName, url: siteSettings.siteUrl }],
   openGraph: {
     type: "website",
     locale: "id_ID",
-    siteName: siteSettings.companyName,
+    siteName: siteSettings.shortName,
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },

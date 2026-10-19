@@ -10,7 +10,10 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 - **Halaman 404 baru** `app/not-found.tsx` (referensi user): ilustrasi SVG buatan sendiri warna brand (colokan kabel terlepas dari stopkontak + percikan oranye), angka 404 gradasi, "Halaman Tidak Ditemukan", tombol "Kembali ke Beranda" + "Hubungi Kami". Status 404 + `noindex` otomatis dari Next.
 - **Footer: semua 16 link mati (`href="#"`) diperbaiki.** Perusahaan → Tentang Kami, Layanan, Portfolio, Blog, Kontak ("Karir" & "Blog Teknis" dihapus, belum ada halamannya); Produk → `/layanan` (dari `lib/content/services.ts`); kolom "Hukum" (Kebijakan Privasi, Syarat Layanan, Keamanan Data: belum ada halamannya) diganti "Hubungi Kami" (telepon → WhatsApp, email → mailto); ikon LinkedIn/Instagram di footer & section Kontak disembunyikan sampai akun resmi ada.
 - **Kolom pertama footer mengikuti referensi user**: logo, paragraf profil dengan nama perusahaan tebal, paragraf cara kerja, alamat warna redup. Tanpa angka tahun/sertifikasi (belum ada data).
+- **Panel menu mobile dibalik warnanya** (permintaan user): bagian atas putih dengan logo (nama `text`, "TEKNOLOGI" `brand-mid`, tombol tutup gelap), bagian menu latar navy `brand-deeper` dengan link putih (aktif putih tebal + garis oranye, lainnya white/75), copyright white/55, garis tipis `white/10` di tepi kanan supaya panel tidak menyatu dengan Hero gelap. Kontras dicek axe: 0 pelanggaran.
 - **Kartu visual Hero**: badge "PLATFORM Web + Android" sempat menimpa baris terakhir daftar alur kredit; kartu diberi `pb-14`.
+- **SEO: judul halaman dipendekkan untuk sitelinks Google** (meniru pola IzinPro): Beranda "PT Inovasi Gantarawana Teknologi | Software House dan Jasa Pembuatan Aplikasi", lalu "Tentang Kami | PT IGT", "Layanan Kami | PT IGT", "Portfolio | PT IGT", "Blog dan Artikel | PT IGT", "Hubungi Kami | PT IGT". Deskripsi ditulis ulang faktual (Bogor, seluruh Indonesia). **"Jakarta" dihapus dari semua metadata** (menyelesaikan pending soal alamat Bogor), klaim "Android/iOS" di deskripsi Beranda dihapus.
+- **Nama situs pendek "PT IGT"** (`siteSettings.shortName`): dipakai di JSON-LD `WebSite` (`name`, dengan `alternateName` nama lengkap + "IGT") dan `og:site_name`, supaya Google menampilkan "PT IGT" di atas URL. Organization tetap nama lengkap.
 - **SEO: tanda "&" di title & meta description diganti "dan"** (Beranda, Tentang, Layanan, Portfolio, default layout). HTML sudah benar (`&amp;` tunggal), tapi kartu Google sempat menampilkan "&amp;amp;"; tanpa ampersand risiko itu hilang di Google/WhatsApp/LinkedIn.
 
 ### Verifikasi
@@ -95,7 +98,7 @@ Konten (butuh data/keputusan user):
 - **Kartu tim** masih placeholder (`lib/content/team.ts`): isi nama, foto, LinkedIn, dan konfirmasi jabatan mana yang benar-benar ada. Halaman lama `/tim` (noindex, tidak ditautkan) sekarang tumpang tindih dengan section tim di `/tentang`: putuskan dihapus atau disatukan.
 - **Portfolio**: 3 case study (desain Figma) belum dicocokkan dengan 5 proyek asli. Contoh: "Sistem Core Multifinance" menyebut collection & pelaporan OJK, padahal SIFOne adalah LOS.
 - **FAQ Beranda** menyebut aplikasi mobile "tersedia untuk Android dan iOS", sedangkan SIFOne baru Android. FAQ ini ikut ke JSON-LD `FAQPage`, jadi perlu dicek kebenarannya.
-- **SEO title/description masih "Jakarta"** (Beranda, Tentang, Layanan, Portfolio, Kontak), padahal alamat kantor Bogor. JSON-LD & `llms.txt` sudah pakai Bogor. Putuskan: ganti ke Bogor/Indonesia atau tetap Jakarta untuk jangkauan pencarian.
+- ~~**SEO title/description masih "Jakarta"**~~ Selesai 2026-10-20: dihapus, judul dipendekkan.
 - **Logo 5 klien lain** (dari 2026-09-14): menunggu file resmi + izin.
 
 Desain:

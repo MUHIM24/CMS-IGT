@@ -6,9 +6,9 @@ import { PortfolioGrid } from "@/components/sections/portfolio/PortfolioGrid";
 import { clients } from "@/lib/content/clients";
 
 export const metadata = pageMetadata({
-  title: "Portofolio Jasa IT Konsultan Jakarta | Proyek Sistem Finance dan Mobile",
+  title: "Portfolio | PT IGT",
   description:
-    "Portofolio proyek jasa pembuatan sistem core finance, aplikasi mobile, dan automation SLIK OJK yang pernah kami kerjakan untuk klien pembiayaan di Indonesia.",
+    "Contoh proyek PT IGT untuk perusahaan pembiayaan: sistem core multifinance, aplikasi mobile loan origination, dan aplikasi lapangan untuk CMO.",
   path: "/portfolio",
 });
 

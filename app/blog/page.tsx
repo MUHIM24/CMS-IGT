@@ -4,7 +4,7 @@ import { CtaCard } from "@/components/shared/CtaCard";
 import { PageHero } from "@/components/shared/PageHero";
 
 export const metadata = pageMetadata({
-  title: "Blog dan Artikel | PT Inovasi Gantarawana Teknologi",
+  title: "Blog dan Artikel | PT IGT",
   description:
     "Artikel seputar SLIK OJK, loan origination system, digitalisasi proses kredit, dan tips membangun sistem untuk bisnis pembiayaan.",
   path: "/blog",

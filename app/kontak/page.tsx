@@ -3,9 +3,9 @@ import { ContactSection } from "@/components/sections/contact/ContactSection";
 import { PageHero } from "@/components/shared/PageHero";
 
 export const metadata = pageMetadata({
-  title: "Konsultasi Gratis Jasa IT Jakarta | Kontak PT Inovasi Gantarawana Teknologi",
+  title: "Hubungi Kami | PT IGT",
   description:
-    "Hubungi kami untuk konsultasi gratis kebutuhan jasa pembuatan website, aplikasi mobile, atau sistem IT bisnis Anda di Jakarta via WhatsApp.",
+    "Konsultasi gratis kebutuhan sistem dan aplikasi bisnis Anda bersama PT IGT. Hubungi kami lewat WhatsApp, telepon, atau email.",
   path: "/kontak",
 });
 

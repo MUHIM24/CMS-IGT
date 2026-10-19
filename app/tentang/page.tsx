@@ -22,9 +22,9 @@ import {
 } from "@/components/icons/figma-icons";
 
 export const metadata = pageMetadata({
-  title: "Tentang Kami | Konsultan IT dan Software House Jakarta - PT IGT",
+  title: "Tentang Kami | PT IGT",
   description:
-    "PT Inovasi Gantarawana Teknologi, konsultan IT dan software house di Jakarta, mitra teknologi terpercaya untuk industri keuangan dan multifinance Indonesia.",
+    "Kenali PT Inovasi Gantarawana Teknologi, software house di Bogor yang membangun sistem pembiayaan, aplikasi web, dan aplikasi mobile dengan proses kerja bertahap dan transparan.",
   path: "/tentang",
 });
 

@@ -1,5 +1,7 @@
 export const siteSettings = {
   companyName: "PT Inovasi Gantarawana Teknologi",
+  // Nama situs pendek untuk Google (tampil di atas URL hasil pencarian) & og:site_name
+  shortName: "PT IGT",
   tagline: "Mitra Teknologi Terpercaya untuk Transformasi Bisnis Anda",
   siteUrl: "https://igt-tech.id",
   phone: "+62 851-5908-0096",
