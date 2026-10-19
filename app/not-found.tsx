@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Footer } from "@/components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
 import { ArrowRight } from "@/components/icons/figma-icons";
 import { ctaPrimaryClass } from "@/components/shared/button-styles";
 
@@ -47,29 +49,36 @@ function DisconnectedIllustration() {
 
 export default function NotFound() {
   return (
-    <section className="bg-surface flex min-h-[80vh] items-center pt-[72px]">
-      <div className="mx-auto w-full max-w-2xl px-6 py-16 text-center">
-        <DisconnectedIllustration />
-        <p className="font-display gradient-text mt-6 text-7xl leading-none font-bold sm:text-8xl">404</p>
-        <h1 className="font-display text-text mt-4 text-2xl font-bold sm:text-3xl">Halaman Tidak Ditemukan</h1>
-        <p className="text-muted mx-auto mt-3 max-w-md text-base leading-relaxed">
-          Halaman yang Anda cari mungkin sudah dipindahkan, dihapus, atau alamatnya salah ketik.
-        </p>
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Link href="/" className={`${ctaPrimaryClass} flex min-h-11 px-7 py-3`}>
-            <span className="rotate-180">
-              <ArrowRight size={16} />
-            </span>
-            Kembali ke Beranda
-          </Link>
-          <Link
-            href="/kontak"
-            className="font-display border-border text-text hover:border-brand-mid hover:text-brand-mid flex min-h-11 items-center justify-center rounded-full border bg-white px-7 py-3 text-base font-bold transition-colors duration-200"
-          >
-            Hubungi Kami
-          </Link>
-        </div>
-      </div>
-    </section>
+    <>
+      {/* not-found di root tidak memakai layout (site), jadi Navbar & Footer dipasang manual */}
+      <Navbar />
+      <main className="flex-1">
+        <section className="bg-surface flex min-h-[80vh] items-center pt-[72px]">
+          <div className="mx-auto w-full max-w-2xl px-6 py-16 text-center">
+            <DisconnectedIllustration />
+            <p className="font-display gradient-text mt-6 text-7xl leading-none font-bold sm:text-8xl">404</p>
+            <h1 className="font-display text-text mt-4 text-2xl font-bold sm:text-3xl">Halaman Tidak Ditemukan</h1>
+            <p className="text-muted mx-auto mt-3 max-w-md text-base leading-relaxed">
+              Halaman yang Anda cari mungkin sudah dipindahkan, dihapus, atau alamatnya salah ketik.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link href="/" className={`${ctaPrimaryClass} flex min-h-11 px-7 py-3`}>
+                <span className="rotate-180">
+                  <ArrowRight size={16} />
+                </span>
+                Kembali ke Beranda
+              </Link>
+              <Link
+                href="/kontak"
+                className="font-display border-border text-text hover:border-brand-mid hover:text-brand-mid flex min-h-11 items-center justify-center rounded-full border bg-white px-7 py-3 text-base font-bold transition-colors duration-200"
+              >
+                Hubungi Kami
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }

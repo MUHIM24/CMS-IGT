@@ -20,8 +20,9 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // /tim belum ditautkan & noindex (foto tim asli belum ada); tetap boleh di-crawl supaya noindex terbaca
-      { userAgent: "*", allow: "/" },
-      ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: "/" })),
+      // /admin = dashboard (login + noindex); jangan di-crawl bot mana pun
+      { userAgent: "*", allow: "/", disallow: ["/admin"] },
+      ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: "/", disallow: ["/admin"] })),
     ],
     sitemap: `${siteSettings.siteUrl}/sitemap.xml`,
     host: siteSettings.siteUrl,

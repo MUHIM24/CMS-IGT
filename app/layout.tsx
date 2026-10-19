@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, DM_Sans } from "next/font/google";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { FloatingActions } from "@/components/layout/FloatingActions";
-import { JsonLd } from "@/components/shared/JsonLd";
 import { siteSettings } from "@/lib/content/site-settings";
-import { buildOrganizationSchema, buildWebsiteSchema } from "@/lib/structured-data";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -55,12 +50,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", outfit.variable, dmSans.variable, "font-sans")}
     >
       <body className="flex min-h-full flex-col">
-        <JsonLd data={buildOrganizationSchema()} />
-        <JsonLd data={buildWebsiteSchema()} />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <FloatingActions />
+        {/* Navbar/Footer/JSON-LD ada di app/(site)/layout.tsx; dashboard punya layout sendiri di app/admin */}
+        {children}
       </body>
     </html>
   );

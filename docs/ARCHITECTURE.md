@@ -80,6 +80,16 @@ Ganti nomor/email hanya di `lib/content/site-settings.ts`; otomatis terpakai di 
 - `/llms.txt` (GEO): route `app/llms.txt/route.ts`, dibangun otomatis dari `lib/content` (layanan, portfolio, artikel, kontak) jadi selalu sinkron; **hanya** data faktual (tanpa testimoni ilustrasi/tim placeholder). File lama `public/llms.txt` dihapus.
 - Verifikasi Google Search Console: file `public/google58b6fa4063452ad3.html` (properti Awalan URL `https://igt-tech.id/`). **Jangan dihapus.** Env var `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (meta tag) tetap tersedia sebagai cadangan, tidak diisi.
 
+## 5b. Dashboard /admin (tahap tampilan)
+
+- Rute: `app/admin/login` (tanpa kerangka), `app/admin/(panel)/*` (dengan `components/admin/AdminShell.tsx`). Menu di `lib/admin/nav.ts` (`ready: false` = "Segera").
+- Auth: `lib/admin/session.ts` (HMAC Web Crypto), Server Action `app/admin/actions.ts`, `proxy.ts` di root (Next 16, pengganti middleware) mengunci `/admin/*` + `X-Robots-Tag noindex`. Kredensial **hanya** dari env (`ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`, lihat `.env.example`); repo publik, jangan tulis di kode.
+- Belum ada database: form memakai `components/admin/DemoForm.tsx` (tidak menyimpan, notifikasi jujur). Data tampilan dibaca dari `lib/content/*`.
+- Komponen dashboard: `ContentList` (daftar + toggle/duplikat/edit/hapus), `ConfirmDelete`, `ArticleTable`, `ImageUpload`, `MediaLibrary`, `CommandPalette` (Ctrl+K), `NotificationMenu`, `AdminSelect`, `charts.tsx` (BarChart/LineChart/HBarList/ChartTable tanpa library), `EditPage`.
+- Grafik memakai `lib/admin/sample-analytics.ts` = **data contoh**; wajib badge `SampleDataBadge` sampai disambungkan ke analitik asli (Fase 2).
+- Font Poppins hanya di `app/admin/layout.tsx`; situs publik tetap Outfit + DM Sans.
+- Situs publik ada di route group `app/(site)/` (layout: Navbar, Footer, FloatingActions, JSON-LD).
+
 ## 6. Deploy & infrastruktur
 
 ```

@@ -2,10 +2,48 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-20 (Dashboard lengkap)
+
+### Ditambahkan
+- **Semua menu dashboard punya halaman** (tidak ada lagi "Segera"): Analitik, Komentar (keadaan kosong jujur), Media Library, Hero Beranda, Tentang Kami, Portfolio (+ tambah/edit), Tim (+ tambah/edit), Testimoni (+ tambah/edit), Klien (+ form tambah logo), FAQ (+ tambah/edit), Kontak, CTA Banner, Pengguna (1 akun, multi-user di Fase 2), Pengaturan (identitas & SEO). Isi default form = teks yang benar-benar tayang di situs.
+- **Daftar konten ala IzinPro** (`components/admin/ContentList.tsx`): toggle tampil/sembunyi, duplikat, edit, hapus dengan **pop-up konfirmasi** (`components/admin/ConfirmDelete.tsx`, shadcn alert-dialog; tombol Hapus `accent-text` putih 6.27). Dipakai Layanan, Portfolio, Tim, Testimoni, FAQ, Klien, Pengguna.
+- **Blog & Artikel jadi tabel** (`components/admin/ArticleTable.tsx`): judul + thumbnail, kategori, penulis (≥1536px), tanggal (bisa diurutkan), status, aksi lihat/edit/hapus (konfirmasi), kotak cari. <1280px tampil sebagai kartu. Kolom views & statistik dari referensi tidak dibuat (belum ada data).
+- **Upload gambar** (`components/admin/ImageUpload.tsx`): seret & lepas / pilih file / tempel URL, pratinjau, validasi JPG/PNG/WebP ≤ 2 MB, ganti & hapus. Dipakai artikel, portfolio, tim, hero, klien. **Media Library** (`components/admin/MediaLibrary.tsx`): galeri 19 gambar yang dipakai situs + lokasi pemakaian, upload banyak file, filter Foto/Logo, salin URL, hapus dengan konfirmasi. Semua upload hanya pratinjau di browser (belum ada storage).
+- **Header dashboard**: pencarian perintah Ctrl/Cmd+K (`components/admin/CommandPalette.tsx`, cari halaman + aksi cepat, navigasi keyboard), notifikasi (`NotificationMenu.tsx`, kosong jujur), menu akun di avatar (Profil Saya, Ubah Password, Keluar; shadcn dropdown-menu dengan sorot biru, bukan token accent oranye).
+- **Grafik** tanpa library (`components/admin/charts.tsx`, mengikuti skill dataviz): Overview punya Kunjungan Bulanan (batang) + Statistik page views & pengunjung unik (garis, 7/30/90 hari); halaman Analitik punya 4 kartu ringkasan, tren batang 2 seri, sumber traffic, halaman terpopuler. Warna seri `brand` + `accent` divalidasi `validate_palette.js` (lolos CVD & normal-vision; oranye 2.73 di putih → wajib legenda + tooltip + "Lihat sebagai tabel", sudah ada). **Semua angka analitik = DATA CONTOH** (`lib/admin/sample-analytics.ts`, berlabel badge "Data contoh") karena situs belum terhubung ke sistem analitik.
+- Kartu Overview gaya solid ala referensi: latar `brand-mid`, lingkaran atas **oranye solid** + lingkaran bawah biru (oranye transparan di atas biru terlihat kotor, ditolak user).
+
+### Diperbaiki
+- Latar dashboard terlihat dua warna: pembungkus menyusut ke tinggi layar karena `body` flex kolom → `shrink-0`; latar `admin-bg` (#EDF2F7) kini penuh sampai bawah. Token baru: `admin-bg`, `admin-field` (#E2EAF2), `admin-placeholder` (#4A6574, 5.08 di input).
+- Dropdown `<select>` bawaan browser di form dashboard → `components/admin/AdminSelect.tsx` (Select custom, sama dengan /blog).
+- Label menu sidebar patah baris → `truncate` + sidebar 320px di ≥1280px; menu aktif otomatis digulir terlihat (hanya kotak sidebar, halaman tidak ikut bergeser). Teks pencarian header patah baris → `whitespace-nowrap`. Tabel Halaman Terpopuler di HP muat tanpa geser samping.
+
+### Verifikasi
+- Tes interaksi Playwright 19/19 lolos (Ctrl+K + Enter + Escape, aksi cepat, notifikasi, toggle, duplikat, hapus → konfirmasi → Batal/Ya, rentang grafik 30→90, Analitik 30 hari, Media upload + filter + hapus, 0 error). Dua kegagalan yang sempat muncul ternyata kesalahan skrip tes (selektor `text=Batal` mengenai kata "dibatalkan"; Ctrl+K ditekan sebelum halaman selesai dimuat), bukan bug aplikasi.
+- Tes responsif semua 27 rute dashboard × 375/1024/1536px: 0 masalah setelah perbaikan tabel Analitik di HP (overflow, elemen keluar kartu, patah baris, kontras axe, error console).
+
+## 2026-10-20 (Dashboard tahap 1)
+
+### Ditambahkan
+- **Dashboard `/admin` (tahap tampilan, belum ada database)**: struktur & menu mengikuti IzinPro, disesuaikan konten PT IGT; gaya mengikuti BuildWithAngga (font Poppins khusus dashboard, judul besar tebal, kartu putih `rounded-3xl`, kartu statistik ikon bulat, input pill abu-abu tinggi, tombol pill solid).
+  - Halaman tahap 1: Masuk, Overview (6 kartu statistik dihitung dari `lib/content`, Artikel Terbaru, Status Situs), Layanan (daftar + tambah/edit), Blog & Artikel (daftar + tulis/edit, isi artikel ditampilkan bergaya markdown), Profil Saya, Ubah Password. Menu lain (Komentar, Hero Beranda, Tentang Kami, Portfolio, Tim, Testimoni, Klien, FAQ, Kontak, CTA Banner, Pengguna, Pengaturan) tampil berlabel "Segera" dan tidak bisa diklik.
+  - Semua form tampilan saja: submit menampilkan notifikasi jujur "Mode tampilan: perubahan belum disimpan..." (`components/admin/DemoForm.tsx`).
+  - Sidebar kartu (profil + menu berkelompok, menu aktif otomatis digulir terlihat), topbar (logo, Lihat Situs, Halo + avatar), panel geser di mobile. Tombol Keluar.
+- **Login & keamanan**: akun dummy tunggal dari env `ADMIN_USERNAME` / `ADMIN_PASSWORD` (nilai lokal di `.env.local`, tidak ikut git), **tidak ditulis di kode karena repo GitHub publik**; env kosong = login ditolak. Pengecekan password di Server Action, sesi cookie httpOnly bertanda tangan HMAC-SHA256 (`ADMIN_SESSION_SECRET`), berlaku 8 jam. `proxy.ts` (pengganti middleware di Next 16) mengunci semua `/admin/*` kecuali login + header `X-Robots-Tag: noindex`; layout panel cek sesi lagi di server. `?next=` dibatasi ke `/admin/*` (cegah open redirect). Username tetap terisi setelah login gagal (React 19 me-reset form setelah action).
+- **SEO aman**: `/admin` di-`noindex` (metadata + header), `Disallow: /admin` di robots.txt untuk semua bot termasuk crawler AI, tidak masuk sitemap, tidak ditautkan dari situs publik.
+- **Struktur**: halaman publik dipindah ke route group `app/(site)/` (URL tidak berubah) dengan layout berisi Navbar/Footer/tombol mengambang/JSON-LD; layout root tinggal `<html>`+font+metadata; `app/not-found.tsx` memasang Navbar & Footer sendiri. `.env.example` ditambahkan (dikecualikan dari `.env*` di .gitignore).
+
+### Verifikasi
+- 29 tes Playwright dashboard lolos: redirect tanpa login, header & meta noindex, robots Disallow, sitemap bersih, password salah ditolak + username tetap, login → dashboard, cookie httpOnly, 8 halaman (1 H1, 0 masalah kontras axe, 0 overflow), 404 artikel admin, notifikasi form, mobile tanpa overflow + menu, logout & terkunci lagi, situs publik & 404 tetap ber-Navbar/Footer, 0 console error.
+- Audit situs publik diulang setelah pemindahan ke `(site)`: semua route × 375/768/1280 dan 16 tes interaksi tetap lolos. `npm run build` lolos (27 halaman + Proxy).
+
+### Sebelum push ke production
+- **Isi env di Vercel** (Settings → Environment Variables, Production): `ADMIN_USERNAME`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET`. Tanpa itu `/admin/login` menolak semua login (aman, tapi dashboard tidak bisa dibuka).
+
 ## 2026-10-20
 
 ### Diubah
-- **Google Search Console**: file verifikasi `public/google58b6fa4063452ad3.html` ditambahkan (properti "Awalan URL" `https://igt-tech.id/`, metode File HTML, pola sama dengan IzinPro; tidak perlu akses DNS Hostinger). **Jangan dihapus**, Google mengecek ulang secara berkala. Percobaan verifikasi lewat properti "Domain" (record TXT DNS) tidak dilanjutkan.
+- **Google Search Console**: file verifikasi `public/google58b6fa4063452ad3.html` ditambahkan (properti "Awalan URL" `https://igt-tech.id/`, metode File HTML, pola sama dengan IzinPro; tidak perlu akses DNS Hostinger). **Jangan dihapus**, Google mengecek ulang secara berkala. Percobaan verifikasi lewat properti "Domain" (record TXT DNS) tidak dilanjutkan. **Terverifikasi 2026-10-20.** Lanjutan: submit `sitemap.xml` + minta pengindeksan halaman utama (dilakukan user di dashboard GSC). Google Business Profile masih pending.
 - **Klik logo selalu kembali ke Hero Beranda** (header & panel menu mobile). Sebelumnya, kalau sudah di Beranda dan scroll ke bawah, klik logo tidak melakukan apa-apa karena Next menganggap rute sama; sekarang di-scroll ke atas (halus, kecuali "kurangi animasi"). Dari halaman lain tetap pindah ke Beranda posisi paling atas. Dites Playwright: desktop di Beranda, desktop dari `/blog`, dan mobile lewat panel menu, semuanya berakhir di scrollY 0.
 - **Tombol CTA diseragamkan (keputusan user, opsi B dari 2026-10-11)**: 16px, font DM Sans (`font-display`) tebal, tanpa `tracking-wide`. Gaya bersama di `components/shared/button-styles.ts` (`ctaPrimaryClass`, `ctaOutlineOnDarkClass`, `ctaArrowClass`).
 - **Animasi hover disamakan** di semua tombol oranye (Hero, CTA Banner, kirim form Kontak, "Hubungi Kami" di menu desktop & panel mobile): naik 2px + bayangan oranye lembut + panah bergeser 4px, `motion-safe:`. Tombol putih "Konsultasikan Gratis Sekarang" di `CtaCard` ikut naik + bayangan.
