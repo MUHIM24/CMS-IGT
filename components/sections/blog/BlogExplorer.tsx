@@ -1,10 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, CalendarIcon, ChevronLeftIcon, ChevronRightIcon, ClockIcon, SearchIcon, WhatsAppIcon } from "@/components/icons/figma-icons";
-import { articleCategories, articles, formatArticleDate, type ArticleCategory } from "@/lib/content/articles";
+import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, WhatsAppIcon } from "@/components/icons/figma-icons";
+import { ArticleCard } from "@/components/sections/blog/ArticleCard";
+import { articleCategories, articles, type ArticleCategory } from "@/lib/content/articles";
 import { buildWhatsAppLink } from "@/lib/content/site-settings";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -118,48 +117,7 @@ export function BlogExplorer() {
             ) : (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {visible.map((a) => (
-                  <article
-                    key={a.slug}
-                    className="group border-border hover:border-brand/60 hover:shadow-brand/[0.08] flex flex-col overflow-hidden rounded-2xl border bg-white transition-all duration-250 hover:-translate-y-[3px] hover:shadow-xl"
-                  >
-                    <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
-                      <Image
-                        src={a.img}
-                        alt={a.imgAlt}
-                        fill
-                        sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <span className="bg-brand-mid absolute top-3 left-3 rounded-full px-3 py-1 text-xs font-bold text-white">
-                        {a.category}
-                      </span>
-                    </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <div className="text-muted mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-                        <span className="flex items-center gap-1.5">
-                          <CalendarIcon />
-                          {formatArticleDate(a.date)}
-                        </span>
-                        <span className="flex items-center gap-1.5 [&_svg]:h-3.5 [&_svg]:w-3.5">
-                          <ClockIcon />
-                          {a.readMinutes} menit baca
-                        </span>
-                      </div>
-                      <h3 className="font-display text-text mb-3 text-lg leading-snug font-bold">
-                        <Link href={`/blog/${a.slug}`} className="hover:text-brand-mid">
-                          {a.title}
-                        </Link>
-                      </h3>
-                      <p className="text-muted mb-5 flex-1 text-sm leading-relaxed">{a.excerpt}</p>
-                      <Link
-                        href={`/blog/${a.slug}`}
-                        aria-label={`Baca selengkapnya: ${a.title}`}
-                        className="text-brand-mid hover:text-brand-dark inline-flex items-center gap-2 text-sm font-bold"
-                      >
-                        Baca Selengkapnya <ArrowRight size={15} />
-                      </Link>
-                    </div>
-                  </article>
+                  <ArticleCard key={a.slug} article={a} />
                 ))}
               </div>
             )}

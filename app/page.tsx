@@ -10,6 +10,7 @@ import { Portfolio } from "@/components/sections/home/Portfolio";
 import { Testimonials } from "@/components/sections/home/Testimonials";
 import { ClientsMarquee } from "@/components/sections/home/ClientsMarquee";
 import { FAQ } from "@/components/sections/home/FAQ";
+import { LatestArticles } from "@/components/sections/home/LatestArticles";
 import { CTABanner } from "@/components/sections/home/CTABanner";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 
@@ -32,6 +33,7 @@ export default function HomePage() {
       <Testimonials />
       <ClientsMarquee />
       <FAQ />
+      <LatestArticles />
       <CTABanner />
       <ContactSection />
     </>

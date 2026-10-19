@@ -5,6 +5,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 ## 2026-10-19
 
 ### Diubah
+- **Section "Artikel Terbaru" di Beranda** (referensi user), tepat setelah FAQ: judul + subjudul di kiri, tombol pill "Lihat Semua Artikel" di kanan, 4 artikel terbaru (1 kolom mobile, 2 tablet, 4 desktop). Latar `surface` supaya selang-seling dengan FAQ (putih) dan CTA Banner (gelap). Jumlah views dari referensi tidak ditampilkan (belum ada data). Kartu artikel dijadikan komponen bersama `components/sections/blog/ArticleCard.tsx` (dipakai `/blog` juga; varian `compact` memotong judul 2 baris & ringkasan 3 baris).
 - **SEO & GEO dirapikan mengikuti pola IzinPro:**
   - `robots.txt`: daftar eksplisit crawler AI (GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, ClaudeBot, Claude-SearchBot, anthropic-ai, PerplexityBot, Applebot-Extended, CCBot) + `Host` + sitemap.
   - `/llms.txt` sekarang route `app/llms.txt/route.ts` yang dibangun otomatis dari `lib/content` (layanan, portfolio, 6 artikel, halaman, kontak); `public/llms.txt` lama (basi: belum ada blog, masih "Jakarta") dihapus.
