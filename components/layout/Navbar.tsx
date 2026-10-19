@@ -129,12 +129,12 @@ export function Navbar() {
         />
         <nav
           aria-label="Menu utama"
-          className={`absolute inset-y-0 left-0 bg-brand-deeper flex w-[85%] max-w-sm flex-col overflow-y-auto border-r border-white/10 shadow-2xl transition-transform duration-300 ${
+          className={`absolute inset-y-0 left-0 flex w-[85%] max-w-sm flex-col overflow-y-auto bg-white shadow-2xl transition-transform duration-300 ${
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="flex h-[72px] shrink-0 items-center justify-between bg-white px-6">
-            {/* Panel dibalik (permintaan user): bagian atas putih dengan logo teks gelap, bagian menu navy */}
+          <div className="border-border flex h-[72px] shrink-0 items-center justify-between border-b bg-white px-6">
+            {/* Panel putih seluruhnya (keputusan user): logo teks gelap, TEKNOLOGI brand-mid (brand-light terlalu pucat di putih) */}
             <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
               <Image src="/logo-icon.png" alt="" width={36} height={36} className="h-9 w-9 object-contain" />
               <span className="text-left">
@@ -163,7 +163,7 @@ export function Navbar() {
                       onClick={() => setOpen(false)}
                       aria-current={isActive ? "page" : undefined}
                       className={`flex min-h-12 items-center text-xl font-medium transition-colors ${
-                        isActive ? "font-semibold text-white" : "text-white/75 hover:text-white"
+                        isActive ? "text-brand-mid font-semibold" : "text-brand-dark hover:text-brand-mid"
                       }`}
                     >
                       {isActive && <span className="bg-accent mr-3 h-5 w-1 rounded-full" aria-hidden="true" />}
@@ -184,7 +184,7 @@ export function Navbar() {
               Hubungi Kami
             </a>
 
-            <p className="mt-auto pt-8 text-sm text-white/55">
+            <p className="text-muted mt-auto pt-8 text-sm">
               &copy; {new Date().getFullYear()} PT Inovasi Gantarawana Teknologi
             </p>
           </div>
