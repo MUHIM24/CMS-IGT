@@ -39,7 +39,7 @@ export default function TimPage() {
                 {r.init}
               </div>
               <div className="font-display text-text mb-1 text-sm font-bold">{r.title}</div>
-              <div className="text-brand text-xs">{r.note}</div>
+              <div className="text-brand-mid text-xs">{r.note}</div>
             </div>
           ))}
         </div>

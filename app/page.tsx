@@ -1,4 +1,7 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared/JsonLd";
+import { faqs } from "@/lib/content/faqs";
+import { buildFaqPageSchema } from "@/lib/structured-data";
 import { Hero } from "@/components/sections/home/Hero";
 import { About } from "@/components/sections/home/About";
 import { Services } from "@/components/sections/home/Services";
@@ -10,16 +13,17 @@ import { FAQ } from "@/components/sections/home/FAQ";
 import { CTABanner } from "@/components/sections/home/CTABanner";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Jasa IT & Software House Jakarta | PT Inovasi Gantarawana Teknologi",
   description:
     "Jasa pembuatan website, aplikasi mobile (Android/iOS), dan sistem core finance custom di Jakarta. Konsultan IT berpengalaman untuk bisnis pembiayaan & korporasi.",
-  alternates: { canonical: "/" },
-};
+  path: "/",
+});
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={buildFaqPageSchema(faqs)} />
       <Hero />
       <About />
       <Services />

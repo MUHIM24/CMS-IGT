@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 const WHY = [
-  { title: "Tim Berpengalaman di Industri Keuangan", body: "Tenaga ahli kami memiliki rekam jejak nyata dalam implementasi sistem multifinance, perbankan digital, dan koperasi." },
+  { title: "Paham Proses Bisnis Pembiayaan", body: "Kami membangun sistem multifinance yang sudah berjalan di produksi, dari pengajuan kredit, scoring, survei, hingga approval dan pencairan." },
   { title: "Laporan Kerja Rutin dan Transparan", body: "Progress proyek dilaporkan secara berkala melalui sprint demo dua minggu sekali untuk memastikan akuntabilitas." },
-  { title: "Terintegrasi dengan Sistem Internal Klien", body: "Solusi kami dirancang API-first sehingga dapat terhubung langsung dengan sistem core, ERP, atau platform internal." },
-  { title: "SLA yang Disepakati Bersama", body: "Kami menyediakan SLA yang jelas dan fleksibel mencakup waktu respons, cakupan dukungan, dan jaminan uptime." },
+  { title: "Terintegrasi dengan Sistem Internal Klien", body: "Sistem kami terhubung langsung dengan core system yang sudah Anda pakai, serta layanan eksternal seperti SLIK OJK dan Dukcapil." },
+  { title: "SLA yang Disepakati Bersama", body: "Waktu respons dan cakupan dukungan pasca go-live disepakati di awal dan tertulis dalam kontrak." },
   { title: "Sistem Patuh Regulasi OJK", body: "Setiap sistem keuangan dirancang memenuhi persyaratan POJK, audit trail lengkap, dan standar keamanan data nasabah." },
 ];
 
@@ -35,8 +35,8 @@ export function WhyUs() {
             <div className="relative w-full max-w-md">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100">
                 <Image
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=750&fit=crop&auto=format"
-                  alt="Tim profesional teknologi berdiskusi"
+                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=750&fit=crop&auto=format"
+                  alt="Aplikasi web di laptop dan aplikasi mobile dipakai bersamaan dalam satu alur kerja"
                   fill
                   sizes="(min-width: 1024px) 448px, 100vw"
                   className="object-cover"
@@ -44,10 +44,10 @@ export function WhyUs() {
                 <div className="absolute inset-0 rounded-2xl" style={{ background: "linear-gradient(160deg, transparent 50%, #071C26BB)" }} />
               </div>
               <div className="bg-brand-deeper border-brand/30 absolute -bottom-5 -left-5 rounded-2xl border px-6 py-4 shadow-2xl">
-                <div className="text-brand-light mb-1 text-xs font-bold tracking-widest uppercase">Proyek Selesai Tepat Waktu</div>
-                <div className="font-display text-3xl leading-none font-black text-white">95%+</div>
+                <div className="text-brand-light mb-1.5 text-xs font-bold tracking-widest uppercase">Integrasi Satu Pintu</div>
+                <div className="font-display text-xl leading-tight font-black text-white">Semua Sistem, Satu Alur</div>
               </div>
-              <div className="font-display absolute -top-4 -right-4 rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-sm font-bold text-white shadow-xl">
+              <div className="font-display absolute -top-4 -right-4 rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-sm font-bold text-brand-dark shadow-xl">
                 Patuh OJK
               </div>
             </div>

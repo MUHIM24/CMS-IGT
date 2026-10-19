@@ -2,6 +2,94 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-19
+
+### Diubah
+- **SEO & GEO dirapikan mengikuti pola IzinPro:**
+  - `robots.txt`: daftar eksplisit crawler AI (GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, ClaudeBot, Claude-SearchBot, anthropic-ai, PerplexityBot, Applebot-Extended, CCBot) + `Host` + sitemap.
+  - `/llms.txt` sekarang route `app/llms.txt/route.ts` yang dibangun otomatis dari `lib/content` (layanan, portfolio, 6 artikel, halaman, kontak); `public/llms.txt` lama (basi: belum ada blog, masih "Jakarta") dihapus.
+  - JSON-LD lewat `lib/structured-data.ts` + `components/shared/JsonLd.tsx` (escape `<`): Organization (`ProfessionalService`, alamat Bogor, `knowsAbout`, `contactPoint`) + `WebSite` di layout; `FAQPage` di Beranda (data FAQ dipindah ke `lib/content/faqs.ts`); `ItemList` 8 `Service` di `/layanan`; `BreadcrumbList` di semua halaman dalam; `BlogPosting` + `FAQPage` + `BreadcrumbList` di detail artikel. Testimoni ilustrasi sengaja tidak dijadikan `Review`.
+  - Metadata per halaman lewat `pageMetadata()` (`lib/seo.ts`): canonical + Open Graph (title, description, url, locale `id_ID`, siteName) + Twitter card; detail artikel bertipe `article` dengan gambar artikel. Default layout: keywords, authors, `robots` max-image-preview large.
+  - Slogan `siteSettings.tagline` diganti ke slogan final "Mitra Teknologi Terpercaya untuk Transformasi Bisnis Anda" (ikut tampil di OG image).
+- **Indikator scroll di Hero** (referensi user): kapsul outline + panah memantul + "Gulir ke bawah" di bawah tengah Hero (desktop saja), klik turun halus ke section Tentang Kami (`#tentang-kami`). Gulir halus pakai CSS `scroll-behavior: smooth` (mati untuk "kurangi animasi") + `data-scroll-behavior="smooth"` di `<html>` sesuai Next 16 supaya perpindahan halaman tetap instan.
+- **Hero Beranda**: badge kapsul "WEB APPS · CORE FINANCE · MOBILE APPS · CMS" di atas judul dihapus (terkesan template AI dan mengulang isi paragraf).
+- **Sapu bersih angka ilustratif di seluruh situs** (keputusan user: perusahaan baru, baru 5 proyek, harus realistis tapi tetap profesional). Fakta yang dipakai: 5 proyek berjalan di produksi, sistem dibangun sesuai POJK, integrasi SLIK OJK & Dukcapil, web + Android (dikonfirmasi user, referensi proyek SIFOne).
+  - Hero: baris statistik (8+ tahun, 100+ proyek, 40+ klien) dan baris poin keunggulan digabung jadi satu baris 3 fakta berikon, sengaja tanpa angka (permintaan user: tonjolkan pengalaman, bukan nominal): Profesional / Paham bisnis pembiayaan, Patuh OJK / Dirancang sesuai POJK, SLIK & Dukcapil / Verifikasi otomatis. Baris ini ditaruh di antara paragraf dan tombol CTA; kartu visual sekarang sejajar tengah di kanan (desktop) dan di bawah tombol (mobile). Mobile: 1 kolom, ikon di samping teks. `sm:` ke atas: 3 kolom, ikon di atas teks (biar teks gak patah baris).
+  - Kartu visual Hero: progress bar persen karangan (100%/87%/74%) diganti daftar tahapan alur kredit yang memang dicakup sistem (registrasi & CMO, SLIK & scoring, CA & survei, approval & pencairan). Kartu "Uptime Sistem 99.9%" → "Platform: Web + Android".
+  - Beranda About: kartu timeline 2016–2024 → kartu "Sudah Berjalan" berisi 4 kapabilitas nyata.
+  - WhyUs: "95%+ Proyek Selesai Tepat Waktu" → "Integrasi Satu Pintu / Semua Sistem, Satu Alur" (tanpa angka, sama seperti Hero; merujuk SIFOne yang menyatukan core, user management, robot SLIK, Dukcapil, dan mobile dalam satu alur). Foto WhyUs diganti dari tim berdiskusi ke laptop + HP dipakai bersamaan (Unsplash `photo-1563986768609`) supaya nyambung dengan pesan integrasi web + mobile. Poin "Tim Berpengalaman" (sebut perbankan & koperasi, tidak ada datanya) → "Paham Proses Bisnis Pembiayaan". Poin integrasi menyebut SLIK OJK & Dukcapil. "Jaminan uptime" di poin SLA dihapus.
+  - Testimoni (isinya sampel) dihapus dari Beranda, komponen `Testimonials.tsx` dihapus. Urutan section lain tetap seperti semula.
+  - `/tentang`: "Sejak 2016" dihapus; badge "100+ Proyek Selesai" → "5 Proyek Berjalan"; statistik (100+, 99% kepuasan, 8+ tahun) → 5 Proyek Berjalan di Produksi, 8 Produk Siap Implementasi, 100% Source Code Milik Klien; timeline tahun → "Cara Kami Bekerja" (4 tahap: analisa, desain & prototipe, sprint dua mingguan, go-live & pendampingan); "Patuh Regulasi OJK 100%" → "Patuh Regulasi OJK"; paragraf reputasi diganti kalimat faktual.
+  - Footer: "sejak 2016" dihapus.
+  - Em dash yang tampil ke pengunjung dihapus: label klien Portfolio ("Perusahaan Pembiayaan, Client A") dan title tab `/blog`.
+- **Dropdown custom bergaya brand** (permintaan user, dropdown bawaan browser dinilai jelek): urutan Terbaru/Terlama di `/blog` diganti dari `<select>` native ke komponen `Select` (Base UI). Komponen bersama `components/ui/select.tsx` di-styling ulang sehingga dropdown "Layanan yang Diminati" di form Kontak ikut seragam: popup kartu putih ber-border + bayangan, opsi lebih lega 16px, sorot biru muda `surface-2` teks `brand-mid` (sebelumnya token `accent` shadcn = oranye), opsi terpilih tebal + centang `brand-mid`, chevron `brand-mid` berputar saat terbuka, popup selalu muncul di bawah trigger.
+- **Semua tombol diseragamkan jadi bentuk pill (`rounded-full`)** mengikuti tombol "Selengkapnya": Hero (Konsultasi Gratis, Lihat Layanan), Navbar "Hubungi Kami" (desktop & panel mobile), CTA Banner (2 tombol), kirim form Kontak, `CtaCard`, tombol Cari + kotak pencarian + dropdown urutan + paginasi + "Konsultasi Gratis" di `/blog`, "Konsultasi Gratis" di detail artikel. Warna & isi tombol tidak berubah. Badge dekoratif dan kolom form tetap bersudut.
+- **Paginasi `/blog` diberi hover**: tombol Sebelumnya/Selanjutnya dan nomor halaman berubah ke border + teks `brand-mid` dengan latar `surface-2` saat hover; tombol nonaktif tidak bereaksi. Ditambah ikon chevron; di mobile teks Sebelumnya/Selanjutnya disembunyikan (cuma ikon + `aria-label`) supaya tidak meluber di 375px.
+- **Label menu "Tentang" → "Tentang Kami"** (desktop & mobile). Jarak antar menu desktop `gap-7` → `gap-5` di `lg` (1024px) supaya 6 menu + logo + tombol tetap muat, kembali `gap-7` mulai `xl`.
+- **Menu "Blog" ditambahkan ke navigasi utama** (desktop & mobile, di antara Portfolio dan Kontak).
+- **Blog statis mengikuti referensi user (IzinPro)** (belum ada database, data di `lib/content/articles.ts`, pindah ke CMS di Fase 2):
+  - `/blog`: `PageHero` "Blog dan Artikel", kotak pencarian mengambang (cari judul/ringkasan/tag), sidebar Kategori (dengan jumlah) + Topik Populer + kotak "Butuh Bantuan?" WhatsApp (pengganti newsletter karena belum ada backend email), daftar artikel 2 kolom (foto, badge kategori, tanggal, menit baca, ringkasan, "Baca Selengkapnya"), urutan Terbaru/Terlama, paginasi 4 per halaman. Di mobile daftar artikel tampil duluan, sidebar di bawah. Komponen `components/sections/blog/BlogExplorer.tsx`.
+  - `/blog/[slug]` (statis via `generateStaticParams`, metadata + canonical + OG per artikel): hero dengan breadcrumb 3 tingkat, kategori, judul, ringkasan, "Ditulis oleh Tim PT IGT", tanggal, menit baca; isi dari blok terstruktur (paragraf, daftar, kartu, langkah bernomor, sorotan) di `components/sections/blog/ArticleBody.tsx`; FAQ accordion; tag; sidebar sticky Daftar Isi + Butuh Bantuan + Artikel Terkait; `CtaCard` di akhir. Kolom komentar dari referensi tidak dibuat (butuh database).
+  - 6 artikel awal bersifat edukatif umum (SLIK OJK, LOS, digitalisasi kredit, verifikasi Dukcapil, memilih software house, web vs mobile), tanpa klaim angka/hasil proyek. **Perlu dibaca & disetujui user sebelum push.**
+  - URL artikel otomatis masuk `sitemap.xml`. Ikon baru: `SearchIcon`, `CalendarIcon`, `ListIcon`, `TagIcon`.
+- **Menu mobile jadi panel geser dari kiri** (referensi user): panel putih 85% lebar layar (maks 384px) + latar gelap transparan, header panel berisi logo dan tombol tutup, link utama besar (`text-xl`, aktif ditandai garis oranye), pemisah, tombol oranye "Hubungi Kami", copyright di bawah. Panel bisa di-scroll dengan scrollbar brand, scroll halaman di belakang dikunci, Escape/klik latar menutup. Panel dirender di luar `<header>` karena `backdrop-filter` di header membuat elemen `fixed` di dalamnya terkurung setinggi header.
+- **`/tentang`: jarak Tim ke kartu CTA dirapatkan** (padding bawah section tim 112px → 24px di desktop).
+- **Label kecil di atas judul section diperbesar 14px → 16px** (`text-sm` → `text-base`): `SectionLabel` (Portfolio, Produk & Layanan, Hubungi Kami, dll.), label "Tentang Kami" di Beranda, "Mulai Proyek Anda" di CTA Banner, dan "Klien Kami" di `/portfolio` (dari 12px).
+- **Elemen baru dari referensi user (IzinPro):**
+  - Kartu CTA konsultasi `components/shared/CtaCard.tsx` (gradasi `brand-mid` → `brand-dark`, ikon headset, tombol putih "Konsultasikan Gratis Sekarang" + ikon WhatsApp) di akhir `/layanan`, `/portfolio`, dan `/tentang` (menggantikan banner CTA lama di `/tentang`).
+  - Tombol mengambang kanan bawah di semua halaman `components/layout/FloatingActions.tsx`: chat WhatsApp (bulat biru `brand`, ikon putih) + kembali ke atas (muncul setelah scroll 400px, smooth scroll kecuali "kurangi animasi").
+  - Scrollbar tipis warna brand di `globals.css` (thumb `brand`, track `surface-2`, hover `brand-mid`).
+  - Ikon baru `WhatsAppIcon` & `ArrowUpIcon` di `figma-icons.tsx`.
+  - **Testimoni Klien** kembali di Beranda (posisi asli, antara Portfolio dan Klien Kami): carousel geser + panah + titik halaman, 4 kartu di desktop / 2 tablet / 1 mobile. Auto-geser tiap 5 detik (kembali ke awal setelah halaman terakhir); berhenti saat kursor/fokus keyboard di section, 5 detik setelah sentuh/klik, saat tab browser tidak aktif, dan mati untuk "kurangi animasi". Isi = contoh ilustrasi atas keputusan user, atribusi hanya jabatan + "Perusahaan Pembiayaan" (tanpa nama orang/perusahaan karangan), dengan catatan kecil "Contoh ilustrasi" di bawah judul. Data di `lib/content/testimonials.ts`.
+  - **Tim Profesional Kami** di `/tentang` (sebelum CTA): 8 kartu jabatan (CEO & Founder, CTO, Project Manager, Lead Developer, Business Analyst, Mobile Developer, QA Engineer, Customer Support) dengan avatar placeholder (lingkaran putih, siluet kepala + bahu warna `brand`, sesuai referensi user). Nama, foto, dan LinkedIn diisi di `lib/content/team.ts`; tombol LinkedIn baru muncul kalau URL diisi.
+- **Judul Produk & Layanan (Beranda + `/layanan`)**: "Ekosistem Digital untuk Industri Pembiayaan" → "Ekosistem Digital untuk Transformasi Bisnis Anda", selaras dengan slogan perusahaan dan posisi PT IGT sebagai perusahaan IT lintas industri.
+- **`/portfolio`: tab filter kategori** (Semua Portfolio, Core System, Mobile App), gaya sama dengan `/layanan`. Tab hanya muncul untuk kategori yang punya proyek. Case study diberi field `category`; tab jadi komponen bersama `components/shared/FilterTabs.tsx` (dipakai `/layanan` & `/portfolio`), grid di `components/sections/portfolio/PortfolioGrid.tsx`.
+- **`/kontak` dan `/blog` pakai `PageHero` yang sama**: Kontak = "Hubungi Kami" + foto jabat tangan, lalu section kontak seperti biasa (prop `firstSection` di `ContactSection` dihapus karena tidak dipakai lagi). Blog = "Blog & Artikel" + foto menulis di laptop, lalu "Segera Hadir" (turun jadi H2, H1 di hero).
+- **`/portfolio`: bagian atas dibuat seperti `/layanan`** (tanpa bar keunggulan): hero terang dengan breadcrumb Beranda › Portfolio, H1 "Portfolio Kami" (sebelumnya tidak ada H1), subjudul kerahasiaan klien, foto presentasi tim di kanan. Judul section jadi 2 baris "Proyek yang Mendefinisikan / Keahlian Kami". Hero dijadikan komponen bersama `components/shared/PageHero.tsx` (prop `withOverlap` untuk halaman yang punya kartu mengambang seperti `/layanan`).
+- **`/tentang`: kartu sorotan di bawah hero jadi satu baris di desktop** (`lg:grid-cols-3` → `lg:grid-cols-5`, lebar `max-w-5xl` → `max-w-7xl`), sama dengan bar keunggulan di `/layanan`. Mobile 1 kolom, tablet 2 kolom tetap.
+- **Halaman `/layanan` dirombak mengikuti referensi user (pola halaman layanan IzinPro):**
+  - Hero terang `surface-2`: breadcrumb Beranda › Layanan, H1 "Daftar Layanan" (sebelumnya halaman ini tidak punya H1), subjudul, foto tim di kanan memudar ke latar (disembunyikan di mobile).
+  - Bar keunggulan mengambang menumpuk di bawah hero: Pengembangan Agile, Patuh Regulasi OJK, Tim Berpengalaman, Integrasi Satu Pintu, Konsultasi Gratis (tanpa klaim baru). Mobile 1 kolom, `sm:` 2, `lg:` 5.
+  - Judul section 2 baris "Ekosistem Digital untuk / Industri Pembiayaan", lalu tab filter kategori (Semua Layanan, Web, Automation, Core System, Mobile App) pakai `aria-pressed`, tinggi tap 44px.
+  - Kartu jadi kartu foto: foto Unsplash yang relevan per produk + badge kategori, judul, deskripsi. Hover tetap navy seperti kartu Beranda, foto sedikit zoom.
+  - Data dipindah ke `lib/content/services.ts`, filter di komponen client `components/sections/services/ServiceCatalog.tsx`.
+- **Baris 3 poin (Profesional / Patuh OJK / SLIK & Dukcapil)** tetap di Hero Beranda (di atas tombol), dan dipakai juga di `/tentang` menggantikan baris statistik (Tim / 8 Produk / 100% Source Code), versi warna terang. Datanya dipindah ke `lib/content/company-facts.ts` supaya satu sumber. (Sempat dipindah ke section Tentang Kami di Beranda, dibatalkan atas koreksi user.)
+- **`/tentang`: angka 5 dihapus.** Badge foto → "Didukung Oleh / Tim Berpengalaman"; kartu sorotan "Tim Berpengalaman di Keuangan" → "Tim Berpengalaman". Tidak ada lagi angka jumlah proyek di situs.
+- **Link "Selengkapnya" di section Tentang Kami (Beranda) jadi tombol pill** sesuai referensi user, warna palet brand: outline biru `brand`, teks kapital tebal `brand-mid` (8.56), lingkaran biru `brand` berisi panah putih (3.40). Hover: pill terisi biru tua `brand-mid`, teks putih (8.92), lingkaran jadi putih dengan panah `brand-mid`, panah bergeser 2px (`motion-safe:`). Isi hover sengaja bukan biru `brand` karena teks putih di atasnya cuma 3.40 (hover oranye sempat dicoba, ditolak user). Tinggi minimal 44px. Dijadikan komponen bersama `components/shared/PillLink.tsx` dan dipakai juga untuk "Lihat detail semua produk" (Produk & Layanan) dan "Lihat semua portfolio" (Portfolio); di dua section itu posisinya dipindah dari bawah kartu ke atas kartu, di bawah paragraf pembuka.
+- **Tombol "Konsultasi Gratis" di Hero: animasi hover.** Tombol naik 2px dengan bayangan oranye lembut (`shadow-accent/30`), panah meluncur 4px ke kanan (200ms, ease-out). Animasi gerak dibungkus `motion-safe:` sehingga mati untuk pengunjung yang mengaktifkan "kurangi animasi". Tombol oranye lain belum disamakan.
+- **Kartu Produk & Layanan: hover berubah warna** (Beranda + `/layanan`). Diam = tetap putih seperti semula. Hover = latar navy `brand-dark`, judul putih (14.97), deskripsi white/75 (9.00), kotak ikon `brand/20` dengan ikon `brand-light`, badge transparan teks putih (badge oranye produk unggulan jadi oranye solid teks `brand-dark`, 5.34). Transisi warna 250ms.
+- **Kartu Produk & Layanan: percobaan warna dibatalkan.** Dicoba berurutan: warna tile per kategori, kartu gelap untuk 2 produk unggulan, kartu selang-seling putih/navy dengan ikon oranye di beberapa varian tile. Semua ditolak user (gak konsisten / warna nabrak), kartu dikembalikan persis ke tampilan sebelumnya. Kalau mau dicoba lagi: tile biru `brand`/`brand-light` dengan ikon oranye gagal (kontras 1.2-1.3).
+- `docs/DESIGN_SYSTEM.md` & `AGENTS.md`: aturan mobile-first dipertegas (mobile/tablet/desktop + prefix Tailwind masing-masing, elemen berjajar menumpuk di mobile, tap target). Catatan lama "Hero mobile visual dulu" diperbaiki sesuai urutan sekarang (teks dulu).
+- Verifikasi: lint + type-check bersih. Cek tampilan dilakukan user sendiri.
+
+## 2026-10-11
+
+### Diubah
+- **Ukuran font tombol CTA `text-sm` (14px) → `text-base` (16px)**: Navbar "Hubungi Kami" (desktop & menu mobile), Hero ("Konsultasi Gratis", "Lihat Layanan"), CTABanner ("Jadwalkan Konsultasi", "Hubungi Langsung"), tombol kirim form Kontak, tombol banner CTA `/tentang`. Badge ("Patuh OJK") dan tombol ikon (panah carousel testimoni) tidak diubah.
+- Diverifikasi dengan Playwright di 375px & 1280px: font terbaca 16px, tidak ada scroll horizontal, teks tombol tidak patah baris. Cek kontras axe-core di semua route tetap 0 kegagalan, 0 console error.
+
+### Belum diputuskan
+- Tombol masih terasa lebih kecil dibanding referensi (BuildWithAngga) walau sama-sama 16px, karena font Outfit punya x-height pendek dan ketebalan tombol cuma 600-700. Opsi: (A) naik ke 18px (`text-lg`), atau (B) tetap 16px tapi pakai `font-display` (DM Sans) 700 tanpa `tracking-wide`. Menunggu pilihan user.
+
+## 2026-10-09
+
+### Diubah
+- **Perbaikan kontras warna (WCAG 2.2 AA)** berdasarkan evaluasi palet. Palet inti tetap, yang diubah cara pakainya:
+  - Teks tombol/badge oranye (Navbar desktop & mobile, Hero, CTABanner, form Kontak, badge "Patuh OJK" di Hero & WhyUs): putih → `brand-dark` (2.80 → 5.34).
+  - Teks kecil warna brand di background terang (label section, nama klien Portfolio, link "Lihat semua", badge layanan, badge Blog, catatan `/tim`, tahun timeline Tentang): `brand` → `brand-mid` (3.26 → 8.56). Ikon dan angka besar tetap `brand`.
+  - Hover link: tidak lagi ke `brand-light` (2.03), sekarang `brand-dark` + underline.
+  - Badge "highlight" layanan: teks oranye → token baru `accent-text` `#9A3412` (2.40 → 6.27).
+  - Token `muted` `#5B7480` → `#547080` (lolos juga di `surface-2`: 4.46 → 4.73).
+  - `.gradient-text` di heading section terang: `brand`→`brand-light` jadi `brand-mid`→`brand`. Heading di section gelap (Hero, CTABanner, hero Tentang) pakai class baru `.gradient-text-on-dark` (gradient lama).
+  - Banner CTA di bawah `/tentang`: background `brand` → `brand-mid` (teks kecil putih 3.40 → 8.92), teks tombol putihnya ikut `brand-mid`.
+  - Badge tahun di timeline `/tentang`: angka diperbesar ke `text-xl` (jadi teks besar, lolos 3:1 di atas `brand`), badge oranye pakai teks `brand-dark`.
+  - Subteks statistik Hero: `brand-light/60` → `brand-light` (3.52 → 7.09).
+  - Footer: teks deskripsi & link `white/35` → `white/60` (3.18 → 6.89), baris copyright & lokasi `white/25`/`white/20` → `white/55` (5.99).
+  - Kartu "Uptime Sistem" di Hero: background `brand-mid` → `brand-dark` (label `brand-light` 4.22 → 7.09).
+  - Tag kategori di kartu Portfolio (Beranda & `/portfolio`): background `brand` → `brand-mid` (teks putih 3.40 → 8.92).
+- Diverifikasi dengan axe-core (rule `color-contrast`) di semua route, viewport 375px & 1280px.
+- `docs/DESIGN_SYSTEM.md`: tabel peran tiap warna, aturan pemakaian, dan tabel rasio kontras.
+
 ## 2026-10-08
 
 ### Diubah

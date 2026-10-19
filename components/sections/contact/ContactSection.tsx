@@ -28,13 +28,7 @@ const SERVICE_OPTIONS = [
 
 const inputClass = "h-auto rounded-xl border-border px-4 py-3 text-sm text-text focus-visible:border-brand focus-visible:ring-0";
 
-export function ContactSection({
-  showHeading = true,
-  firstSection = false,
-}: {
-  showHeading?: boolean;
-  firstSection?: boolean;
-}) {
+export function ContactSection({ showHeading = true }: { showHeading?: boolean }) {
   const [form, setForm] = useState({ name: "", email: "", company: "", service: "", message: "" });
   const [sent, setSent] = useState(false);
 
@@ -50,7 +44,7 @@ export function ContactSection({
   }
 
   return (
-    <section className={`bg-surface ${firstSection ? "pt-32 pb-24 lg:pt-40 lg:pb-32" : "py-24 lg:py-32"}`}>
+    <section className="bg-surface py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid gap-14 lg:grid-cols-2">
           <div>
@@ -107,7 +101,7 @@ export function ContactSection({
                 <button
                   type="button"
                   onClick={() => setSent(false)}
-                  className="text-brand hover:text-brand-light text-sm font-semibold transition-colors duration-150"
+                  className="text-brand-mid hover:text-brand-dark underline-offset-4 hover:underline text-sm font-semibold transition-colors duration-150"
                 >
                   Isi pesan lain
                 </button>
@@ -178,7 +172,7 @@ export function ContactSection({
 
                 <button
                   type="submit"
-                  className="hover:bg-accent-light w-full rounded-xl bg-[var(--color-accent)] py-3.5 text-sm font-bold tracking-wide text-white transition-all duration-150 hover:shadow-lg active:scale-[0.98]"
+                  className="hover:bg-accent-light w-full rounded-full bg-[var(--color-accent)] py-3.5 text-base font-bold tracking-wide text-brand-dark transition-all duration-150 hover:shadow-lg active:scale-[0.98]"
                 >
                   Kirim via WhatsApp
                 </button>

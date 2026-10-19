@@ -10,12 +10,12 @@ export function CTABanner() {
       />
       <div className="relative mx-auto max-w-4xl px-6 text-center lg:px-10">
         <div className="bg-accent/20 mb-7 inline-flex items-center rounded-full px-4 py-1.5">
-          <span className="text-accent text-sm font-bold tracking-widest uppercase">Mulai Proyek Anda</span>
+          <span className="text-accent text-base font-bold tracking-widest uppercase">Mulai Proyek Anda</span>
         </div>
         <h2 className="font-display mb-6 text-3xl leading-tight font-bold text-white sm:text-4xl lg:text-[44px]">
           Siap Membangun Sistem yang
           <br />
-          <span className="gradient-text">Andal dan Scalable?</span>
+          <span className="gradient-text-on-dark">Andal dan Scalable?</span>
         </h2>
         <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-white/50">
           Konsultasikan kebutuhan sistem Anda dengan tim kami, analisis kebutuhan, rekomendasi
@@ -26,7 +26,7 @@ export function CTABanner() {
             href={buildWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="group hover:bg-accent-light flex min-h-11 items-center justify-center gap-2.5 rounded-xl bg-[var(--color-accent)] px-9 py-4 text-sm font-bold text-white transition-all duration-200 hover:shadow-xl"
+            className="group hover:bg-accent-light flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-[var(--color-accent)] px-9 py-4 text-base font-bold text-brand-dark transition-all duration-200 hover:shadow-xl"
           >
             Jadwalkan Konsultasi
             <span className="transition-transform duration-150 group-hover:translate-x-0.5">
@@ -37,7 +37,7 @@ export function CTABanner() {
             href={buildWhatsAppLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-brand/30 text-brand-light hover:bg-brand/10 hover:border-brand flex min-h-11 items-center justify-center gap-2.5 rounded-xl border px-9 py-4 text-sm font-semibold transition-all duration-200"
+            className="border-brand/30 text-brand-light hover:bg-brand/10 hover:border-brand flex min-h-11 items-center justify-center gap-2.5 rounded-full border px-9 py-4 text-base font-semibold transition-all duration-200"
           >
             <PhoneIcon /> Hubungi Langsung
           </a>

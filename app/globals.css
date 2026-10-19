@@ -15,10 +15,11 @@
   --color-brand-mid: #1a4f66;
   --color-accent: #f97316;
   --color-accent-light: #fb923c;
+  --color-accent-text: #9a3412;
   --color-surface: #f7fbfc;
   --color-surface-2: #ebf5f9;
   --color-text: #10242b;
-  --color-muted: #5b7480;
+  --color-muted: #547080;
   --color-border: #d4e8f0;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -73,8 +74,16 @@ body {
   font-family: var(--font-display);
 }
 
-/* Dipakai buat kata yang di-highlight di heading (lihat 07-design-system.md) */
+/* Highlight kata di heading section terang. brand-light gak dipakai di sini karena kontrasnya cuma 2:1 di background terang */
 .gradient-text {
+  background: linear-gradient(135deg, var(--color-brand-mid), var(--color-brand));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Varian untuk heading di section gelap (hero, CTA banner) */
+.gradient-text-on-dark {
   background: linear-gradient(135deg, var(--color-brand), var(--color-brand-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -289,5 +298,32 @@ body {
   }
   html {
     @apply font-sans;
+    /* Scrollbar tipis warna brand (Firefox) */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand) var(--color-surface-2);
   }
+}
+
+/* Gulir halus untuk link #anchor (mis. indikator scroll di Hero), kecuali pengunjung minta kurangi animasi */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Scrollbar tipis warna brand (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand);
+  border-radius: 9999px;
+  border: 2px solid var(--color-surface-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-mid);
 }

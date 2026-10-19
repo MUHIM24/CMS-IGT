@@ -36,12 +36,12 @@ npm run lint
 ## Aturan konten
 - Data konten taruh di `lib/content/`, bukan inline di komponen (lihat Tech debt di `docs/ARCHITECTURE.md`).
 - Kontak (email, telepon, WhatsApp) hanya diubah di `lib/content/site-settings.ts`. CTA pakai `buildWhatsAppLink()`.
-- Jangan menambah klaim, angka statistik, testimoni, nama/logo klien, atau sertifikasi yang tidak ada datanya. Konten ilustratif yang sudah ada dipertahankan atas keputusan user, tapi jangan disalin ke `public/llms.txt` atau JSON-LD.
+- Jangan menambah klaim, angka statistik, testimoni, nama/logo klien, atau sertifikasi yang tidak ada datanya. Perusahaan masih baru (5 proyek berjalan per 2026-10): semua angka ilustratif (tahun berdiri, 100+ proyek, % kepuasan/uptime, testimoni sampel) sudah dihapus 2026-10-19. Angka baru hanya boleh masuk kalau user memberi datanya. Pengecualian yang disetujui user: testimoni contoh ilustrasi (`lib/content/testimonials.ts`, wajib tanpa nama karangan + catatan "contoh ilustrasi") dan kartu tim placeholder (`lib/content/team.ts`); ganti dengan data asli begitu ada, jangan salin ke `llms.txt`/JSON-LD.
 - Tanpa em dash di teks yang tampil ke pengunjung. CTA harus spesifik.
 
 ## Aturan UI
 - Hanya pakai token dari `app/globals.css`; jangan tambah hex di komponen (kecuali `app/opengraph-image.tsx`).
-- Mobile-first. Jangan pakai `grid` tanpa `grid-cols-*` di base.
+- **Wajib mobile-first**: tulis untuk mobile dulu (class dasar), lalu lapis `sm:`/`md:` untuk tablet dan `lg:`/`xl:` untuk desktop. Harus rapi di mobile, tablet, dan desktop (detail di `docs/DESIGN_SYSTEM.md` bagian Layout & responsive). Jangan pakai `grid` tanpa `grid-cols-*` di base.
 - Cek kontras kombinasi warna baru pakai contrast checker, jangan dari mata.
 - Komponen shadcn baru: `npx shadcn@latest add <nama>` (style `base-nova`, Base UI).
 

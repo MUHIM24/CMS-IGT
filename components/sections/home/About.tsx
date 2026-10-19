@@ -1,12 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, GlobeIcon, ChartIcon } from "@/components/icons/figma-icons";
+import { PillLink } from "@/components/shared/PillLink";
+import { CheckIcon, GlobeIcon, ChartIcon } from "@/components/icons/figma-icons";
 
-const MILESTONES = [
-  { yr: "2016", ev: "Didirikan di Jakarta sebagai konsultan IT" },
-  { yr: "2019", ev: "Spesialisasi sistem multifinance & SLIK OJK" },
-  { yr: "2022", ev: "Meluncurkan platform LOS & CMO mobile" },
-  { yr: "2024", ev: "Melayani 40+ perusahaan di seluruh Indonesia" },
+// Kapabilitas yang sudah terbukti di proyek berjalan (bukan timeline tahun, perusahaan masih baru)
+const TRACK_RECORD = [
+  "Loan origination dari registrasi hingga pencairan",
+  "Robot cek SLIK OJK otomatis",
+  "Verifikasi data debitur via Dukcapil",
+  "Aplikasi Android untuk CMO & approval",
 ];
 
 const VISI_MISI = [
@@ -24,7 +25,7 @@ const VISI_MISI = [
 
 export function About() {
   return (
-    <section className="bg-white py-24 lg:py-32">
+    <section id="tentang-kami" className="scroll-mt-16 bg-white py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid items-center gap-14 lg:grid-cols-2">
           <div className="relative">
@@ -42,18 +43,20 @@ export function About() {
               />
             </div>
             <div className="bg-brand-deeper border-brand/30 absolute right-0 bottom-8 hidden w-64 rounded-xl border p-5 shadow-2xl lg:block">
-              <div className="text-brand mb-3 text-xs font-black tracking-widest uppercase">Perjalanan Kami</div>
-              {MILESTONES.map((m) => (
-                <div key={m.yr} className="flex gap-3 border-b border-white/5 py-2 last:border-0">
-                  <span className="font-display text-brand-light shrink-0 text-base font-bold">{m.yr}</span>
-                  <span className="text-sm leading-relaxed text-white/55">{m.ev}</span>
+              <div className="text-brand-light mb-3 text-xs font-black tracking-widest uppercase">Sudah Berjalan</div>
+              {TRACK_RECORD.map((item) => (
+                <div key={item} className="flex gap-3 border-b border-white/5 py-2 last:border-0">
+                  <span className="text-brand-light mt-0.5 shrink-0">
+                    <CheckIcon />
+                  </span>
+                  <span className="text-sm leading-relaxed text-white/70">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div>
-            <p className="text-brand mb-4 text-sm font-bold tracking-widest uppercase">Tentang Kami</p>
+            <p className="text-brand-mid mb-4 text-base font-bold tracking-widest uppercase">Tentang Kami</p>
             <h2 className="font-display text-text mb-5 text-3xl leading-tight font-bold sm:text-4xl">
               Dibangun untuk Presisi,
               <br />
@@ -80,12 +83,7 @@ export function About() {
                 </div>
               ))}
             </div>
-            <Link
-              href="/tentang"
-              className="text-brand hover:text-brand-light flex items-center gap-2 text-sm font-semibold transition-colors duration-150"
-            >
-              Selengkapnya <ArrowRight size={15} />
-            </Link>
+            <PillLink href="/tentang">Selengkapnya</PillLink>
           </div>
         </div>
       </div>

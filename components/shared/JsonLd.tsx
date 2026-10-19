@@ -1,0 +1,11 @@
+// Render satu blok JSON-LD (schema.org). Data selalu dari lib/content (bukan input pengunjung),
+// jadi dangerouslySetInnerHTML aman: isinya hasil JSON.stringify, "<" di-escape supaya tidak bisa menutup tag script.
+export function JsonLd({ data }: { data: object | null }) {
+  if (!data) return null;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+    />
+  );
+}

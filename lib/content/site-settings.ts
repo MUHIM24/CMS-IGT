@@ -1,6 +1,6 @@
 export const siteSettings = {
   companyName: "PT Inovasi Gantarawana Teknologi",
-  tagline: "Mitra Teknologi Terpercaya untuk Industri Keuangan & Multifinance Indonesia",
+  tagline: "Mitra Teknologi Terpercaya untuk Transformasi Bisnis Anda",
   siteUrl: "https://igt-tech.id",
   phone: "+62 851-5908-0096",
   // Format wa.me: kode negara + nomor, tanpa "+", spasi, atau angka 0 di depan.

@@ -31,8 +31,8 @@ export function Footer() {
                 <div className="text-brand-light text-xs font-semibold tracking-widest uppercase">IT Solutions</div>
               </div>
             </div>
-            <p className="mb-6 max-w-xs text-sm leading-relaxed text-white/35">
-              Mitra teknologi terpercaya untuk sistem enterprise, fintech, dan mobile di Indonesia sejak 2016.
+            <p className="mb-6 max-w-xs text-sm leading-relaxed text-white/60">
+              Mitra teknologi terpercaya untuk sistem enterprise, fintech, dan mobile di Indonesia.
             </p>
             <div className="flex gap-2.5">
               {[LinkedinIcon, InstagramIcon].map((Icon, i) => (
@@ -53,7 +53,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {items.map((item) => (
                   <li key={item}>
-                    <a href="#" className="hover:text-brand-light text-sm text-white/35 transition-colors duration-150">
+                    <a href="#" className="hover:text-brand-light text-sm text-white/60 transition-colors duration-150">
                       {item}
                     </a>
                   </li>
@@ -64,10 +64,10 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
-          <div className="text-sm text-white/25">
+          <div className="text-sm text-white/55">
             &copy; {new Date().getFullYear()} PT Inovasi Gantarawana Teknologi. Hak cipta dilindungi.
           </div>
-          <div className="text-sm text-white/20">Bogor, Jawa Barat</div>
+          <div className="text-sm text-white/55">Bogor, Jawa Barat</div>
         </div>
       </div>
     </footer>

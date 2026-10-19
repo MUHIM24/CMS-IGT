@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { PillLink } from "@/components/shared/PillLink";
 import { SectionLabel } from "@/components/shared/SectionLabel";
-import { ArrowRight } from "@/components/icons/figma-icons";
 import { caseStudies } from "@/lib/content/case-studies";
 
 export function Portfolio() {
@@ -16,8 +15,11 @@ export function Portfolio() {
           <p className="text-muted mx-auto max-w-lg text-base leading-relaxed">
             Contoh implementasi nyata, nama klien digeneralisasi sesuai perjanjian kerahasiaan.
           </p>
+          <div className="mt-8">
+            <PillLink href="/portfolio">Lihat semua portfolio</PillLink>
+          </div>
         </div>
-        <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {caseStudies.map((p) => (
             <div
               key={p.slug}
@@ -32,23 +34,15 @@ export function Portfolio() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #071C2688, transparent)" }} />
-                <span className="bg-brand absolute top-4 left-4 rounded-full px-3 py-1 text-sm font-bold text-white">{p.tag}</span>
+                <span className="bg-brand-mid absolute top-4 left-4 rounded-full px-3 py-1 text-sm font-bold text-white">{p.tag}</span>
               </div>
               <div className="p-6">
-                <div className="text-brand mb-2 text-xs font-semibold">{p.client}</div>
+                <div className="text-brand-mid mb-2 text-xs font-semibold">{p.client}</div>
                 <h3 className="font-display text-text mb-2.5 text-base font-bold">{p.title}</h3>
                 <p className="text-muted text-sm leading-relaxed">{p.desc}</p>
               </div>
             </div>
           ))}
-        </div>
-        <div className="text-center">
-          <Link
-            href="/portfolio"
-            className="text-brand hover:text-brand-light inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-150"
-          >
-            Lihat semua portfolio <ArrowRight size={15} />
-          </Link>
         </div>
       </div>
     </section>

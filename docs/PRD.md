@@ -37,7 +37,7 @@ Website company profile **PT Inovasi Gantarawana Teknologi (PT IGT)**, live di *
 
 - **BR-1 Positioning:** layanan umum ditonjolkan setara; portfolio finance dibingkai sebagai "proyek yang pernah kami kerjakan", bukan "fokus utama".
 - **BR-2 Kejujuran konten:** tidak boleh klaim klien/partner/sertifikasi tanpa dasar. Logo klien hanya dipasang kalau file resmi + izin sudah ada.
-  - **Pengecualian yang disetujui user:** statistik (8+ tahun, 100+ proyek, dst), testimoni, dan timeline pendirian di situs sekarang masih **ilustratif**. Dipertahankan atas keputusan eksplisit user. Jangan disebarkan ke tempat lain (mis. `public/llms.txt`, JSON-LD), dan ganti begitu data asli ada.
+  - **Update 2026-10-19:** statistik, timeline pendirian, dan klaim angka ilustratif sudah dihapus (perusahaan baru). Yang masih ilustratif atas keputusan user: testimoni (berlabel "contoh ilustrasi", tanpa nama karangan) dan kartu tim placeholder. Jangan disebarkan ke `/llms.txt` atau JSON-LD, dan ganti begitu data asli ada.
 - **BR-3 SEO:** title + description unik per halaman, canonical di semua halaman, satu `h1` per halaman, `alt` di semua gambar.
 - **BR-4 Mobile-first:** utuh di lebar 375px ke atas, tanpa horizontal scroll.
 - **BR-5 Design system:** warna/font hanya dari token di `docs/DESIGN_SYSTEM.md`.
@@ -78,7 +78,7 @@ Admin dashboard, login, blog dinamis, pembayaran, backend form (form diarahkan k
 
 ### Teknis
 - [ ] Pindahkan data yang masih inline di komponen/halaman ke `lib/content/` (lihat `docs/ARCHITECTURE.md` bagian Tech debt). Wajib sebelum Fase 2.
-- [ ] Kontras tombol CTA: teks putih di atas accent `#F97316` gagal WCAG AA (lihat `docs/DESIGN_SYSTEM.md` bagian Kontras). Perlu keputusan user soal warna pengganti.
+- [x] Kontras tombol CTA dan teks brand kecil: diperbaiki 2026-10-09 (teks `brand-dark` di tombol accent, teks kecil/link pakai `brand-mid`). Lihat `docs/DESIGN_SYSTEM.md` bagian Kontras.
 - [ ] Samakan tagline: `site-settings.ts` berisi "Mitra Teknologi Terpercaya untuk Industri Keuangan & Multifinance Indonesia", sedangkan slogan final yang diputuskan (D-6) adalah "Mitra Teknologi Terpercaya untuk Transformasi Bisnis Anda". Perlu konfirmasi user mana yang dipakai.
 
 ### Fase 2

@@ -1,21 +1,35 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { BlogExplorer } from "@/components/sections/blog/BlogExplorer";
+import { CtaCard } from "@/components/shared/CtaCard";
+import { PageHero } from "@/components/shared/PageHero";
 
-export const metadata: Metadata = {
-  title: "Blog — PT Inovasi Gantarawana Teknologi",
-  description: "Artikel dan insight seputar teknologi, segera hadir.",
-  alternates: { canonical: "/blog" },
-};
+export const metadata = pageMetadata({
+  title: "Blog dan Artikel | PT Inovasi Gantarawana Teknologi",
+  description:
+    "Artikel seputar SLIK OJK, loan origination system, digitalisasi proses kredit, dan tips membangun sistem untuk bisnis pembiayaan.",
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (
-    <section className="bg-surface px-6 py-24 text-center">
-      <span className="bg-brand/10 text-brand inline-flex rounded-full px-4 py-2 text-xs font-bold tracking-wide uppercase">
-        Blog
-      </span>
-      <h1 className="font-display text-text mt-5 text-3xl font-bold">Segera Hadir</h1>
-      <p className="text-muted mx-auto mt-4 max-w-md">
-        Kami sedang menyiapkan artikel seputar teknologi. Kembali lagi nanti.
-      </p>
-    </section>
+    <>
+      <PageHero
+        path="/blog"
+        crumb="Artikel"
+        titleLead="Blog"
+        titleAccent="dan Artikel"
+        subtitle="Insight seputar teknologi, regulasi, dan digitalisasi untuk mendukung pertumbuhan bisnis Anda."
+        image={{
+          src: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=960&h=600&fit=crop&auto=format",
+          alt: "Menulis artikel di laptop",
+        }}
+        withOverlap
+      />
+      <BlogExplorer />
+      <CtaCard
+        title="Punya Kebutuhan Sistem Serupa?"
+        subtitle="Diskusikan kebutuhan Anda dengan tim kami, konsultasi gratis tanpa komitmen."
+      />
+    </>
   );
 }

@@ -1,10 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared/JsonLd";
+import { buildBreadcrumbSchema } from "@/lib/structured-data";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionLabel } from "@/components/shared/SectionLabel";
-import { buildWhatsAppLink } from "@/lib/content/site-settings";
+import { CtaCard } from "@/components/shared/CtaCard";
+import { TeamSection } from "@/components/sections/about/TeamSection";
+import { companyFacts } from "@/lib/content/company-facts";
 import {
-  ArrowRight,
   CheckIcon,
   GlobeIcon,
   ChartIcon,
@@ -18,28 +21,27 @@ import {
   HeartIcon,
 } from "@/components/icons/figma-icons";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Tentang Kami | Konsultan IT & Software House Jakarta - PT IGT",
   description:
     "PT Inovasi Gantarawana Teknologi, konsultan IT dan software house di Jakarta, mitra teknologi terpercaya untuk industri keuangan dan multifinance Indonesia.",
-  alternates: { canonical: "/tentang" },
-};
+  path: "/tentang",
+});
 
 const HIGHLIGHTS = [
   { Icon: ClockIcon, label: "Pengembangan Agile & Terstruktur" },
-  { Icon: ShieldCheckIcon, label: "Patuh Regulasi OJK 100%" },
-  { Icon: ConsultIcon, label: "Tim Berpengalaman di Keuangan" },
+  { Icon: ShieldCheckIcon, label: "Patuh Regulasi OJK" },
+  { Icon: ConsultIcon, label: "Tim Berpengalaman" },
   { Icon: BadgeCheckIcon, label: "Integrasi API-First" },
   { Icon: HeadsetIcon, label: "Dukungan Pasca Go-Live" },
 ];
 
-const MILESTONES = [
-  { yr: "2016", ev: "Didirikan di Jakarta sebagai konsultan IT untuk korporasi" },
-  { yr: "2018", ev: "Membangun sistem web enterprise pertama untuk lembaga keuangan" },
-  { yr: "2019", ev: "Spesialisasi sistem multifinance & integrasi SLIK OJK" },
-  { yr: "2021", ev: "Meluncurkan Core Finance System versi modular pertama" },
-  { yr: "2022", ev: "Meluncurkan platform LOS, CMO & CNV mobile" },
-  { yr: "2024", ev: "Melayani 40+ perusahaan di seluruh Indonesia" },
+// Pengganti timeline tahun (perusahaan masih baru): tahapan kerja yang konsisten dengan FAQ & WhyUs
+const WORK_STEPS = [
+  { title: "Analisa Kebutuhan", body: "Kami pelajari proses bisnis, regulasi yang berlaku, dan sistem yang sudah Anda pakai sebelum menulis satu baris kode." },
+  { title: "Desain Alur & Prototipe", body: "Alur kerja dan tampilan dirancang bersama tim Anda, lalu divalidasi lewat prototipe yang bisa dicoba." },
+  { title: "Pengembangan Bertahap", body: "Dikerjakan dalam sprint dua mingguan, dengan demo di setiap akhir sprint supaya progres selalu terpantau." },
+  { title: "Go-Live & Pendampingan", body: "Sistem dirilis ke produksi, source code dan dokumentasi diserahkan, lalu didampingi sesuai SLA yang disepakati." },
 ];
 
 const VALUES = [
@@ -60,6 +62,7 @@ const MISI_POINTS = [
 export default function TentangPage() {
   return (
     <>
+      <JsonLd data={buildBreadcrumbSchema([{ name: "Tentang Kami", path: "/tentang" }])} />
       {/* Hero */}
       <section className="bg-brand-deeper relative overflow-hidden pt-28 pb-0">
         <div
@@ -78,14 +81,14 @@ export default function TentangPage() {
           <div className="grid items-end gap-10 lg:grid-cols-2">
             <div className="pb-16">
               <h1 className="font-display mb-5 text-4xl leading-tight font-bold text-white sm:text-5xl">
-                Tentang <span className="gradient-text">PT Inovasi Gantarawana Teknologi</span>
+                Tentang <span className="gradient-text-on-dark">PT Inovasi Gantarawana Teknologi</span>
               </h1>
               <p className="font-display mb-4 text-lg font-semibold text-white/80">
                 Mitra Teknologi Terpercaya untuk Industri Keuangan &amp; Multifinance Indonesia
               </p>
               <p className="text-base leading-relaxed text-white/50">
-                Sejak 2016, kami hadir untuk membangun sistem enterprise yang presisi, patuh regulasi
-                OJK, dan siap skala, dari sistem core pembiayaan hingga aplikasi mobile lapangan.
+                Kami membangun sistem enterprise yang presisi, patuh regulasi OJK, dan siap skala,
+                dari sistem core pembiayaan hingga aplikasi mobile lapangan.
               </p>
             </div>
 
@@ -106,8 +109,8 @@ export default function TentangPage() {
       </section>
 
       {/* Highlights: kartu mengambang, sedikit menumpuk di atas foto hero */}
-      <div className="relative z-10 mx-auto -mt-8 max-w-5xl px-6 lg:px-10">
-        <div className="border-border grid grid-cols-1 gap-x-6 gap-y-5 rounded-2xl border bg-white px-6 py-6 shadow-2xl sm:grid-cols-2 sm:px-8 lg:grid-cols-3">
+      <div className="relative z-10 mx-auto -mt-8 max-w-7xl px-6 lg:px-10">
+        <div className="border-border grid grid-cols-1 gap-x-6 gap-y-5 rounded-2xl border bg-white px-6 py-6 shadow-2xl sm:grid-cols-2 sm:px-8 lg:grid-cols-5">
           {HIGHLIGHTS.map((item, i) => (
             <div key={i} className="flex items-center gap-3">
               <span className="bg-brand/10 text-brand border-brand/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border">
@@ -135,8 +138,8 @@ export default function TentangPage() {
                 <div className="absolute inset-0 rounded-2xl" style={{ background: "linear-gradient(160deg, transparent 55%, #071C26CC)" }} />
               </div>
               <div className="bg-brand-deeper border-brand/30 absolute bottom-4 left-4 rounded-xl border px-5 py-3.5 shadow-2xl">
-                <div className="text-brand mb-1 text-xs font-black tracking-widest uppercase">Proyek Selesai</div>
-                <div className="font-display text-3xl leading-none font-black text-white">100+</div>
+                <div className="text-brand-light mb-1.5 text-xs font-black tracking-widest uppercase">Didukung Oleh</div>
+                <div className="font-display text-xl leading-tight font-black text-white">Tim Berpengalaman</div>
               </div>
             </div>
 
@@ -148,56 +151,58 @@ export default function TentangPage() {
               <p className="text-muted mb-4 text-base leading-relaxed">
                 PT Inovasi Gantarawana Teknologi adalah perusahaan solusi IT yang berfokus pada
                 pengembangan sistem enterprise untuk industri keuangan, multifinance, dan korporasi
-                di Indonesia. Sejak berdiri, kami telah membangun reputasi atas deliverability,
-                keandalan teknis, dan kepatuhan terhadap regulasi OJK.
+                di Indonesia. Sistem yang kami bangun sudah berjalan di produksi dan dipakai
+                perusahaan pembiayaan untuk memproses pengajuan kredit setiap hari.
               </p>
               <p className="text-muted mb-8 text-base leading-relaxed">
                 Kami memahami bahwa setiap bisnis pembiayaan membutuhkan sistem yang tidak hanya
                 fungsional, tetapi juga aman, audit-ready, dan dapat berkembang bersama skala bisnis.
-                Karena itu, kami hadir dengan layanan terlengkap dan pendampingan dari tim ahli
-                berpengalaman.
+                Karena itu, setiap proyek kami kerjakan bertahap, terdokumentasi, dan didampingi
+                sampai sistem benar-benar dipakai.
               </p>
-              <div className="border-border grid grid-cols-3 gap-6 border-t pt-8">
-                {[
-                  { val: "100+", sub: "Proyek Selesai" },
-                  { val: "99%", sub: "Kepuasan Klien" },
-                  { val: "8+", sub: "Tahun Pengalaman" },
-                ].map((s) => (
-                  <div key={s.sub}>
-                    <div className="font-display text-brand mb-1 text-2xl leading-none font-black sm:text-3xl">{s.val}</div>
-                    <div className="text-muted text-xs font-medium">{s.sub}</div>
-                  </div>
+              {/* Mobile: ikon di samping teks, 1 kolom. sm+: 3 kolom, ikon di atas teks biar gak patah baris */}
+              <ul className="border-border grid grid-cols-1 gap-5 border-t pt-8 sm:grid-cols-3 sm:gap-6">
+                {companyFacts.map(({ Icon, title, sub }) => (
+                  <li key={title} className="flex items-center gap-3.5 sm:flex-col sm:items-start sm:gap-3">
+                    <div className="bg-brand/10 text-brand border-brand/20 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border">
+                      <Icon />
+                    </div>
+                    <div className="leading-tight">
+                      <div className="font-display text-text text-lg font-bold">{title}</div>
+                      <div className="text-muted text-sm">{sub}</div>
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Milestones */}
+      {/* Cara kerja */}
       <section className="bg-surface py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="mb-14 text-center">
-            <SectionLabel>Perjalanan Kami</SectionLabel>
+            <SectionLabel>Cara Kami Bekerja</SectionLabel>
             <h2 className="font-display text-text text-3xl font-bold sm:text-4xl">
-              Dari Konsultan ke Mitra <span className="gradient-text">Teknologi Enterprise</span>
+              Dari Kebutuhan ke <span className="gradient-text">Sistem yang Berjalan</span>
             </h2>
           </div>
           <div className="relative mx-auto max-w-3xl">
             <div className="bg-border absolute top-7 bottom-7 left-7 w-0.5" />
             <div className="space-y-6">
-              {MILESTONES.map((m, i) => (
-                <div key={m.yr} className="group relative flex gap-6">
+              {WORK_STEPS.map((step, i) => (
+                <div key={step.title} className="group relative flex gap-6">
                   <div
-                    className={`font-display relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-sm font-black text-white shadow-md transition-transform duration-200 group-hover:scale-105 ${
-                      i < 2 ? "bg-brand-mid" : i < 4 ? "bg-brand" : "bg-accent"
+                    className={`font-display relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl font-black shadow-md transition-transform duration-200 group-hover:scale-105 ${
+                      i < WORK_STEPS.length - 1 ? "bg-brand-mid text-white" : "bg-accent text-brand-dark"
                     }`}
                   >
-                    {m.yr.slice(2)}
+                    {String(i + 1).padStart(2, "0")}
                   </div>
                   <div className="border-border hover:border-brand/50 hover:shadow-brand/[0.08] flex-1 rounded-2xl border bg-white px-6 py-5 transition-all duration-200 hover:shadow-lg">
-                    <span className="font-display text-brand text-lg font-bold">{m.yr}</span>
-                    <p className="text-muted mt-1 text-sm leading-relaxed">{m.ev}</p>
+                    <h3 className="font-display text-text text-lg font-bold">{step.title}</h3>
+                    <p className="text-muted mt-1 text-sm leading-relaxed">{step.body}</p>
                   </div>
                 </div>
               ))}
@@ -294,38 +299,12 @@ export default function TentangPage() {
         </div>
       </section>
 
-      {/* Team section disembunyikan sementara — belum ada foto tim asli (lihat app/tim/page.tsx) */}
+      <TeamSection />
 
-      {/* CTA */}
-      <section className="bg-brand py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <div className="flex items-center gap-5">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-display text-xl font-bold text-white">Siap Bekerja Sama dengan Kami?</h3>
-                <p className="mt-1 text-sm text-white/70">Konsultasikan kebutuhan teknologi Anda sekarang bersama tim ahli kami.</p>
-              </div>
-            </div>
-            <a
-              href={buildWhatsAppLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group hover:bg-surface-2 flex min-h-11 items-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-bold whitespace-nowrap text-[var(--color-brand)] transition-all duration-200 hover:shadow-xl active:scale-[0.98]"
-            >
-              Konsultasikan Sekarang
-              <span className="transition-transform duration-150 group-hover:translate-x-0.5">
-                <ArrowRight size={15} />
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
+      <CtaCard
+        title="Siap Bekerja Sama dengan Kami?"
+        subtitle="Konsultasikan kebutuhan teknologi Anda sekarang, gratis bersama tim kami."
+      />
     </>
   );
 }

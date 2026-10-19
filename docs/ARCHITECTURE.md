@@ -36,7 +36,7 @@ lib/
   content/              layer data (lihat bagian 3)
   utils.ts              helper `cn()`
 public/
-  logo-icon.png  clients/  llms.txt
+  logo-icon.png  clients/
 docs/                   PRD, DESIGN_SYSTEM, ARCHITECTURE
 ```
 
@@ -71,13 +71,13 @@ Ganti nomor/email hanya di `lib/content/site-settings.ts`; otomatis terpakai di 
 ## 5. SEO
 
 - `metadataBase` = `siteSettings.siteUrl` (`https://igt-tech.id`).
-- Title/description per halaman di `export const metadata` masing-masing `page.tsx`; title root pakai `template: "%s"` (title halaman ditulis lengkap).
+- Title/description per halaman lewat helper `pageMetadata()` di `lib/seo.ts` (mengisi canonical + Open Graph + Twitter sekaligus, karena Next tidak mengisi og:title otomatis); title root pakai `template: "%s"` (title halaman ditulis lengkap). Default OG/Twitter, keywords, dan `robots` (max-image-preview large) di `app/layout.tsx`.
 - `alternates.canonical` di setiap halaman yang diindeks (`/tim` noindex, tanpa canonical).
-- `app/sitemap.ts`: daftar route manual (`/tim` sengaja tidak masuk). Tambah route baru di sini.
-- `app/robots.ts`: allow semua + link sitemap.
+- `app/sitemap.ts`: daftar route manual + semua artikel dari `lib/content/articles.ts` (`/tim` sengaja tidak masuk). Tambah route baru di sini.
+- `app/robots.ts`: allow semua + daftar eksplisit crawler AI (GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, ClaudeBot, Claude-SearchBot, anthropic-ai, PerplexityBot, Applebot-Extended, CCBot) + link sitemap.
 - `app/opengraph-image.tsx`: OG image dinamis via `next/og`.
-- JSON-LD `ProfessionalService` di `app/layout.tsx` (`sameAs` masih kosong, isi saat ada akun sosial/Business Profile).
-- `public/llms.txt`: ringkasan untuk crawler AI, **hanya** data terverifikasi (tanpa statistik/testimoni ilustratif).
+- JSON-LD (GEO): builder di `lib/structured-data.ts`, render lewat `components/shared/JsonLd.tsx`. Organisasi `ProfessionalService` + `WebSite` di layout; `FAQPage` di Beranda; `ItemList` of `Service` di `/layanan`; `BreadcrumbList` di semua halaman dalam (otomatis dari `PageHero` + manual di `/tentang`); `BlogPosting` + `FAQPage` + `BreadcrumbList` di detail artikel. **Jangan** buat `Review`/`AggregateRating` dari testimoni contoh ilustrasi. `sameAs` belum diisi (tunggu akun sosial/Business Profile).
+- `/llms.txt` (GEO): route `app/llms.txt/route.ts`, dibangun otomatis dari `lib/content` (layanan, portfolio, artikel, kontak) jadi selalu sinkron; **hanya** data faktual (tanpa testimoni ilustrasi/tim placeholder). File lama `public/llms.txt` dihapus.
 - Verifikasi GSC: env var `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (meta tag) sudah disiapkan, belum diisi. Alternatif: file HTML verifikasi di `public/`.
 
 ## 6. Deploy & infrastruktur
