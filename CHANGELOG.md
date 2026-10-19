@@ -2,6 +2,22 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-20 (Halaman legal, konten jujur)
+
+### Ditambah
+- Halaman **Kebijakan Privasi** (`/kebijakan-privasi`) dan **Syarat Layanan** (`/syarat-layanan`): isi di `lib/content/legal.ts`, tampilan `components/shared/LegalPage.tsx`. Isi disesuaikan cara kerja situs sekarang (tanpa akun, tanpa analitik pihak ketiga, form Kontak hanya menyusun pesan WhatsApp), mengacu UU PDP No. 27/2022. **Wajib diperbarui** kalau nanti ada analitik, newsletter, atau komentar aktif. Ditautkan di baris bawah footer (menggantikan teks "Bogor, Jawa Barat"; alamat lengkap tetap di kolom profil), masuk sitemap & `llms.txt`.
+
+### Diubah
+- Catatan "Contoh ilustrasi. Kutipan asli tersedia atas permintaan dengan seizin klien." di section Testimoni dihapus (permintaan user). Label "Contoh ilustrasi" tetap di dashboard.
+- FAQ iOS: jawaban lama ("semua aplikasi tersedia untuk Android dan iOS") tidak sesuai fakta; sekarang menyebut aplikasi produksi saat ini Android, iOS bisa direncanakan sesuai kebutuhan.
+- 3 case study Portfolio: label "Client A/B/C" diganti "Perusahaan Pembiayaan (Multifinance)", klaim tanpa data (collection, pelaporan OJK otomatis, rekam GPS, sinkronisasi real-time) dibuang; deskripsi disamakan dengan fitur di `lib/content/services.ts`.
+
+### Verifikasi
+- Lint + build lolos. Playwright 375 & 1280px: `/kebijakan-privasi`, `/syarat-layanan`, `/`, `/portfolio` tanpa scroll horizontal, 1 H1, link footer jalan, 0 console error.
+
+### Deploy
+- Commit `ac363a5` (SEO preview media sosial) live dan dicek di production: `og:image` + deskripsi baru tampil di HTML, `/opengraph-image` 200 PNG ~148 KB. Preview WhatsApp untuk `https://igt-tech.id/` masih versi lama karena cache WhatsApp; link baru (mis. `/tentang`) sudah tampil dengan gambar & deskripsi baru.
+
 ## 2026-10-20 (SEO preview media sosial)
 
 ### Diperbaiki
@@ -89,7 +105,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 
 ### Pending
 - Sama dengan daftar Pending 2026-10-19, **kecuali** yang sudah selesai: ukuran font tombol (opsi B), animasi hover tombol oranye, verifikasi visual menyeluruh.
-- Baru: halaman **Kebijakan Privasi** & **Syarat Layanan** belum ada (dulu cuma link mati di footer); disarankan dibuat, terutama karena form Kontak mengumpulkan data pengunjung. Akun **LinkedIn/Instagram** resmi: begitu ada, tampilkan lagi ikonnya + isi `sameAs` di JSON-LD.
+- ~~Baru: halaman **Kebijakan Privasi** & **Syarat Layanan** belum ada~~ Selesai 2026-10-20. Sisa: (dulu cuma link mati di footer); disarankan dibuat, terutama karena form Kontak mengumpulkan data pengunjung. Akun **LinkedIn/Instagram** resmi: begitu ada, tampilkan lagi ikonnya + isi `sameAs` di JSON-LD.
 - ~~Baru: **Preview link di media sosial (WhatsApp, Facebook, LinkedIn, X/Twitter, Telegram) harus tampil lengkap: gambar, title, dan description.**~~ Selesai di kode 2026-10-20 (lihat entri "SEO preview media sosial"); tinggal tes langsung di tiap aplikasi setelah deploy. Cek 200 OG image (2026-10-20) baru memastikan file-nya bisa dibuka, belum memastikan kartu preview benar-benar muncul di tiap aplikasi. Yang perlu dipastikan:
   - Setiap halaman publik (Beranda, Tentang Kami, Layanan, Portfolio, Blog, detail artikel, Kontak) punya `og:title`, `og:description`, `og:url`, `og:type`, `og:site_name`, `og:locale`, dan `og:image` dengan **URL absolut https** (lewat `metadataBase`), plus `og:image:width`/`og:image:height` (1200×630), `og:image:type`, `og:image:alt`.
   - `openGraph` di `pageMetadata()` (`lib/seo.ts`) tidak menimpa gambar dari `app/opengraph-image.tsx` sampai hilang (di Next, objek `openGraph` halaman menggantikan milik layout, bukan digabung). Cek di HTML hasil render, bukan hanya di kode.
@@ -171,7 +187,7 @@ Konten (butuh data/keputusan user):
 - **Testimoni** masih contoh ilustrasi (`lib/content/testimonials.ts`): ganti dengan kutipan asli seizin klien, lalu hapus catatan "Contoh ilustrasi" di `components/sections/home/Testimonials.tsx`.
 - **Kartu tim** masih placeholder (`lib/content/team.ts`): isi nama, foto, LinkedIn, dan konfirmasi jabatan mana yang benar-benar ada. Halaman lama `/tim` (noindex, tidak ditautkan) sekarang tumpang tindih dengan section tim di `/tentang`: putuskan dihapus atau disatukan.
 - **Portfolio**: 3 case study (desain Figma) belum dicocokkan dengan 5 proyek asli. Contoh: "Sistem Core Multifinance" menyebut collection & pelaporan OJK, padahal SIFOne adalah LOS.
-- **FAQ Beranda** menyebut aplikasi mobile "tersedia untuk Android dan iOS", sedangkan SIFOne baru Android. FAQ ini ikut ke JSON-LD `FAQPage`, jadi perlu dicek kebenarannya.
+- ~~**FAQ Beranda**~~ (selesai 2026-10-20) menyebut aplikasi mobile "tersedia untuk Android dan iOS", sedangkan SIFOne baru Android. FAQ ini ikut ke JSON-LD `FAQPage`, jadi perlu dicek kebenarannya.
 - ~~**SEO title/description masih "Jakarta"**~~ Selesai 2026-10-20: dihapus, judul dipendekkan.
 - **Logo 5 klien lain** (dari 2026-09-14): menunggu file resmi + izin.
 
@@ -181,7 +197,7 @@ Desain:
 - ~~**Verifikasi visual menyeluruh**~~ Selesai 2026-10-20 (lihat Verifikasi).
 
 SEO & infrastruktur:
-- **Google Search Console + Google Business Profile** (ditunda sampai development selesai): verifikasi (`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` belum diisi), submit sitemap, request indexing. Setelah ada akun sosial/Business Profile, isi `sameAs` di `buildOrganizationSchema()`.
+- **Google Search Console** sudah terverifikasi 2026-10-20 (file HTML di `public/`); sisa: submit sitemap + request indexing (user di dashboard GSC). **Google Business Profile** belum. Setelah ada akun sosial/Business Profile, isi `sameAs` di `buildOrganizationSchema()`.
 - **Blog**: kolom komentar sudah tampil tapi nonaktif, newsletter belum dibuat; keduanya butuh backend. Artikel pindah ke CMS di Fase 2.
 - **CMS Fase 2** belum mulai.
 - 2 IP redundant A record Vercel (`216.198.79.1`, `64.29.17.1`): opsional.

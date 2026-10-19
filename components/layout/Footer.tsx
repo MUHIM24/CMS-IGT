@@ -4,14 +4,19 @@ import { MailIcon, PhoneIcon } from "@/components/icons/figma-icons";
 import { services } from "@/lib/content/services";
 import { buildWhatsAppLink, siteSettings } from "@/lib/content/site-settings";
 
-// Semua link footer wajib punya tujuan nyata (bukan href="#"). Halaman yang belum ada (Karir, Kebijakan Privasi,
-// Syarat Layanan) dan akun sosial yang belum ada sengaja tidak ditampilkan; tambahkan begitu tersedia.
+// Semua link footer wajib punya tujuan nyata (bukan href="#"). Halaman yang belum ada (Karir) dan akun sosial
+// yang belum ada sengaja tidak ditampilkan; tambahkan begitu tersedia.
 const COMPANY_LINKS = [
   { label: "Tentang Kami", href: "/tentang" },
   { label: "Layanan", href: "/layanan" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "/blog" },
   { label: "Kontak", href: "/kontak" },
+];
+
+const LEGAL_LINKS = [
+  { label: "Kebijakan Privasi", href: "/kebijakan-privasi" },
+  { label: "Syarat Layanan", href: "/syarat-layanan" },
 ];
 
 const linkClass = "hover:text-brand-light text-sm text-white/60 transition-colors duration-150";
@@ -98,7 +103,13 @@ export function Footer() {
           <div className="text-sm text-white/55">
             &copy; {new Date().getFullYear()} PT Inovasi Gantarawana Teknologi. Hak cipta dilindungi.
           </div>
-          <div className="text-sm text-white/55">Bogor, Jawa Barat</div>
+          <nav aria-label="Legal" className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {LEGAL_LINKS.map((l) => (
+              <Link key={l.href} href={l.href} className={linkClass}>
+                {l.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

@@ -11,8 +11,8 @@ export interface CaseStudy {
   desc: string;
 }
 
-// Dipakai identik di preview Portfolio (Beranda) dan halaman /portfolio penuh,
-// porting persis dari WEBSITE DESIGN FIGMA PT IGT/src/pages/HomePage.tsx & PortfolioPage.tsx.
+// Dipakai identik di preview Portfolio (Beranda) dan halaman /portfolio penuh.
+// Deskripsi hanya memuat fitur yang benar-benar ada (sama dengan lib/content/services.ts); nama klien tidak ditampilkan.
 export const caseStudies: CaseStudy[] = [
   {
     slug: "core-multifinance",
@@ -20,8 +20,8 @@ export const caseStudies: CaseStudy[] = [
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=380&fit=crop&auto=format",
     tag: "Multifinance",
     title: "Sistem Core Multifinance End-to-End",
-    client: "Perusahaan Pembiayaan, Client A",
-    desc: "Implementasi sistem core pembiayaan konsumen mencakup origination, approval, disbursement, collection, dan pelaporan OJK otomatis.",
+    client: "Perusahaan Pembiayaan (Multifinance)",
+    desc: "Sistem pembiayaan end-to-end dalam satu platform: registrasi oleh CMO, pengecekan SLIK OJK, analisa Credit Analyst, survei, komite approval, hingga pencairan.",
   },
   {
     slug: "mobile-los",
@@ -29,8 +29,8 @@ export const caseStudies: CaseStudy[] = [
     img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=640&h=380&fit=crop&auto=format",
     tag: "Mobile LOS",
     title: "Aplikasi Mobile Loan Origination",
-    client: "Perusahaan Pembiayaan, Client B",
-    desc: "Aplikasi Android untuk proses pengajuan kredit end-to-end: input data, upload dokumen, verifikasi SLIK OJK, hingga persetujuan digital.",
+    client: "Perusahaan Pembiayaan (Multifinance)",
+    desc: "Aplikasi Android untuk proses pengajuan kredit: input data, upload dokumen, verifikasi SLIK OJK dan data kependudukan Dukcapil, hingga persetujuan digital.",
   },
   {
     slug: "cmo-field-app",
@@ -38,8 +38,8 @@ export const caseStudies: CaseStudy[] = [
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=380&fit=crop&auto=format",
     tag: "CMO Field App",
     title: "Aplikasi Mobile Agen Lapangan (CMO)",
-    client: "Perusahaan Pembiayaan, Client C",
-    desc: "Aplikasi mobile untuk field agent: kunjungan nasabah, rekam GPS, form survey digital, dan sinkronisasi real-time ke sistem core.",
+    client: "Perusahaan Pembiayaan (Multifinance)",
+    desc: "Aplikasi mobile untuk tenaga pemasaran (CMO) di lapangan: mengumpulkan dan melengkapi data calon nasabah secara digital, langsung terhubung ke sistem pembiayaan.",
   },
 ];
 

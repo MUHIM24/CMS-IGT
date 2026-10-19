@@ -36,7 +36,7 @@ npm run lint
 ## Aturan konten
 - Data konten taruh di `lib/content/`, bukan inline di komponen (lihat Tech debt di `docs/ARCHITECTURE.md`).
 - Kontak (email, telepon, WhatsApp) hanya diubah di `lib/content/site-settings.ts`. CTA pakai `buildWhatsAppLink()`.
-- Jangan menambah klaim, angka statistik, testimoni, nama/logo klien, atau sertifikasi yang tidak ada datanya. Perusahaan masih baru (5 proyek berjalan per 2026-10): semua angka ilustratif (tahun berdiri, 100+ proyek, % kepuasan/uptime, testimoni sampel) sudah dihapus 2026-10-19. Angka baru hanya boleh masuk kalau user memberi datanya. Pengecualian yang disetujui user: testimoni contoh ilustrasi (`lib/content/testimonials.ts`, wajib tanpa nama karangan + catatan "contoh ilustrasi") dan kartu tim placeholder (`lib/content/team.ts`); ganti dengan data asli begitu ada, jangan salin ke `llms.txt`/JSON-LD.
+- Jangan menambah klaim, angka statistik, testimoni, nama/logo klien, atau sertifikasi yang tidak ada datanya. Perusahaan masih baru (5 proyek berjalan per 2026-10): semua angka ilustratif (tahun berdiri, 100+ proyek, % kepuasan/uptime, testimoni sampel) sudah dihapus 2026-10-19. Angka baru hanya boleh masuk kalau user memberi datanya. Pengecualian yang disetujui user: testimoni contoh ilustrasi (`lib/content/testimonials.ts`, wajib tanpa nama karangan; catatan "contoh ilustrasi" di situs publik dihapus atas permintaan user 2026-10-20, label tetap ada di dashboard) dan kartu tim placeholder (`lib/content/team.ts`); ganti dengan data asli begitu ada, jangan salin ke `llms.txt`/JSON-LD.
 - Tanpa em dash di teks yang tampil ke pengunjung. CTA harus spesifik.
 
 ## Aturan dashboard /admin

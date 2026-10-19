@@ -35,6 +35,8 @@ export function GET() {
     `- [Portfolio](${SITE}/portfolio)`,
     `- [Blog](${SITE}/blog)`,
     `- [Kontak](${SITE}/kontak)`,
+    `- [Kebijakan Privasi](${SITE}/kebijakan-privasi)`,
+    `- [Syarat Layanan](${SITE}/syarat-layanan)`,
     "",
     "## Kontak",
     `- WhatsApp / Telepon: ${siteSettings.phone}`,

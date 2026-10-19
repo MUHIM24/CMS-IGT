@@ -13,8 +13,8 @@ export const faqs = [
     a: "Rata-rata implementasi Core Finance System membutuhkan 3-6 bulan. Kami menggunakan metodologi Agile dengan sprint dua mingguan sehingga klien dapat memantau progress secara rutin.",
   },
   {
-    q: "Apakah aplikasi mobile mendukung iOS dan Android?",
-    a: "Ya. Semua aplikasi mobile kami tersedia untuk Android dan iOS, dikembangkan dengan pendekatan cross-platform agar performa optimal di kedua platform.",
+    q: "Apakah aplikasi mobile tersedia untuk Android dan iOS?",
+    a: "Platform kami sesuaikan dengan pengguna aplikasinya. Aplikasi mobile kami yang sudah berjalan di produksi saat ini berbasis Android, yang umumnya cukup untuk aplikasi internal karena perangkat tim bisa diseragamkan. Versi iOS dapat direncanakan bila pengguna Anda membutuhkannya.",
   },
   {
     q: "Apakah source code menjadi milik klien setelah proyek selesai?",

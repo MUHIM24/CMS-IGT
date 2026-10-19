@@ -37,7 +37,7 @@ export default async function AdminPortfolioEditPage({ params }: { params: Promi
             </Field>
           </div>
           <Field label="Klien" hint="boleh disamarkan sesuai kerahasiaan">
-            <input defaultValue={p?.client} className={inputClass} placeholder="Perusahaan Pembiayaan, Client A" />
+            <input defaultValue={p?.client} className={inputClass} placeholder="Perusahaan Pembiayaan (Multifinance)" />
           </Field>
           <Field label="Deskripsi">
             <textarea defaultValue={p?.desc} rows={4} className={textareaClass} />

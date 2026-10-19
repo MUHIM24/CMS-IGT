@@ -74,10 +74,7 @@ export function Testimonials() {
         <h2 className="font-display text-text mb-3 text-3xl font-bold sm:text-4xl">
           Testimoni <span className="gradient-text">Klien</span>
         </h2>
-        <p className="text-muted mb-2 text-base">Kepercayaan dan kepuasan klien adalah prioritas kami.</p>
-        <p className="text-muted mb-10 text-xs">
-          Contoh ilustrasi. Kutipan asli tersedia atas permintaan dengan seizin klien.
-        </p>
+        <p className="text-muted mb-10 text-base">Kepercayaan dan kepuasan klien adalah prioritas kami.</p>
 
         <div
           ref={trackRef}
