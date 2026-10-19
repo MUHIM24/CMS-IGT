@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FilterTabs } from "@/components/shared/FilterTabs";
-import { services, serviceCategories, type ServiceCategory } from "@/lib/content/services";
+import { SERVICE_ANCHOR_EVENT, services, serviceAnchor, serviceCategories, type ServiceCategory } from "@/lib/content/services";
 
 type Filter = "Semua" | ServiceCategory;
 const FILTERS: Filter[] = ["Semua", ...serviceCategories];
@@ -11,6 +11,17 @@ const FILTERS: Filter[] = ["Semua", ...serviceCategories];
 export function ServiceCatalog() {
   const [active, setActive] = useState<Filter>("Semua");
   const visible = active === "Semua" ? services : services.filter((s) => s.category === active);
+
+  // Link footer ke kartu layanan saat filter lain aktif: tampilkan semua dulu supaya kartu tujuan ada, lalu scroll ke sana
+  useEffect(() => {
+    function showTarget(e: Event) {
+      const anchor = (e as CustomEvent<string>).detail;
+      setActive("Semua");
+      requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth" }));
+    }
+    window.addEventListener(SERVICE_ANCHOR_EVENT, showTarget);
+    return () => window.removeEventListener(SERVICE_ANCHOR_EVENT, showTarget);
+  }, []);
 
   return (
     <>
@@ -26,7 +37,9 @@ export function ServiceCatalog() {
         {visible.map((svc) => (
           <article
             key={svc.title}
-            className="group border-border hover:bg-brand-dark hover:border-brand-dark flex flex-col overflow-hidden rounded-2xl border bg-white transition-all duration-250 hover:-translate-y-[3px] hover:shadow-xl"
+            id={serviceAnchor(svc.title)}
+            // scroll-mt: ruang untuk navbar fixed saat dituju dari link Produk di footer
+            className="group border-border hover:bg-brand-dark hover:border-brand-dark flex scroll-mt-28 flex-col overflow-hidden rounded-2xl border bg-white transition-all duration-250 hover:-translate-y-[3px] hover:shadow-xl"
           >
             <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
               <Image

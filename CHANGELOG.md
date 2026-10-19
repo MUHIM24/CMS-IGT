@@ -2,12 +2,26 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-20 (Detail Media Library, link Produk footer)
+
+### Ditambah
+- **Dashboard Media Library: detail gambar** (pola IzinPro, permintaan user). Klik gambar / ikon mata membuka dialog: pratinjau besar (logo di latar putih, foto di latar abu), form **Judul**, **Alt text**, **Keterangan**, info file (nama, jenis, format, dimensi asli dibaca dari gambar, ukuran untuk upload baru, sumber Unsplash/lokal/upload, daftar lengkap "Dipakai di"), kolom URL + Salin URL, Buka ukuran penuh, Hapus (lanjut ke konfirmasi). Judul & alt default diambil dari konten yang tayang (`imgAlt` layanan/artikel, nama klien). Simpan masih `DemoForm` (mode tampilan, belum ada database). Komponen `components/admin/MediaDetailDialog.tsx`.
+
+### Diubah
+- **Link Produk di footer langsung ke kartu layanannya** (permintaan user), mis. `/layanan#web-apps`. Kartu di `/layanan` punya `id` dari `serviceAnchor()` (`lib/content/services.ts`) + `scroll-mt` untuk navbar. Kalau pengunjung sudah di `/layanan` dengan filter lain aktif, `ServiceAnchorLink` mengirim event sehingga filter kembali ke "Semua" lalu scroll ke kartu (Next Link mengganti hash lewat pushState, jadi `hashchange` tidak bisa dipakai).
+
+### Verifikasi
+- Lint + build lolos. Playwright 375 & 1280px: dialog media buka (klik gambar), dimensi terbaca, "Dipakai di" tampil, Simpan memunculkan notifikasi mode tampilan, Esc menutup, Hapus memunculkan konfirmasi, tanpa scroll samping di dialog, 0 console error. Footer: dari Beranda klik "Core Finance System" mendarat di kartunya; di `/layanan` dengan filter "Mobile App" klik "Web Apps" kartu muncul & terlihat; 0 console error.
+
 ## 2026-10-20 (Preview per halaman)
 
 ### Diubah
 - **Setiap halaman publik punya gambar preview sendiri** (permintaan user): judul di gambar sesuai halaman (label Tentang Kami / Layanan / Portfolio / Kontak / Blog / Legal, kategori untuk artikel). Desain satu sumber di `lib/og-image.tsx`, tiap route punya `opengraph-image.tsx` di foldernya (gambar Beranda pindah ke `app/(site)/opengraph-image.tsx`). Artikel blog sekarang juga pakai gambar bermerek, bukan foto Unsplash.
 - `pageMetadata()` tidak lagi mengisi `og:image`; Next mengisinya otomatis dari file di folder halaman (URL berakhiran hash + query versi, jadi cache gambar lama di WhatsApp ikut terlewati). Catatan: di dalam route group Next menambah akhiran hash ke URL gambar (`/tentang/opengraph-image-w6ubei`), jadi URL gambar jangan di-hardcode.
 - **Title lebih lengkap & menjual** (permintaan user, menggantikan format pendek "X | PT IGT" untuk halaman utama). Title, deskripsi, dan teks gambar semua halaman sekarang di satu file `lib/content/page-seo.ts`.
+
+### Deploy
+- Commit `963dde0` live, dicek: `/tentang` di production memakai `/tentang/opengraph-image-...`.
 
 ### Verifikasi
 - Lint + build lolos. 9 halaman (Beranda, Tentang, Layanan, Portfolio, Kontak, Blog, detail artikel, Kebijakan Privasi, Syarat Layanan): og:title baru, og:image ke gambar halaman itu (200 PNG 130-155 KB), twitter:image ada.

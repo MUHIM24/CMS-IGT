@@ -11,6 +11,14 @@ export interface ServiceDetail {
   imgAlt: string;
 }
 
+// Anchor kartu layanan di /layanan (mis. "Web Apps" -> "web-apps"), dipakai link Produk di footer
+export function serviceAnchor(title: string) {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+// Event yang dikirim link footer setelah navigasi ke anchor layanan (lihat ServiceAnchorLink)
+export const SERVICE_ANCHOR_EVENT = "service-anchor";
+
 const unsplash = (id: string) => `https://images.unsplash.com/photo-${id}?w=640&h=400&fit=crop&auto=format`;
 
 export const services: ServiceDetail[] = [

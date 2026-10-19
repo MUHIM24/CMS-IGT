@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MailIcon, PhoneIcon } from "@/components/icons/figma-icons";
-import { services } from "@/lib/content/services";
+import { serviceAnchor, services } from "@/lib/content/services";
+import { ServiceAnchorLink } from "@/components/layout/ServiceAnchorLink";
 import { buildWhatsAppLink, siteSettings } from "@/lib/content/site-settings";
 
 // Semua link footer wajib punya tujuan nyata (bukan href="#"). Halaman yang belum ada (Karir) dan akun sosial
@@ -68,9 +69,9 @@ export function Footer() {
             <ul className="space-y-3">
               {services.map((s) => (
                 <li key={s.title}>
-                  <Link href="/layanan" className={linkClass}>
+                  <ServiceAnchorLink anchor={serviceAnchor(s.title)} className={linkClass}>
                     {s.title}
-                  </Link>
+                  </ServiceAnchorLink>
                 </li>
               ))}
             </ul>

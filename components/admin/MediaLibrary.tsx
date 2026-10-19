@@ -1,16 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Check, Copy, ImagePlus, Info, Trash2 } from "lucide-react";
+import { Check, Copy, Eye, ImagePlus, Info, Trash2 } from "lucide-react";
 import { ConfirmDelete } from "@/components/admin/ConfirmDelete";
+import { MediaDetailDialog } from "@/components/admin/MediaDetailDialog";
 
-// Media Library (pola IzinPro): galeri semua gambar yang dipakai situs + upload.
+// Media Library (pola IzinPro): galeri semua gambar yang dipakai situs + upload + detail per gambar.
 // Tahap tampilan: upload hanya pratinjau di browser; hapus lewat konfirmasi lalu notifikasi mode tampilan.
 export interface MediaItem {
   url: string;
   name: string;
   kind: "Foto" | "Logo";
-  usedIn: string;
+  title: string;
+  alt: string;
+  usedIn: string[];
+  // hanya diketahui untuk upload baru (file dari browser)
+  sizeBytes?: number;
 }
 
 const FILTERS = ["Semua", "Foto", "Logo"] as const;
@@ -21,6 +26,7 @@ export function MediaLibrary({ items }: { items: MediaItem[] }) {
   const [uploads, setUploads] = useState<MediaItem[]>([]);
   const [copied, setCopied] = useState<string>();
   const [pendingDelete, setPendingDelete] = useState<string>();
+  const [detail, setDetail] = useState<MediaItem>();
   const [notice, setNotice] = useState<string>();
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -38,7 +44,15 @@ export function MediaLibrary({ items }: { items: MediaItem[] }) {
     const accepted = [...files].filter((f) => f.type.startsWith("image/") && f.size <= MAX_MB * 1024 * 1024);
     if (accepted.length < files.length) flash(`Sebagian file dilewati: hanya gambar maks. ${MAX_MB} MB.`);
     setUploads((u) => [
-      ...accepted.map((f) => ({ url: URL.createObjectURL(f), name: f.name, kind: "Foto" as const, usedIn: "Baru diunggah (pratinjau, belum tersimpan)" })),
+      ...accepted.map((f) => ({
+        url: URL.createObjectURL(f),
+        name: f.name,
+        kind: "Foto" as const,
+        title: f.name.replace(/\.[^.]+$/, ""),
+        alt: "",
+        usedIn: ["Baru diunggah (pratinjau, belum tersimpan)"],
+        sizeBytes: f.size,
+      })),
       ...u,
     ]);
   }
@@ -62,6 +76,15 @@ export function MediaLibrary({ items }: { items: MediaItem[] }) {
         onConfirm={() => {
           flash(`Mode tampilan: "${pendingDelete}" tidak dihapus. Penghapusan aktif setelah storage tersedia (Fase 2).`);
           setPendingDelete(undefined);
+        }}
+      />
+
+      <MediaDetailDialog
+        item={detail}
+        onClose={() => setDetail(undefined)}
+        onDelete={(m) => {
+          setDetail(undefined);
+          setPendingDelete(m.name);
         }}
       />
 
@@ -118,16 +141,36 @@ export function MediaLibrary({ items }: { items: MediaItem[] }) {
       <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {visible.map((m) => (
           <li key={m.url} className="overflow-hidden rounded-3xl bg-white">
-            <div className={`aspect-[4/3] ${m.kind === "Logo" ? "bg-white p-6" : "bg-slate-100"}`}>
+            <button
+              type="button"
+              onClick={() => setDetail(m)}
+              aria-label={`Lihat detail ${m.name}`}
+              className={`group relative block aspect-[4/3] w-full overflow-hidden ${m.kind === "Logo" ? "bg-white p-6" : "bg-slate-100"}`}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element -- pratinjau media bebas (termasuk blob upload) */}
-              <img src={m.url} alt={m.name} loading="lazy" className={`h-full w-full ${m.kind === "Logo" ? "object-contain" : "object-cover"}`} />
-            </div>
+              <img src={m.url} alt={m.alt} loading="lazy" className={`h-full w-full transition-transform duration-300 group-hover:scale-105 ${m.kind === "Logo" ? "object-contain" : "object-cover"}`} />
+              <span className="bg-brand-dark/60 absolute inset-0 flex items-center justify-center gap-2 text-sm font-semibold text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+                <Eye size={18} /> Lihat detail
+              </span>
+            </button>
             <div className="p-4">
               <div className="truncate text-sm font-semibold" title={m.name}>{m.name}</div>
-              <div className="text-admin-placeholder mt-0.5 truncate text-xs" title={m.usedIn}>{m.usedIn}</div>
+              <div className="text-admin-placeholder mt-0.5 truncate text-xs" title={m.usedIn.join(", ")}>
+                {m.usedIn[0]}
+                {m.usedIn.length > 1 && ` +${m.usedIn.length - 1} lainnya`}
+              </div>
               <div className="mt-3 flex items-center justify-between">
                 <span className="bg-admin-field rounded-full px-3 py-1 text-xs font-medium">{m.kind}</span>
                 <div className="flex gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setDetail(m)}
+                    aria-label={`Lihat detail ${m.name}`}
+                    title="Lihat detail"
+                    className="text-admin-placeholder hover:text-brand-mid hover:bg-surface-2 flex h-10 w-10 items-center justify-center rounded-full"
+                  >
+                    <Eye size={18} />
+                  </button>
                   <button
                     type="button"
                     onClick={() => copy(m.url)}

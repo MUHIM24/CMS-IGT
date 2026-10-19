@@ -17,15 +17,16 @@ function fileName(url: string) {
 // Kumpulkan semua gambar yang benar-benar dipakai situs (tanpa duplikat), beserta lokasinya
 function collectMedia(): MediaItem[] {
   const map = new Map<string, MediaItem>();
-  const add = (url: string, kind: MediaItem["kind"], usedIn: string) => {
+  // judul & alt diambil dari pemakaian pertama (sama dengan yang tayang di situs)
+  const add = (url: string, kind: MediaItem["kind"], usedIn: string, title: string, alt: string) => {
     const existing = map.get(url);
-    if (existing) existing.usedIn = `${existing.usedIn}, ${usedIn}`;
-    else map.set(url, { url, name: fileName(url), kind, usedIn });
+    if (existing) existing.usedIn.push(usedIn);
+    else map.set(url, { url, name: fileName(url), kind, title, alt, usedIn: [usedIn] });
   };
-  clients.forEach((c) => add(c.logo, "Logo", `Logo klien: ${c.name}`));
-  services.forEach((s) => add(s.img, "Foto", `Layanan: ${s.title}`));
-  caseStudies.forEach((p) => add(p.img, "Foto", `Portfolio: ${p.title}`));
-  articles.forEach((a) => add(a.img, "Foto", `Artikel: ${a.title}`));
+  clients.forEach((c) => add(c.logo, "Logo", `Logo klien: ${c.name}`, `Logo ${c.name}`, `Logo ${c.name}`));
+  services.forEach((s) => add(s.img, "Foto", `Layanan: ${s.title}`, s.title, s.imgAlt));
+  caseStudies.forEach((p) => add(p.img, "Foto", `Portfolio: ${p.title}`, p.title, p.title));
+  articles.forEach((a) => add(a.img, "Foto", `Artikel: ${a.title}`, a.title, a.imgAlt));
   return [...map.values()];
 }
 
