@@ -1,13 +1,9 @@
 import { pageMetadata } from "@/lib/seo";
+import { pageSeo } from "@/lib/content/page-seo";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 import { PageHero } from "@/components/shared/PageHero";
 
-export const metadata = pageMetadata({
-  title: "Hubungi Kami | PT IGT",
-  description:
-    "Ceritakan kebutuhan aplikasi atau sistem bisnis Anda. Konsultasi gratis bersama tim PT IGT lewat WhatsApp, telepon, atau email, kami bantu dari ide hingga rilis.",
-  path: "/kontak",
-});
+export const metadata = pageMetadata(pageSeo.contact);
 
 export default function KontakPage() {
   return (

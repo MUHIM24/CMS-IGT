@@ -1,14 +1,10 @@
 import { pageMetadata } from "@/lib/seo";
+import { pageSeo } from "@/lib/content/page-seo";
 import { BlogExplorer } from "@/components/sections/blog/BlogExplorer";
 import { CtaCard } from "@/components/shared/CtaCard";
 import { PageHero } from "@/components/shared/PageHero";
 
-export const metadata = pageMetadata({
-  title: "Blog dan Artikel | PT IGT",
-  description:
-    "Wawasan praktis seputar pengembangan aplikasi, digitalisasi proses bisnis, dan sistem pembiayaan, ditulis tim PT IGT dari pengalaman proyek nyata.",
-  path: "/blog",
-});
+export const metadata = pageMetadata(pageSeo.blog);
 
 export default function BlogPage() {
   return (

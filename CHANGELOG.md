@@ -2,6 +2,16 @@
 
 Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decision log di `docs/PRD.md`).
 
+## 2026-10-20 (Preview per halaman)
+
+### Diubah
+- **Setiap halaman publik punya gambar preview sendiri** (permintaan user): judul di gambar sesuai halaman (label Tentang Kami / Layanan / Portfolio / Kontak / Blog / Legal, kategori untuk artikel). Desain satu sumber di `lib/og-image.tsx`, tiap route punya `opengraph-image.tsx` di foldernya (gambar Beranda pindah ke `app/(site)/opengraph-image.tsx`). Artikel blog sekarang juga pakai gambar bermerek, bukan foto Unsplash.
+- `pageMetadata()` tidak lagi mengisi `og:image`; Next mengisinya otomatis dari file di folder halaman (URL berakhiran hash + query versi, jadi cache gambar lama di WhatsApp ikut terlewati). Catatan: di dalam route group Next menambah akhiran hash ke URL gambar (`/tentang/opengraph-image-w6ubei`), jadi URL gambar jangan di-hardcode.
+- **Title lebih lengkap & menjual** (permintaan user, menggantikan format pendek "X | PT IGT" untuk halaman utama). Title, deskripsi, dan teks gambar semua halaman sekarang di satu file `lib/content/page-seo.ts`.
+
+### Verifikasi
+- Lint + build lolos. 9 halaman (Beranda, Tentang, Layanan, Portfolio, Kontak, Blog, detail artikel, Kebijakan Privasi, Syarat Layanan): og:title baru, og:image ke gambar halaman itu (200 PNG 130-155 KB), twitter:image ada.
+
 ## 2026-10-20 (Halaman legal, konten jujur)
 
 ### Ditambah

@@ -1,4 +1,5 @@
-import { pageMetadata, SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
+import { pageSeo } from "@/lib/content/page-seo";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { faqs } from "@/lib/content/faqs";
 import { buildFaqPageSchema } from "@/lib/structured-data";
@@ -14,11 +15,7 @@ import { LatestArticles } from "@/components/sections/home/LatestArticles";
 import { CTABanner } from "@/components/sections/home/CTABanner";
 import { ContactSection } from "@/components/sections/contact/ContactSection";
 
-export const metadata = pageMetadata({
-  title: SITE_TITLE,
-  description: SITE_DESCRIPTION,
-  path: "/",
-});
+export const metadata = pageMetadata(pageSeo.home);
 
 export default function HomePage() {
   return (

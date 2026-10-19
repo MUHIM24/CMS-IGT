@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/seo";
+import { pageSeo } from "@/lib/content/page-seo";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { services } from "@/lib/content/services";
 import { buildServiceListSchema } from "@/lib/structured-data";
@@ -7,12 +8,7 @@ import { CtaCard } from "@/components/shared/CtaCard";
 import { PageHero } from "@/components/shared/PageHero";
 import { BadgeCheckIcon, ClockIcon, HeadsetIcon, ShieldCheckIcon, UserCheckIcon } from "@/components/icons/figma-icons";
 
-export const metadata = pageMetadata({
-  title: "Layanan Kami | PT IGT",
-  description:
-    "Pembuatan aplikasi web, CMS, aplikasi mobile, hingga sistem inti dan otomasi proses bisnis. Dirancang sesuai kebutuhan Anda dan dikerjakan end-to-end oleh tim PT IGT.",
-  path: "/layanan",
-});
+export const metadata = pageMetadata(pageSeo.services);
 
 // Isi tanpa angka/klaim baru, konsisten dengan poin di Beranda & /tentang
 const HIGHLIGHTS = [

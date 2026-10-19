@@ -3,22 +3,29 @@ import { readFile } from "fs/promises";
 import { join } from "path";
 import { siteSettings } from "@/lib/content/site-settings";
 
-export const alt = `${siteSettings.companyName} - Software House dan Jasa Pembuatan Aplikasi`;
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const ogSize = { width: 1200, height: 630 };
+
+export interface OgContent {
+  // label kecil di atas judul (nama halaman / kategori artikel); kosong untuk Beranda
+  label?: string;
+  heading: string;
+  subheading: string;
+}
 
 const SERVICES = ["Aplikasi Web", "Aplikasi Mobile", "Sistem Bisnis", "Otomasi Proses"];
 
-// Gambar preview saat link dibagikan (WhatsApp, Facebook, LinkedIn, X).
+// Gambar preview saat link dibagikan (WhatsApp, Facebook, LinkedIn, X), satu desain untuk semua halaman.
 // Teks penting ditaruh di tengah vertikal karena sebagian aplikasi memotong tepi gambar.
-export default async function Image() {
-  const logoBuffer = await readFile(join(process.cwd(), "public/logo-icon.png"));
-  const logoSrc = `data:image/png;base64,${logoBuffer.toString("base64")}`;
-  // Font default Satori cuma regular, jadi Outfit (font display situs) dimuat dari file lokal
-  const [outfitRegular, outfitBold] = await Promise.all([
+export async function renderOgImage({ label, heading, subheading }: OgContent) {
+  const [logo, outfitRegular, outfitBold] = await Promise.all([
+    readFile(join(process.cwd(), "public/logo-icon.png")),
+    // Font default Satori cuma regular, jadi Outfit (font display situs) dimuat dari file lokal
     readFile(join(process.cwd(), "assets/fonts/outfit-latin-400.woff")),
     readFile(join(process.cwd(), "assets/fonts/outfit-latin-700.woff")),
   ]);
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+  // judul panjang (mis. judul artikel) dikecilkan supaya tetap muat maksimal 3 baris
+  const headingSize = heading.length > 70 ? 48 : heading.length > 45 ? 56 : 64;
 
   return new ImageResponse(
     (
@@ -59,11 +66,18 @@ export default async function Image() {
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ width: 72, height: 6, borderRadius: 3, background: "#f97316", marginBottom: 28 }} />
-          <div style={{ fontSize: 64, fontWeight: 700, color: "#ffffff", lineHeight: 1.1, maxWidth: 900 }}>
-            Software House dan Jasa Pembuatan Aplikasi
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 24 }}>
+            <div style={{ width: 72, height: 6, borderRadius: 3, background: "#f97316" }} />
+            {label && (
+              <div style={{ fontSize: 24, fontWeight: 700, color: "#fb923c", marginLeft: 18, letterSpacing: 3 }}>
+                {label.toUpperCase()}
+              </div>
+            )}
           </div>
-          <div style={{ fontSize: 30, color: "#67bed9", marginTop: 20 }}>{siteSettings.tagline}</div>
+          <div style={{ fontSize: headingSize, fontWeight: 700, color: "#ffffff", lineHeight: 1.1, maxWidth: 960 }}>
+            {heading}
+          </div>
+          <div style={{ fontSize: 30, color: "#67bed9", marginTop: 20 }}>{subheading}</div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -89,7 +103,7 @@ export default async function Image() {
       </div>
     ),
     {
-      ...size,
+      ...ogSize,
       fonts: [
         { name: "Outfit", data: outfitRegular, weight: 400, style: "normal" },
         { name: "Outfit", data: outfitBold, weight: 700, style: "normal" },

@@ -1,16 +1,12 @@
 import { pageMetadata } from "@/lib/seo";
+import { pageSeo } from "@/lib/content/page-seo";
 import Image from "next/image";
 import { CtaCard } from "@/components/shared/CtaCard";
 import { PageHero } from "@/components/shared/PageHero";
 import { PortfolioGrid } from "@/components/sections/portfolio/PortfolioGrid";
 import { clients } from "@/lib/content/clients";
 
-export const metadata = pageMetadata({
-  title: "Portfolio | PT IGT",
-  description:
-    "Proyek PT IGT yang sudah berjalan di produksi: sistem pembiayaan end-to-end, aplikasi mobile untuk tim lapangan, dan otomasi proses yang mempercepat kerja klien.",
-  path: "/portfolio",
-});
+export const metadata = pageMetadata(pageSeo.portfolio);
 
 export default function PortfolioPage() {
   return (

@@ -1,4 +1,5 @@
 import { pageMetadata } from "@/lib/seo";
+import { pageSeo } from "@/lib/content/page-seo";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { buildBreadcrumbSchema } from "@/lib/structured-data";
 import Image from "next/image";
@@ -21,12 +22,7 @@ import {
   HeartIcon,
 } from "@/components/icons/figma-icons";
 
-export const metadata = pageMetadata({
-  title: "Tentang Kami | PT IGT",
-  description:
-    "Kenali PT Inovasi Gantarawana Teknologi, software house di Bogor yang menghadirkan solusi digital untuk bisnis dengan proses transparan dan dukungan jangka panjang.",
-  path: "/tentang",
-});
+export const metadata = pageMetadata(pageSeo.about);
 
 const HIGHLIGHTS = [
   { Icon: ClockIcon, label: "Pengembangan Agile & Terstruktur" },

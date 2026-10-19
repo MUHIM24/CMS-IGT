@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${article.title} | PT IGT`,
     description: article.excerpt,
     path: `/blog/${article.slug}`,
-    image: article.img,
     type: "article",
   });
 }
