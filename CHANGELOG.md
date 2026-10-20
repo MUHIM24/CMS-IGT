@@ -4,7 +4,7 @@ Log progres pengerjaan situs (bukan decision log — buat itu lihat bagian Decis
 
 ## Lanjut sesi berikutnya (per 2026-10-20 malam)
 
-Status: semua pekerjaan 2026-10-20 sudah di-push & live (commit terakhir `9943bee`, link Produk footer dicek live). Working tree bersih, tidak ada server lokal yang jalan.
+Status: semua pekerjaan 2026-10-20 sudah di-push & live, termasuk perbaikan responsive tablet & mobile (lihat entri di bawah). Working tree bersih, tidak ada server lokal yang jalan.
 
 Belum selesai, butuh data/keputusan user:
 - **Konten asli**: testimoni (masih contoh, catatan "contoh ilustrasi" sudah disembunyikan dari situs), kartu tim + halaman `/tim`, logo 5 klien lain, review 6 artikel blog, mencocokkan 3 case study Portfolio dengan 5 proyek asli.
@@ -17,6 +17,16 @@ Bisa dikerjakan / dicek user:
 - Google Search Console: submit sitemap + request indexing halaman utama. Google Business Profile belum dibuat.
 
 Fase 2: CMS/database (dashboard masih mode tampilan: simpan, upload, hapus belum menyimpan), komentar & newsletter blog.
+
+## 2026-10-20 (Perbaikan responsive tablet & mobile)
+
+- Hero: di tablet (md) kartu visual melebar penuh dan horizontal (gambar kiri, alur kredit kanan). Tinggi layar penuh (`min-h-screen`) hanya di desktop, supaya tidak ada ruang kosong besar di "mode desktop" Chrome HP.
+- Mengapa Pilih Kami: di tablet gambar jadi landscape selebar konten, bukan potret sempit di tengah.
+- CtaCard: di mobile ikon di samping teks, tombol kotak selebar kartu dengan teks satu baris; di tablet tombol sejajar dengan awal judul.
+- Tentang Kami (beranda): tombol "Selengkapnya" di tengah pada tablet.
+- Tab filter /layanan & /portfolio: font diperbesar (mobile 15px, tablet 16px, desktop 18px), tombol sedikit lebih tinggi.
+- Footer: di mobile Perusahaan & Produk berdampingan 2 kolom, Hubungi Kami di bawahnya; di tablet profil selebar penuh, tiga kolom link di bawahnya (tidak ada ruang kosong di kanan).
+- Testimoni: tombol panah berputar (dari halaman terakhir "next" kembali ke awal, dan sebaliknya). Autoplay di HP tidak lagi macet setelah layar disentuh (hover hanya untuk mouse, jeda fokus hanya untuk keyboard).
 
 ## 2026-10-20 (Detail Media Library, link Produk footer)
 

@@ -31,11 +31,12 @@ export function WhyUs() {
               ))}
             </div>
           </div>
+          {/* Tablet (sm–lg): gambar landscape selebar konten, bukan potret sempit di tengah */}
           <div className="relative flex justify-center">
-            <div className="relative w-full max-w-md">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100">
+            <div className="relative w-full max-w-md sm:max-w-none lg:max-w-md">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 sm:aspect-[16/9] lg:aspect-[4/5]">
                 <Image
-                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=750&fit=crop&auto=format"
+                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1000&h=1000&fit=crop&auto=format"
                   alt="Aplikasi web di laptop dan aplikasi mobile dipakai bersamaan dalam satu alur kerja"
                   fill
                   sizes="(min-width: 1024px) 448px, 100vw"

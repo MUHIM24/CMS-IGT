@@ -10,7 +10,7 @@ const LOAN_FLOW = ["Registrasi & input CMO", "Cek SLIK OJK & scoring", "Analisa 
 
 export function Hero() {
   return (
-    <section className="hero-gradient relative flex min-h-screen items-center overflow-hidden">
+    <section className="hero-gradient relative flex items-center lg:min-h-screen overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{ backgroundImage: "radial-gradient(circle, #67BED9 1px, transparent 1px)", backgroundSize: "36px 36px" }}
@@ -65,30 +65,33 @@ export function Hero() {
             </div>
           </div>
 
+          {/* Tablet (md): kartu melebar penuh dan horizontal (gambar kiri, alur kanan) supaya sejajar dengan teks di atasnya */}
           <div className="relative flex justify-center lg:justify-end lg:self-center">
-            <div className="relative w-full max-w-[400px]">
-              <div className="animate-float relative z-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 pb-14 shadow-2xl backdrop-blur-xl">
+            <div className="relative w-full max-w-[400px] md:max-w-none lg:max-w-[400px]">
+              <div className="animate-float relative z-10 rounded-2xl border border-white/10 bg-white/[0.04] p-6 pb-14 shadow-2xl backdrop-blur-xl md:grid md:grid-cols-2 md:items-center md:gap-8 md:p-8 md:pb-12 lg:block lg:p-6 lg:pb-14">
                 <Image
                   src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=520&h=280&fit=crop&auto=format"
                   alt="Software development team at work"
                   width={520}
                   height={280}
-                  className="mb-5 h-44 w-full rounded-xl bg-slate-800 object-cover"
+                  className="mb-5 h-44 w-full rounded-xl bg-slate-800 object-cover md:mb-0 md:h-52 lg:mb-5 lg:h-44"
                 />
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="font-display text-sm font-bold text-white">Core Finance System</span>
-                  <span className="bg-brand/20 text-brand-light rounded-md px-2.5 py-1 text-xs font-bold">Produksi</span>
+                <div>
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="font-display text-sm font-bold text-white">Core Finance System</span>
+                    <span className="bg-brand/20 text-brand-light rounded-md px-2.5 py-1 text-xs font-bold">Produksi</span>
+                  </div>
+                  <ol className="space-y-2.5">
+                    {LOAN_FLOW.map((step) => (
+                      <li key={step} className="flex items-center gap-2.5 text-sm text-white/70">
+                        <span className="bg-brand/20 text-brand-light flex h-5 w-5 shrink-0 items-center justify-center rounded-full">
+                          <CheckIcon />
+                        </span>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
                 </div>
-                <ol className="space-y-2.5">
-                  {LOAN_FLOW.map((step) => (
-                    <li key={step} className="flex items-center gap-2.5 text-sm text-white/70">
-                      <span className="bg-brand/20 text-brand-light flex h-5 w-5 shrink-0 items-center justify-center rounded-full">
-                        <CheckIcon />
-                      </span>
-                      {step}
-                    </li>
-                  ))}
-                </ol>
               </div>
               <div className="font-display absolute -top-3 -left-5 z-20 rounded-xl bg-[var(--color-accent)] px-4 py-2 text-base font-bold text-brand-dark shadow-xl">
                 Patuh OJK

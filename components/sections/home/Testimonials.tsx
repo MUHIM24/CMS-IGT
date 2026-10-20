@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FocusEvent, type PointerEvent } from "react";
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon, UserCheckIcon } from "@/components/icons/figma-icons";
 import { testimonials } from "@/lib/content/testimonials";
 
@@ -52,6 +52,20 @@ export function Testimonials() {
     lastInteractionRef.current = Date.now();
   }
 
+  // Di layar sentuh, tap memicu mouseenter + focus yang tidak pernah dilepas, sehingga autoplay macet.
+  // Jadi hover hanya dihitung untuk mouse asli, dan fokus hanya untuk navigasi keyboard (:focus-visible).
+  function holdOnMouse(e: PointerEvent, hold: boolean) {
+    if (e.pointerType === "mouse") holdRef.current = hold;
+  }
+
+  function holdOnKeyboardFocus(e: FocusEvent) {
+    if (e.target.matches(":focus-visible")) holdRef.current = true;
+  }
+
+  function releaseOnFocusLeave(e: FocusEvent) {
+    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) holdRef.current = false;
+  }
+
   function goTo(target: number) {
     const track = trackRef.current;
     if (!track) return;
@@ -64,11 +78,10 @@ export function Testimonials() {
     <section className="bg-white py-24 lg:py-32">
       <div
         className="mx-auto max-w-7xl px-6 lg:px-10"
-        onMouseEnter={() => (holdRef.current = true)}
-        onMouseLeave={() => (holdRef.current = false)}
-        onFocus={() => (holdRef.current = true)}
-        onBlur={() => (holdRef.current = false)}
-        onTouchStart={markInteraction}
+        onPointerEnter={(e) => holdOnMouse(e, true)}
+        onPointerLeave={(e) => holdOnMouse(e, false)}
+        onFocus={holdOnKeyboardFocus}
+        onBlur={releaseOnFocusLeave}
         onPointerDown={markInteraction}
       >
         <h2 className="font-display text-text mb-3 text-3xl font-bold sm:text-4xl">
@@ -107,10 +120,9 @@ export function Testimonials() {
           <div className="mt-8 flex items-center justify-center gap-4">
             <button
               type="button"
-              onClick={() => goTo(Math.max(0, page - 1))}
-              disabled={page === 0}
+              onClick={() => goTo((page - 1 + pageCount) % pageCount)}
               aria-label="Testimoni sebelumnya"
-              className="border-border text-text hover:border-brand-mid flex h-11 w-11 items-center justify-center rounded-full border bg-white transition-colors duration-200 disabled:opacity-40"
+              className="border-border text-text hover:border-brand-mid flex h-11 w-11 items-center justify-center rounded-full border bg-white transition-colors duration-200"
             >
               <ChevronLeftIcon />
             </button>
@@ -130,10 +142,9 @@ export function Testimonials() {
             </div>
             <button
               type="button"
-              onClick={() => goTo(Math.min(pageCount - 1, page + 1))}
-              disabled={page === pageCount - 1}
+              onClick={() => goTo((page + 1) % pageCount)}
               aria-label="Testimoni berikutnya"
-              className="border-border text-text hover:border-brand-mid flex h-11 w-11 items-center justify-center rounded-full border bg-white transition-colors duration-200 disabled:opacity-40"
+              className="border-border text-text hover:border-brand-mid flex h-11 w-11 items-center justify-center rounded-full border bg-white transition-colors duration-200"
             >
               <ChevronRightIcon />
             </button>

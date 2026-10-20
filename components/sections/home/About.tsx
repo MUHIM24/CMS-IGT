@@ -83,7 +83,10 @@ export function About() {
                 </div>
               ))}
             </div>
-            <PillLink href="/tentang">Selengkapnya</PillLink>
+            {/* Tablet: tombol di tengah di bawah kartu Visi/Misi; mobile & desktop tetap rata kiri */}
+            <div className="sm:flex sm:justify-center lg:block">
+              <PillLink href="/tentang">Selengkapnya</PillLink>
+            </div>
           </div>
         </div>
       </div>

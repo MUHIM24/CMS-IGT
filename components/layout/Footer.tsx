@@ -26,8 +26,10 @@ export function Footer() {
   return (
     <footer className="bg-brand-deeper border-t border-white/[0.06]">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-        <div className="mb-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-2">
+        {/* Mobile: Perusahaan & Produk berdampingan, Hubungi Kami selebar penuh (email panjang). Tablet: profil selebar
+            penuh, tiga kolom di bawahnya supaya tidak ada ruang kosong di kanan */}
+        <div className="mb-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 sm:gap-10 lg:grid-cols-5">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
             <div className="mb-5 flex items-center gap-3">
               <Image src="/logo-icon.png" alt="PT Inovasi Gantarawana Teknologi logo" width={36} height={36} className="h-9 w-9 object-contain" />
               <div>
@@ -38,7 +40,7 @@ export function Footer() {
               </div>
             </div>
             {/* Kolom profil (referensi user): hanya klaim faktual, tanpa angka tahun/sertifikasi yang belum ada datanya */}
-            <div className="max-w-md space-y-4 text-sm leading-relaxed text-white/70">
+            <div className="max-w-md space-y-4 sm:max-w-2xl lg:max-w-md text-sm leading-relaxed text-white/70">
               <p>
                 <strong className="font-semibold text-white">{siteSettings.companyName}</strong> adalah software house
                 yang membangun aplikasi web, aplikasi mobile, dan sistem pembiayaan untuk bisnis di Indonesia.
@@ -77,7 +79,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <div className="mb-5 text-xs font-black tracking-widest text-white uppercase">Hubungi Kami</div>
             <ul className="space-y-4">
               <li className="flex gap-3">
