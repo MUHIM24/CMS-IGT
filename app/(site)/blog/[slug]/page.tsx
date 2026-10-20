@@ -11,7 +11,7 @@ import { CommentSection } from "@/components/sections/blog/CommentSection";
 import { CtaCard } from "@/components/shared/CtaCard";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CalendarIcon, ClockIcon, ListIcon, TagIcon, WhatsAppIcon } from "@/components/icons/figma-icons";
-import { articles, formatArticleDate, getArticle } from "@/lib/content/articles";
+import { articles, formatArticleDate, getArticle, type Article } from "@/lib/content/articles";
 import { buildWhatsAppLink } from "@/lib/content/site-settings";
 
 export function generateStaticParams() {
@@ -28,6 +28,35 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/blog/${article.slug}`,
     type: "article",
   });
+}
+
+function TableOfContents({ article, className }: { article: Article; className: string }) {
+  return (
+    <nav aria-label="Daftar isi" className={`border-border rounded-2xl border p-6 ${className}`}>
+      <h2 className="font-display text-text mb-3 flex items-center gap-2 text-base font-bold">
+        <span className="text-brand-mid">
+          <ListIcon />
+        </span>
+        Daftar Isi
+      </h2>
+      <ul className="border-border space-y-1 border-l pl-4">
+        {article.sections.map((s) => (
+          <li key={s.id}>
+            <a href={`#${s.id}`} className="text-muted hover:text-brand-mid block py-1 text-sm">
+              {s.heading}
+            </a>
+          </li>
+        ))}
+        {article.faqs.length > 0 && (
+          <li>
+            <a href="#faq" className="text-muted hover:text-brand-mid block py-1 text-sm">
+              Pertanyaan Seputar Topik Ini
+            </a>
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -98,6 +127,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <section className="bg-white pt-14 pb-4 lg:pt-16 lg:pb-8">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1fr_300px] lg:px-10">
           <article className="min-w-0">
+            {/* Mobile & tablet: daftar isi tampil sebelum isi artikel, bukan di bawahnya */}
+            <TableOfContents article={article} className="mb-10 lg:hidden" />
+
             <ArticleBody sections={article.sections} />
 
             {article.faqs.length > 0 && (
@@ -148,32 +180,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </article>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-            <nav aria-label="Daftar isi" className="border-border rounded-2xl border p-6">
-              <h2 className="font-display text-text mb-3 flex items-center gap-2 text-base font-bold">
-                <span className="text-brand-mid">
-                  <ListIcon />
-                </span>
-                Daftar Isi
-              </h2>
-              <ul className="border-border space-y-1 border-l pl-4">
-                {article.sections.map((s) => (
-                  <li key={s.id}>
-                    <a href={`#${s.id}`} className="text-muted hover:text-brand-mid block py-1 text-sm">
-                      {s.heading}
-                    </a>
-                  </li>
-                ))}
-                {article.faqs.length > 0 && (
-                  <li>
-                    <a href="#faq" className="text-muted hover:text-brand-mid block py-1 text-sm">
-                      Pertanyaan Seputar Topik Ini
-                    </a>
-                  </li>
-                )}
-              </ul>
-            </nav>
+            <TableOfContents article={article} className="hidden lg:block" />
 
-            <div className="bg-surface-2 rounded-2xl p-6">
+            {/* Di mobile & tablet disembunyikan: CtaCard di akhir halaman sudah jadi ajakan konsultasi */}
+            <div className="bg-surface-2 hidden rounded-2xl p-6 lg:block">
               <h2 className="font-display text-text mb-2 text-base font-bold">Butuh Bantuan?</h2>
               <p className="text-muted mb-4 text-sm leading-relaxed">
                 Konsultasikan kebutuhan sistem bisnis Anda gratis bersama tim kami.

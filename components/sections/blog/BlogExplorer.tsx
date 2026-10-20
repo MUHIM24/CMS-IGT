@@ -209,8 +209,9 @@ export function BlogExplorer() {
               </div>
             </div>
 
-            {/* Pengganti kotak newsletter (belum ada backend email): ajakan konsultasi via WhatsApp */}
-            <div className="bg-surface-2 rounded-2xl p-6">
+            {/* Pengganti kotak newsletter (belum ada backend email): ajakan konsultasi via WhatsApp.
+                Di mobile & tablet disembunyikan karena CtaCard di bawah sudah jadi ajakan yang sama. */}
+            <div className="bg-surface-2 hidden rounded-2xl p-6 lg:block">
               <h2 className="font-display text-text mb-2 text-lg font-bold">Butuh Bantuan?</h2>
               <p className="text-muted mb-5 text-sm leading-relaxed">
                 Konsultasikan kebutuhan sistem bisnis Anda gratis bersama tim kami.

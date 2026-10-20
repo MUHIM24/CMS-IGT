@@ -18,6 +18,11 @@ Bisa dikerjakan / dicek user:
 
 Fase 2: CMS/database (dashboard masih mode tampilan: simpan, upload, hapus belum menyimpan), komentar & newsletter blog.
 
+## 2026-10-20 (Blog: urutan sidebar di mobile & tablet)
+
+- `/blog/[slug]`: di mobile & tablet Daftar Isi tampil sebelum isi artikel (sebelumnya di bawah setelah komentar & artikel lainnya). Di desktop tetap di sidebar sticky.
+- Kotak "Butuh Bantuan?" di `/blog` dan `/blog/[slug]` hanya tampil di desktop; di mobile & tablet sudah ada `CtaCard` di akhir halaman.
+
 ## 2026-10-20 (Perbaikan responsive tablet & mobile)
 
 - Hero: di tablet (md) kartu visual melebar penuh dan horizontal (gambar kiri, alur kredit kanan). Tinggi layar penuh (`min-h-screen`) hanya di desktop, supaya tidak ada ruang kosong besar di "mode desktop" Chrome HP.
