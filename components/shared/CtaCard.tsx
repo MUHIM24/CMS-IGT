@@ -2,9 +2,10 @@ import { HeadsetIcon, WhatsAppIcon } from "@/components/icons/figma-icons";
 import { buildWhatsAppLink } from "@/lib/content/site-settings";
 
 // Kartu ajakan konsultasi di akhir halaman dalam. Gradasi brand-mid → brand-dark, teks putih (≥ 8.92).
-export function CtaCard({ title, subtitle }: { title: string; subtitle: string }) {
+// compactTop: jarak atas dirapatkan di mobile/tablet supaya kartu menyambung rapat dengan konten di atasnya (mis. sidebar blog).
+export function CtaCard({ title, subtitle, compactTop = false }: { title: string; subtitle: string; compactTop?: boolean }) {
   return (
-    <section className="bg-white py-16 lg:py-20">
+    <section className={`bg-white pb-16 lg:py-20 ${compactTop ? "pt-10" : "pt-16"}`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         {/* Mobile: ikon di samping teks, tombol kotak selebar kartu dalam satu baris. Tablet: ikon di samping, tombol digeser sejajar awal judul
             (lebar ikon 56px + gap 20px = 76px). Desktop: teks kiri, tombol kanan. */}

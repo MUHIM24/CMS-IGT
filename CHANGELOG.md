@@ -20,6 +20,7 @@ Fase 2: CMS/database (dashboard masih mode tampilan: simpan, upload, hapus belum
 
 ## 2026-10-20 (Blog: urutan sidebar di mobile & tablet)
 
+- `/blog`: jarak sidebar ke `CtaCard` di mobile & tablet dirapatkan dari 80px jadi 40px (prop baru `compactTop` di `CtaCard`; halaman lain tidak berubah).
 - `/blog/[slug]`: di mobile & tablet Daftar Isi tampil sebelum isi artikel (sebelumnya di bawah setelah komentar & artikel lainnya). Di desktop tetap di sidebar sticky.
 - Kotak "Butuh Bantuan?" di `/blog` dan `/blog/[slug]` hanya tampil di desktop; di mobile & tablet sudah ada `CtaCard` di akhir halaman.
 

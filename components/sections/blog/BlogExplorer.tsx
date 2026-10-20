@@ -85,7 +85,7 @@ export function BlogExplorer() {
         </form>
       </div>
 
-      <section className="bg-white pt-14 pb-4 lg:pt-16 lg:pb-8">
+      <section className="bg-white pt-14 lg:pt-16 lg:pb-8">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-[280px_1fr] lg:px-10">
           {/* Daftar artikel: di mobile tampil duluan, sidebar di bawahnya */}
           <div className="lg:col-start-2 lg:row-start-1">

@@ -25,6 +25,7 @@ export default function BlogPage() {
       <CtaCard
         title="Punya Kebutuhan Sistem Serupa?"
         subtitle="Diskusikan kebutuhan Anda dengan tim kami, konsultasi gratis tanpa komitmen."
+        compactTop
       />
     </>
   );
